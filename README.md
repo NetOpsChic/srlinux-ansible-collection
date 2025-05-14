@@ -1,0 +1,1 @@
+# srlinux-ansible-collection
