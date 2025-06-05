@@ -1,0 +1,22 @@
+# Copyright 2023 Nokia
+# Licensed under the BSD 3-Clause License.
+# SPDX-License-Identifier: BSD-3-Clause
+
+- name: TLS skipped check
+  hosts: clab
+  gather_facts: false
+  vars:
+    ansible_httpapi_use_ssl: true
+    ansible_httpapi_validate_certs: false
+  tasks:
+    - name: Get system information
+      nokia.srlinux.get:
+        paths:
+          - path: /system/information
+            datastore: state
+      register: get_return
+      failed_when: get_return.failed
+
+    - name: Print debug
+      ansible.builtin.debug:
+        var: get_return

@@ -1,0 +1,17 @@
+- name: Create all required NIs for the topology
+  hosts: all
+  gather_facts: false
+  tasks:
+    - name: Create/Update network-instances
+      nokia.srlinux.network_instance:
+        config:
+          - name: lan-vrf
+            type: mac-vrf
+            description: L2 LAN instance
+          - name: blue
+            type: ip-vrf
+            description: L3 VRF blue
+          - name: red
+            type: ip-vrf
+            description: L3 VRF red
+        state: merged

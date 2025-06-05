@@ -1,0 +1,26 @@
+- name: Configure SR Linux routing policy with prefix-set and export policy
+  hosts: all
+  gather_facts: false
+  tasks:
+    - name: Configure prefix-sets and export policy for BGP
+      nokia.srlinux.routing_policy:
+        config:
+          prefix_sets:
+            - name: connected-subnets
+              prefixes:
+                - ip_prefix: 10.0.0.0/24
+                  mask_length_range: 24..24
+                - ip_prefix: 192.0.2.0/24
+                  mask_length_range: 24..24
+          policies:
+            - name: export-connected
+              statements:
+                - name: connected
+                  match:
+                    prefix_set: connected-subnets
+                  action:
+                    policy_result: accept
+                - name: all
+                  action:
+                    policy_result: reject
+        state: merged

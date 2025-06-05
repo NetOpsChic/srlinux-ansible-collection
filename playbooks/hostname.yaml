@@ -1,0 +1,14 @@
+- name: Test nokia.srlinux.hostname module
+  hosts: all
+  gather_facts: false
+  tasks:
+    - name: Apply the provided configuration
+      nokia.srlinux.hostname:
+        config:
+          hostname: test-srl03
+        state: merged
+      register: result
+
+    - name: Show module result
+      debug:
+        var: result

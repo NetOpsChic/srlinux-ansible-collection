@@ -1,0 +1,226 @@
+---
+- name: Deploy full-mesh topology on Nokia SR-Linux
+  hosts: all
+  gather_facts: false
+
+  vars:
+    # 1) VRFs to create on every node
+    vrfs:
+      - name: blue
+        type: ip-vrf
+        description: L3 VRF blue
+    # 2) Per-node L3 subinterfaces (using .0 + type: subinterface)
+    mesh_interfaces:
+      node1:
+        - name: ethernet-1/1.0
+          type: subinterface
+          admin_state: enable
+          description: to node2
+          ipv4_address: 40.1.1.1/8
+          network_instance: blue
+        - name: ethernet-1/2.0
+          type: subinterface
+          admin_state: enable
+          description: to node4
+          ipv4_address: 30.1.1.2/8
+          network_instance: blue
+        - name: ethernet-1/3.0
+          type: subinterface
+          admin_state: enable
+          description: to node3
+          ipv4_address: 60.1.1.1/8
+          network_instance: blue
+
+      node2:
+        - name: ethernet-1/1.0
+          type: subinterface
+          admin_state: enable
+          description: to node1
+          ipv4_address: 40.1.1.2/8
+          network_instance: blue
+        - name: ethernet-1/2.0
+          type: subinterface
+          admin_state: enable
+          description: to node3
+          ipv4_address: 10.1.1.1/8
+          network_instance: blue
+        - name: ethernet-1/3.0
+          type: subinterface
+          admin_state: enable
+          description: to node4
+          ipv4_address: 50.1.1.1/8
+          network_instance: blue
+
+      node3:
+        - name: ethernet-1/1.0
+          type: subinterface
+          admin_state: enable
+          description: to node2
+          ipv4_address: 10.1.1.2/8
+          network_instance: blue
+        - name: ethernet-1/2.0
+          type: subinterface
+          admin_state: enable
+          description: to node4
+          ipv4_address: 20.1.1.1/8
+          network_instance: blue
+        - name: ethernet-1/3.0
+          type: subinterface
+          admin_state: enable
+          description: to node1
+          ipv4_address: 60.1.1.2/8
+          network_instance: blue
+
+      node4:
+        - name: ethernet-1/1.0
+          type: subinterface
+          admin_state: enable
+          description: to node3
+          ipv4_address: 20.1.1.2/8
+          network_instance: blue
+        - name: ethernet-1/2.0
+          type: subinterface
+          admin_state: enable
+          description: to node1
+          ipv4_address: 30.1.1.1/8
+          network_instance: blue
+        - name: ethernet-1/3.0
+          type: subinterface
+          admin_state: enable
+          description: to node2
+          ipv4_address: 50.1.1.2/8
+          network_instance: blue
+
+    # 3) Per-node static routes & NHGs (use network prefixes with host-bits=0)
+    mesh_routes:
+      node1:
+        next_hop_groups:
+          - name: nhg_n2
+            admin_state: enable
+            nexthops:
+              - index: 1
+                ip_address: 40.1.1.2
+          - name: nhg_n3
+            admin_state: enable
+            nexthops:
+              - index: 1
+                ip_address: 60.1.1.2
+          - name: nhg_n4
+            admin_state: enable
+            nexthops:
+              - index: 1
+                ip_address: 30.1.1.1
+        routes:
+          - prefix: 10.0.0.0/8
+            admin_state: enable
+            next_hop_group: nhg_n3
+          - prefix: 20.0.0.0/8
+            admin_state: enable
+            next_hop_group: nhg_n4
+          - prefix: 50.0.0.0/8
+            admin_state: enable
+            next_hop_group: nhg_n2
+
+      node2:
+        next_hop_groups:
+          - name: nhg_n1
+            admin_state: enable
+            nexthops:
+              - index: 1
+                ip_address: 40.1.1.1
+          - name: nhg_n3
+            admin_state: enable
+            nexthops:
+              - index: 1
+                ip_address: 10.1.1.2
+          - name: nhg_n4
+            admin_state: enable
+            nexthops:
+              - index: 1
+                ip_address: 50.1.1.2
+        routes:
+          - prefix: 20.0.0.0/8
+            admin_state: enable
+            next_hop_group: nhg_n4
+          - prefix: 60.0.0.0/8
+            admin_state: enable
+            next_hop_group: nhg_n1
+          - prefix: 30.0.0.0/8
+            admin_state: enable
+            next_hop_group: nhg_n3
+
+      node3:
+        next_hop_groups:
+          - name: nhg_n1
+            admin_state: enable
+            nexthops:
+              - index: 1
+                ip_address: 60.1.1.1
+          - name: nhg_n2
+            admin_state: enable
+            nexthops:
+              - index: 1
+                ip_address: 10.1.1.1
+          - name: nhg_n4
+            admin_state: enable
+            nexthops:
+              - index: 1
+                ip_address: 20.1.1.2
+        routes:
+          - prefix: 30.0.0.0/8
+            admin_state: enable
+            next_hop_group: nhg_n1
+          - prefix: 40.0.0.0/8
+            admin_state: enable
+            next_hop_group: nhg_n2
+          - prefix: 50.0.0.0/8
+            admin_state: enable
+            next_hop_group: nhg_n4
+
+      node4:
+        next_hop_groups:
+          - name: nhg_n1
+            admin_state: enable
+            nexthops:
+              - index: 1
+                ip_address: 30.1.1.2
+          - name: nhg_n2
+            admin_state: enable
+            nexthops:
+              - index: 1
+                ip_address: 50.1.1.1
+          - name: nhg_n3
+            admin_state: enable
+            nexthops:
+              - index: 1
+                ip_address: 20.1.1.1
+        routes:
+          - prefix: 60.0.0.0/8
+            admin_state: enable
+            next_hop_group: nhg_n1
+          - prefix: 10.0.0.0/8
+            admin_state: enable
+            next_hop_group: nhg_n2
+          - prefix: 40.0.0.0/8
+            admin_state: enable
+            next_hop_group: nhg_n3
+
+  tasks:
+
+    - name: Create/Update VRFs
+      nokia.srlinux.network_instance:
+        config: "{{ vrfs }}"
+        state: merged
+
+    - name: Configure full-mesh L3 subinterfaces
+      nokia.srlinux.l3_interface:
+        config: "{{ mesh_interfaces[inventory_hostname] }}"
+        state: merged
+
+    - name: Configure static routes & next-hop-groups
+      nokia.srlinux.static_routes:
+        config:
+          network_instance: blue
+          next_hop_groups: "{{ mesh_routes[inventory_hostname].next_hop_groups }}"
+          routes:             "{{ mesh_routes[inventory_hostname].routes }}"
+        state: merged

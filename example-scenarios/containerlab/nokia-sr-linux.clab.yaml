@@ -1,0 +1,44 @@
+name: srl-mesh
+
+topology:
+  kinds:
+    nokia_srlinux:
+      image: ghcr.io/nokia/srlinux
+
+  nodes:
+    node1:
+      kind: nokia_srlinux
+      type: ixrd2l
+      labels:
+        graph-posX: "676"
+        graph-posY: "808"
+        graph-groupLabelPos: bottom-center
+    node2:
+      kind: nokia_srlinux
+      type: ixrd2l
+      labels:
+        graph-posX: "545"
+        graph-posY: "809"
+        graph-groupLabelPos: bottom-center
+    node3:
+      kind: nokia_srlinux
+      type: ixrd2l
+      labels:
+        graph-posX: "546"
+        graph-posY: "937"
+        graph-groupLabelPos: bottom-center
+    node4:
+      kind: nokia_srlinux
+      type: ixrd2l
+      labels:
+        graph-posX: "677"
+        graph-posY: "936"
+        graph-groupLabelPos: bottom-center
+
+  links:
+    - endpoints: [ "node1:e1-1", "node2:e1-1" ]
+    - endpoints: [ "node2:e1-2", "node3:e1-1" ]
+    - endpoints: [ "node3:e1-2", "node4:e1-1" ]
+    - endpoints: [ "node4:e1-2", "node1:e1-2" ]
+    - endpoints: [ "node1:e1-3", "node3:e1-3" ]
+    - endpoints: [ "node2:e1-3", "node4:e1-3" ]

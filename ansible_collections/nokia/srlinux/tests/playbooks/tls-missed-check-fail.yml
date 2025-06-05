@@ -1,0 +1,21 @@
+# Copyright 2023 Nokia
+# Licensed under the BSD 3-Clause License.
+# SPDX-License-Identifier: BSD-3-Clause
+
+- name: TLS missed check fail
+  hosts: clab
+  gather_facts: false
+  vars:
+    ansible_httpapi_use_ssl: true
+  tasks:
+    - name: Get with TLS required but without setting skip verify or custom ca cert
+      nokia.srlinux.get:
+        paths:
+          - path: /system/information
+            datastore: state
+      register: get_return
+      failed_when: not get_return.failed or "CERTIFICATE_VERIFY_FAILED" not in get_return.module_stderr
+
+    - name: Print debug
+      ansible.builtin.debug:
+        var: get_return

@@ -1,0 +1,40 @@
+# Copyright 2023 Nokia
+# Licensed under the BSD 3-Clause License.
+# SPDX-License-Identifier: BSD-3-Clause
+
+- name: Set leaves
+  hosts: clab
+  gather_facts: false
+  tasks:
+    - name: Set system information with values
+      nokia.srlinux.config:
+        update:
+          - path: /system/information
+            value:
+              location: Some location
+              contact: initial contact
+          # ensure that update overrides the original value
+          - path: /system/information
+            value:
+              contact: Some contact
+          - path: /interface[name=mgmt0]/description
+            value: "test setting description"
+      register: set_response
+
+    - name: Print debug
+      ansible.builtin.debug:
+        var: set_response
+
+    - name: Ensure changes were made to the device
+      nokia.srlinux.get:
+        paths:
+          - path: /system/information
+            datastore: state
+          - path: /interface[name=mgmt0]/description
+            datastore: state
+      register: get_response
+      failed_when: (get_response.result[0].location != "Some location") or (get_response.result[0].contact != "Some contact") or (get_response.result[1] != "test setting description")
+
+    - name: Print debug
+      ansible.builtin.debug:
+        var: get_response

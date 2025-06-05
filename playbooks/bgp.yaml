@@ -1,0 +1,23 @@
+- name: Configure BGP with default AFI-SAFI
+  hosts: all
+  gather_facts: false
+  tasks:
+    - name: Set up BGP
+      nokia.srlinux.bgp:
+        config:
+          network_instance: blue
+          router_id: 1.1.1.1
+          admin_state: enable
+          autonomous_system: 65001
+          groups:
+            - group-name: EBGP-PEERS
+              admin-state: enable
+              peer-as: 65002
+              afi-safi:
+                - afi-safi-name: ipv4-unicast
+          neighbors:
+            - peer-address: 192.0.2.2
+              admin-state: enable
+              peer-as: 65002
+              peer-group: EBGP-PEERS
+        state: merged

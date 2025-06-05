@@ -1,0 +1,16 @@
+---
+- name: Configure routed L3 interfaces
+  hosts: all
+  gather_facts: false
+
+  tasks:
+    - name: Add L3 WAN interface
+      nokia.srlinux.l3_interface:
+        config:
+          - name: ethernet-1/4.100
+            type: subinterface
+            admin_state: enable
+            description: WAN uplink
+            ipv4_address: 192.0.2.1/30
+            network_instance: blue
+        state: merged

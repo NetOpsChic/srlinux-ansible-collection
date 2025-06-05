@@ -1,0 +1,186 @@
+---
+- name: Nokia SR Linux Full-Mesh OSPF with Explicit Subinterfaces
+  hosts: all
+  gather_facts: false
+
+  tasks:
+    # 1. Ensure VRF blue exists
+    - name: Create VRF blue
+      nokia.srlinux.network_instance:
+        config:
+          - name: blue
+            type: ip-vrf
+            description: L3 VRF blue
+        state: merged
+
+    # 2. Configure subinterfaces for each node (all fields explicit)
+    - name: Attach subinterfaces to blue (node1)
+      when: inventory_hostname == "node1"
+      nokia.srlinux.l3_interface:
+        config:
+          - name: ethernet-1/1.0
+            type: subinterface
+            admin_state: enable
+            description: to node2
+            ipv4_address: 40.1.1.1/8
+            network_instance: blue
+          - name: ethernet-1/2.0
+            type: subinterface
+            admin_state: enable
+            description: to node4
+            ipv4_address: 30.1.1.2/8
+            network_instance: blue
+          - name: ethernet-1/3.0
+            type: subinterface
+            admin_state: enable
+            description: to node3
+            ipv4_address: 60.1.1.1/8
+            network_instance: blue
+        state: merged
+
+    - name: Attach subinterfaces to blue (node2)
+      when: inventory_hostname == "node2"
+      nokia.srlinux.l3_interface:
+        config:
+          - name: ethernet-1/1.0
+            type: subinterface
+            admin_state: enable
+            description: to node1
+            ipv4_address: 40.1.1.2/8
+            network_instance: blue
+          - name: ethernet-1/2.0
+            type: subinterface
+            admin_state: enable
+            description: to node3
+            ipv4_address: 10.1.1.1/8
+            network_instance: blue
+          - name: ethernet-1/3.0
+            type: subinterface
+            admin_state: enable
+            description: to node4
+            ipv4_address: 50.1.1.1/8
+            network_instance: blue
+        state: merged
+
+    - name: Attach subinterfaces to blue (node3)
+      when: inventory_hostname == "node3"
+      nokia.srlinux.l3_interface:
+        config:
+          - name: ethernet-1/1.0
+            type: subinterface
+            admin_state: enable
+            description: to node2
+            ipv4_address: 10.1.1.2/8
+            network_instance: blue
+          - name: ethernet-1/2.0
+            type: subinterface
+            admin_state: enable
+            description: to node4
+            ipv4_address: 20.1.1.1/8
+            network_instance: blue
+          - name: ethernet-1/3.0
+            type: subinterface
+            admin_state: enable
+            description: to node1
+            ipv4_address: 60.1.1.2/8
+            network_instance: blue
+        state: merged
+
+    - name: Attach subinterfaces to blue (node4)
+      when: inventory_hostname == "node4"
+      nokia.srlinux.l3_interface:
+        config:
+          - name: ethernet-1/1.0
+            type: subinterface
+            admin_state: enable
+            description: to node3
+            ipv4_address: 20.1.1.2/8
+            network_instance: blue
+          - name: ethernet-1/2.0
+            type: subinterface
+            admin_state: enable
+            description: to node1
+            ipv4_address: 30.1.1.1/8
+            network_instance: blue
+          - name: ethernet-1/3.0
+            type: subinterface
+            admin_state: enable
+            description: to node2
+            ipv4_address: 50.1.1.2/8
+            network_instance: blue
+        state: merged
+
+    # 3. OSPF config per node (all explicit)
+    - name: Configure OSPFv2 on node1
+      when: inventory_hostname == "node1"
+      nokia.srlinux.ospf_v2:
+        config:
+          network_instance: blue
+          router_id: 1.1.1.1
+          admin_state: enable
+          areas:
+            - area_id: "0.0.0.0"
+              interfaces:
+                - name: ethernet-1/1.0
+                  admin_state: enable
+                - name: ethernet-1/2.0
+                  admin_state: enable
+                - name: ethernet-1/3.0
+                  admin_state: enable
+        state: merged
+
+    - name: Configure OSPFv2 on node2
+      when: inventory_hostname == "node2"
+      nokia.srlinux.ospf_v2:
+        config:
+          network_instance: blue
+          router_id: 2.2.2.2
+          admin_state: enable
+          areas:
+            - area_id: "0.0.0.0"
+              interfaces:
+                - name: ethernet-1/1.0
+                  admin_state: enable
+                - name: ethernet-1/2.0
+                  admin_state: enable
+                - name: ethernet-1/3.0
+                  admin_state: enable
+        state: merged
+
+    - name: Configure OSPFv2 on node3
+      when: inventory_hostname == "node3"
+      nokia.srlinux.ospf_v2:
+        config:
+          network_instance: blue
+          router_id: 3.3.3.3
+          admin_state: enable
+          areas:
+            - area_id: "0.0.0.0"
+              interfaces:
+                - name: ethernet-1/1.0
+                  admin_state: enable
+                - name: ethernet-1/2.0
+                  admin_state: enable
+                - name: ethernet-1/3.0
+                  admin_state: enable
+        state: merged
+
+    - name: Configure OSPFv2 on node4
+      when: inventory_hostname == "node4"
+      nokia.srlinux.ospf_v2:
+        config:
+          network_instance: blue
+          router_id: 4.4.4.4
+          admin_state: enable
+          areas:
+            - area_id: "0.0.0.0"
+              interfaces:
+                - name: ethernet-1/1.0
+                  admin_state: enable
+                - name: ethernet-1/2.0
+                  admin_state: enable
+                - name: ethernet-1/3.0
+                  admin_state: enable
+        state: merged
+    
+    

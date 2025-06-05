@@ -1,0 +1,39 @@
+{
+ "collection_info": {
+  "namespace": "nokia",
+  "name": "srlinux",
+  "version": "1.0.3",
+  "authors": [
+   "Roman Dodin <roman.dodin@nokia.com>",
+   "Patrick Dumais <patrick.dumais@nokia.com>",
+   "Walter De Smedt <walter.de_smedt@nokia.com>"
+  ],
+  "readme": "README.md",
+  "tags": [
+   "nokia",
+   "srlinux",
+   "jsonrpc",
+   "httpapi",
+   "networking"
+  ],
+  "description": "Ansible collection for Nokia SR Linux Network OS.",
+  "license": [],
+  "license_file": "LICENSE",
+  "dependencies": {
+   "ansible.netcommon": ">=5.2.0,<=6.1.3",
+   "ansible.utils": ">=3.0.0,<5.0.0"
+  },
+  "repository": "https://github.com/nokia/srlinux-ansible-collection",
+  "documentation": "https://learn.srlinux.dev/ansible/collection/",
+  "homepage": null,
+  "issues": "https://github.com/nokia/srlinux-ansible-collection/issues"
+ },
+ "file_manifest_file": {
+  "name": "FILES.json",
+  "ftype": "file",
+  "chksum_type": "sha256",
+  "chksum_sha256": "fdfd43b9c6210f9db65c6887fe8ba86f4fe8fbfe14daafe0e7773a3f936c5911",
+  "format": 1
+ },
+ "format": 1
+}

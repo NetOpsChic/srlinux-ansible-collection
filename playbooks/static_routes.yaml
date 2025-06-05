@@ -1,0 +1,23 @@
+- name: Configure static routes on SR Linux (combined NHG + routes)
+  hosts: all
+  gather_facts: false
+  tasks:
+    - name: Add static routes and next-hop-groups (combined)
+      nokia.srlinux.static_routes:
+        config:
+          network_instance: blue
+          next_hop_groups:
+            - name: nhg1
+              admin_state: enable
+              nexthops:
+                - index: 1
+                  ip_address: 10.0.0.2
+          routes:
+            - prefix: 192.0.2.0/24
+              admin_state: enable
+              metric: 10
+              preference: 5
+              next_hop_group: nhg1
+            - prefix: 198.51.100.0/24
+              admin_state: enable
+        state: merged

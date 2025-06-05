@@ -1,0 +1,24 @@
+- name: Configure L2 interfaces
+  hosts: all
+  gather_facts: false
+
+  tasks:
+  - name: Configure L2 trunk interface (ethernet-1/2)
+    nokia.srlinux.l2_interface:
+      config:
+        - name: ethernet-1/2
+          admin_state: enable
+          description: Uplink trunk to core
+          trunk_vlans: [10, 20, 30]
+          network_instance: lan-vrf
+      state: merged
+
+  - name: Configure L2 access interface (ethernet-1/3)
+    nokia.srlinux.l2_interface:
+      config:
+        - name: ethernet-1/3
+          admin_state: enable
+          description: Access to Core
+          access_vlan: 100
+          network_instance: lan-vrf
+      state: merged

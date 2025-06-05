@@ -1,0 +1,1876 @@
+2025-05-18 13:49:39,214 p=120826 u=netopschic n=ansible | [DEPRECATION WARNING]: [defaults]collections_paths option, does not fit var naming standard, use the singular form collections_path 
+instead. This feature will be removed from ansible-core in version 2.19. Deprecation warnings can be disabled by setting 
+deprecation_warnings=False in ansible.cfg.
+2025-05-18 13:49:39,361 p=120826 u=netopschic n=ansible | PLAY [Authentication failure] **************************************************************************************************************
+2025-05-18 13:49:39,364 p=120826 u=netopschic n=ansible | TASK [Get system information] **************************************************************************************************************
+2025-05-18 13:49:39,700 p=120826 u=netopschic n=ansible | platform_type is set to nokia.srlinux.srlinux
+2025-05-18 13:49:39,901 p=120826 u=netopschic n=ansible | ok: [clab-ansible-srl]
+2025-05-18 13:49:39,903 p=120826 u=netopschic n=ansible | TASK [Print debug] *************************************************************************************************************************
+2025-05-18 13:49:39,929 p=120826 u=netopschic n=ansible | ok: [clab-ansible-srl] => {
+    "get_return": {
+        "changed": false,
+        "failed": false,
+        "failed_when_result": false,
+        "msg": "srlinux httpapi returned error 401 with message AuthenticationFailed (status: 1)"
+    }
+}
+2025-05-18 13:49:39,930 p=120826 u=netopschic n=ansible | PLAY RECAP *********************************************************************************************************************************
+2025-05-18 13:49:39,930 p=120826 u=netopschic n=ansible | clab-ansible-srl           : ok=2    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2025-05-18 13:49:40,030 p=120870 u=netopschic n=ansible | shutdown complete
+2025-05-18 13:49:40,786 p=121350 u=netopschic n=ansible | [DEPRECATION WARNING]: [defaults]collections_paths option, does not fit var naming standard, use the singular form collections_path 
+instead. This feature will be removed from ansible-core in version 2.19. Deprecation warnings can be disabled by setting 
+deprecation_warnings=False in ansible.cfg.
+2025-05-18 13:49:40,932 p=121350 u=netopschic n=ansible | PLAY [Get container] ***********************************************************************************************************************
+2025-05-18 13:49:40,935 p=121350 u=netopschic n=ansible | TASK [Get /system/information container] ***************************************************************************************************
+2025-05-18 13:49:41,262 p=121350 u=netopschic n=ansible | platform_type is set to nokia.srlinux.srlinux
+2025-05-18 13:49:41,451 p=121350 u=netopschic n=ansible | ok: [clab-ansible-srl]
+2025-05-18 13:49:41,452 p=121350 u=netopschic n=ansible | TASK [Print debug] *************************************************************************************************************************
+2025-05-18 13:49:41,473 p=121350 u=netopschic n=ansible | ok: [clab-ansible-srl] => {
+    "response": {
+        "changed": false,
+        "failed": false,
+        "failed_when_result": false,
+        "jsonrpc_req_id": "2025-05-18 13:49:41:409513",
+        "jsonrpc_version": "2.0",
+        "result": [
+            {
+                "current-datetime": "2025-05-18T11:49:41.197Z",
+                "description": "SRLinux-v24.10.1-492-gf8858c5836 7220 IXR-D2L Copyright (c) 2000-2020 Nokia. Kernel 6.8.0-59-generic #61~22.04.1-Ubuntu SMP PREEMPT_DYNAMIC Tue Apr 15 17:03:15 UTC 2",
+                "last-booted": "2025-05-18T11:48:51.953Z",
+                "version": "v24.10.1-492-gf8858c5836"
+            }
+        ]
+    }
+}
+2025-05-18 13:49:41,474 p=121350 u=netopschic n=ansible | PLAY RECAP *********************************************************************************************************************************
+2025-05-18 13:49:41,474 p=121350 u=netopschic n=ansible | clab-ansible-srl           : ok=2    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2025-05-18 13:49:41,574 p=121392 u=netopschic n=ansible | shutdown complete
+2025-05-18 13:49:42,293 p=121842 u=netopschic n=ansible | [DEPRECATION WARNING]: [defaults]collections_paths option, does not fit var naming standard, use the singular form collections_path 
+instead. This feature will be removed from ansible-core in version 2.19. Deprecation warnings can be disabled by setting 
+deprecation_warnings=False in ansible.cfg.
+2025-05-18 13:49:42,446 p=121842 u=netopschic n=ansible | PLAY [Backup config] ***********************************************************************************************************************
+2025-05-18 13:49:42,449 p=121842 u=netopschic n=ansible | TASK [Delete old config files] *************************************************************************************************************
+2025-05-18 13:49:42,458 p=121842 u=netopschic n=ansible | skipping: [clab-ansible-srl]
+2025-05-18 13:49:42,460 p=121842 u=netopschic n=ansible | TASK [Get entire running config] ***********************************************************************************************************
+2025-05-18 13:49:42,786 p=121842 u=netopschic n=ansible | platform_type is set to nokia.srlinux.srlinux
+2025-05-18 13:49:43,007 p=121842 u=netopschic n=ansible | ok: [clab-ansible-srl]
+2025-05-18 13:49:43,012 p=121842 u=netopschic n=ansible | TASK [Save fetched config in JSON] *********************************************************************************************************
+2025-05-18 13:49:43,609 p=121842 u=netopschic n=ansible | changed: [clab-ansible-srl]
+2025-05-18 13:49:43,611 p=121842 u=netopschic n=ansible | TASK [Save fetched config in YAML] *********************************************************************************************************
+2025-05-18 13:49:44,108 p=121842 u=netopschic n=ansible | changed: [clab-ansible-srl]
+2025-05-18 13:49:44,112 p=121842 u=netopschic n=ansible | TASK [Check if saved file contains "srl_nokia"] ********************************************************************************************
+2025-05-18 13:49:44,561 p=121842 u=netopschic n=ansible | changed: [clab-ansible-srl] => (item=/tmp/clab-ansible-srl.cfg.yml)
+2025-05-18 13:49:44,929 p=121842 u=netopschic n=ansible | changed: [clab-ansible-srl] => (item=/tmp/clab-ansible-srl.cfg.json)
+2025-05-18 13:49:44,931 p=121842 u=netopschic n=ansible | PLAY RECAP *********************************************************************************************************************************
+2025-05-18 13:49:44,931 p=121842 u=netopschic n=ansible | clab-ansible-srl           : ok=4    changed=3    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0   
+2025-05-18 13:49:45,031 p=121918 u=netopschic n=ansible | shutdown complete
+2025-05-18 13:49:45,748 p=122549 u=netopschic n=ansible | [DEPRECATION WARNING]: [defaults]collections_paths option, does not fit var naming standard, use the singular form collections_path 
+instead. This feature will be removed from ansible-core in version 2.19. Deprecation warnings can be disabled by setting 
+deprecation_warnings=False in ansible.cfg.
+2025-05-18 13:49:45,890 p=122549 u=netopschic n=ansible | PLAY [Get wrong path] **********************************************************************************************************************
+2025-05-18 13:49:45,893 p=122549 u=netopschic n=ansible | TASK [Get wrong path] **********************************************************************************************************************
+2025-05-18 13:49:46,211 p=122549 u=netopschic n=ansible | platform_type is set to nokia.srlinux.srlinux
+2025-05-18 13:49:46,414 p=122549 u=netopschic n=ansible | ok: [clab-ansible-srl]
+2025-05-18 13:49:46,416 p=122549 u=netopschic n=ansible | TASK [Print debug] *************************************************************************************************************************
+2025-05-18 13:49:46,439 p=122549 u=netopschic n=ansible | ok: [clab-ansible-srl] => {
+    "response": {
+        "changed": false,
+        "failed": false,
+        "failed_when_result": false,
+        "jsonrpc_req_id": "2025-05-18 13:49:46:363500",
+        "msg": "Path not valid - unknown element 'informations'. Options are [features, trace-options, management, control-plane-traffic, configuration, protocols, aaa, ssh-server, authentication, boot, l2cp-transparency, lacp, lldp, mtu, name, datapath, utilization, dhcp-server, event-handler, ra-guard-policy, tls, grpc-server, json-rpc-server, bridge-table, license, dns, ftp-server, load-balancing, ntp, clock, sflow, snmp, banner, information, logging, multicast, multicast-forwarding-information-base, mirroring, network-instance, netconf-server, maintenance, app-management]"
+    }
+}
+2025-05-18 13:49:46,440 p=122549 u=netopschic n=ansible | PLAY RECAP *********************************************************************************************************************************
+2025-05-18 13:49:46,440 p=122549 u=netopschic n=ansible | clab-ansible-srl           : ok=2    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2025-05-18 13:49:46,540 p=122605 u=netopschic n=ansible | shutdown complete
+2025-05-18 13:49:47,316 p=123074 u=netopschic n=ansible | [DEPRECATION WARNING]: [defaults]collections_paths option, does not fit var naming standard, use the singular form collections_path 
+instead. This feature will be removed from ansible-core in version 2.19. Deprecation warnings can be disabled by setting 
+deprecation_warnings=False in ansible.cfg.
+2025-05-18 13:49:47,457 p=123074 u=netopschic n=ansible | PLAY [Run "show version" CLI command] ******************************************************************************************************
+2025-05-18 13:49:47,461 p=123074 u=netopschic n=ansible | TASK [Run "show version" CLI command] ******************************************************************************************************
+2025-05-18 13:49:47,791 p=123074 u=netopschic n=ansible | platform_type is set to nokia.srlinux.srlinux
+2025-05-18 13:49:48,839 p=123074 u=netopschic n=ansible | ok: [clab-ansible-srl]
+2025-05-18 13:49:48,841 p=123074 u=netopschic n=ansible | TASK [Print debug] *************************************************************************************************************************
+2025-05-18 13:49:48,867 p=123074 u=netopschic n=ansible | ok: [clab-ansible-srl] => {
+    "response": {
+        "changed": false,
+        "failed": false,
+        "failed_when_result": false,
+        "jsonrpc_req_id": "2025-05-18 13:49:47:946190",
+        "jsonrpc_version": "2.0",
+        "result": [
+            {
+                "basic system info": {
+                    "Architecture": "x86_64",
+                    "Build Number": "492-gf8858c5836",
+                    "Chassis Type": "7220 IXR-D2L",
+                    "Free Memory": "21693007 kB",
+                    "Hostname": "srl",
+                    "Last Booted": "2025-05-18T11:48:48.874Z",
+                    "OS": "SR Linux",
+                    "Part Number": "Sim Part No.",
+                    "Serial Number": "Sim Serial No.",
+                    "Software Version": "v24.10.1",
+                    "System HW MAC Address": "1A:68:00:FF:00:00",
+                    "Total Memory": "31793183 kB"
+                }
+            }
+        ]
+    }
+}
+2025-05-18 13:49:48,869 p=123074 u=netopschic n=ansible | PLAY [Run "show version" CLI command with text output format] ******************************************************************************
+2025-05-18 13:49:48,871 p=123074 u=netopschic n=ansible | TASK [Run "show version" CLI command with text output format] ******************************************************************************
+2025-05-18 13:49:48,969 p=123116 u=netopschic n=ansible | shutdown complete
+2025-05-18 13:49:49,215 p=123074 u=netopschic n=ansible | platform_type is set to nokia.srlinux.srlinux
+2025-05-18 13:49:50,186 p=123074 u=netopschic n=ansible | ok: [clab-ansible-srl]
+2025-05-18 13:49:50,187 p=123074 u=netopschic n=ansible | TASK [Print debug] *************************************************************************************************************************
+2025-05-18 13:49:50,208 p=123074 u=netopschic n=ansible | ok: [clab-ansible-srl] => {
+    "response": {
+        "changed": false,
+        "failed": false,
+        "failed_when_result": false,
+        "jsonrpc_req_id": "2025-05-18 13:49:49:299964",
+        "jsonrpc_version": "2.0",
+        "result": [
+            "--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------\nHostname             : srl\nChassis Type         : 7220 IXR-D2L\nPart Number          : Sim Part No.\nSerial Number        : Sim Serial No.\nSystem HW MAC Address: 1A:68:00:FF:00:00\nOS                   : SR Linux\nSoftware Version     : v24.10.1\nBuild Number         : 492-gf8858c5836\nArchitecture         : x86_64\nLast Booted          : 2025-05-18T11:48:48.874Z\nTotal Memory         : 31793183 kB\nFree Memory          : 21693007 kB\n--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------\n"
+        ]
+    }
+}
+2025-05-18 13:49:50,209 p=123074 u=netopschic n=ansible | PLAY RECAP *********************************************************************************************************************************
+2025-05-18 13:49:50,209 p=123074 u=netopschic n=ansible | clab-ansible-srl           : ok=4    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2025-05-18 13:49:50,309 p=123293 u=netopschic n=ansible | shutdown complete
+2025-05-18 13:49:51,124 p=123885 u=netopschic n=ansible | [DEPRECATION WARNING]: [defaults]collections_paths option, does not fit var naming standard, use the singular form collections_path 
+instead. This feature will be removed from ansible-core in version 2.19. Deprecation warnings can be disabled by setting 
+deprecation_warnings=False in ansible.cfg.
+2025-05-18 13:49:51,269 p=123885 u=netopschic n=ansible | PLAY [Run wrong CLI command] ***************************************************************************************************************
+2025-05-18 13:49:51,272 p=123885 u=netopschic n=ansible | TASK [Run wrong CLI command] ***************************************************************************************************************
+2025-05-18 13:49:51,590 p=123885 u=netopschic n=ansible | platform_type is set to nokia.srlinux.srlinux
+2025-05-18 13:49:52,452 p=123885 u=netopschic n=ansible | ok: [clab-ansible-srl]
+2025-05-18 13:49:52,455 p=123885 u=netopschic n=ansible | TASK [Print debug] *************************************************************************************************************************
+2025-05-18 13:49:52,481 p=123885 u=netopschic n=ansible | ok: [clab-ansible-srl] => {
+    "response": {
+        "changed": false,
+        "failed": false,
+        "failed_when_result": false,
+        "jsonrpc_req_id": "2025-05-18 13:49:51:724483",
+        "msg": "Error: Cli commands 'show wrong' failed with error 1: At line 1: Parsing error: Unknown token 'wrong'. Options are ['#', '/', '>', '>>', 'acl', 'arpnd', 'interface', 'lag', 'network-instance', 'platform', 'system', 'tunnel', 'tunnel-interface', 'version', '|']\n"
+    }
+}
+2025-05-18 13:49:52,482 p=123885 u=netopschic n=ansible | PLAY RECAP *********************************************************************************************************************************
+2025-05-18 13:49:52,482 p=123885 u=netopschic n=ansible | clab-ansible-srl           : ok=2    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2025-05-18 13:49:52,582 p=123930 u=netopschic n=ansible | shutdown complete
+2025-05-18 13:49:53,323 p=124450 u=netopschic n=ansible | [DEPRECATION WARNING]: [defaults]collections_paths option, does not fit var naming standard, use the singular form collections_path 
+instead. This feature will be removed from ansible-core in version 2.19. Deprecation warnings can be disabled by setting 
+deprecation_warnings=False in ansible.cfg.
+2025-05-18 13:49:53,463 p=124450 u=netopschic n=ansible | PLAY [TLS missed check fail] ***************************************************************************************************************
+2025-05-18 13:49:53,467 p=124450 u=netopschic n=ansible | TASK [Get with TLS required but without setting skip verify or custom ca cert] *************************************************************
+2025-05-18 13:49:53,786 p=124450 u=netopschic n=ansible | platform_type is set to nokia.srlinux.srlinux
+2025-05-18 13:49:53,999 p=124450 u=netopschic n=ansible | ok: [clab-ansible-srl]
+2025-05-18 13:49:54,000 p=124450 u=netopschic n=ansible | TASK [Print debug] *************************************************************************************************************************
+2025-05-18 13:49:54,025 p=124450 u=netopschic n=ansible | ok: [clab-ansible-srl] => {
+    "get_return": {
+        "changed": false,
+        "exception": "Traceback (most recent call last):\n  File \"/home/netopschic/.ansible/tmp/ansible-local-124450s2iliscd/ansible-tmp-1747568993.7864714-124489-281379968632210/AnsiballZ_get.py\", line 107, in <module>\n    _ansiballz_main()\n  File \"/home/netopschic/.ansible/tmp/ansible-local-124450s2iliscd/ansible-tmp-1747568993.7864714-124489-281379968632210/AnsiballZ_get.py\", line 99, in _ansiballz_main\n    invoke_module(zipped_mod, temp_path, ANSIBALLZ_PARAMS)\n  File \"/home/netopschic/.ansible/tmp/ansible-local-124450s2iliscd/ansible-tmp-1747568993.7864714-124489-281379968632210/AnsiballZ_get.py\", line 47, in invoke_module\n    runpy.run_module(mod_name='ansible_collections.nokia.srlinux.plugins.modules.get', init_globals=dict(_module_fqn='ansible_collections.nokia.srlinux.plugins.modules.get', _modlib_path=modlib_path),\n  File \"/usr/lib/python3.10/runpy.py\", line 224, in run_module\n    return _run_module_code(code, init_globals, run_name, mod_spec)\n  File \"/usr/lib/python3.10/runpy.py\", line 96, in _run_module_code\n    _run_code(code, mod_globals, init_globals,\n  File \"/usr/lib/python3.10/runpy.py\", line 86, in _run_code\n    exec(code, run_globals)\n  File \"/tmp/ansible_nokia.srlinux.get_payload_061da8ko/ansible_nokia.srlinux.get_payload.zip/ansible_collections/nokia/srlinux/plugins/modules/get.py\", line 134, in <module>\n  File \"/tmp/ansible_nokia.srlinux.get_payload_061da8ko/ansible_nokia.srlinux.get_payload.zip/ansible_collections/nokia/srlinux/plugins/modules/get.py\", line 119, in main\n  File \"/tmp/ansible_nokia.srlinux.get_payload_061da8ko/ansible_nokia.srlinux.get_payload.zip/ansible_collections/nokia/srlinux/plugins/module_utils/srlinux.py\", line 67, in post\n  File \"/tmp/ansible_nokia.srlinux.get_payload_061da8ko/ansible_nokia.srlinux.get_payload.zip/ansible_collections/nokia/srlinux/plugins/module_utils/srlinux.py\", line 37, in _httpapi_error_handle\n  File \"/tmp/ansible_nokia.srlinux.get_payload_061da8ko/ansible_nokia.srlinux.get_payload.zip/ansible/module_utils/connection.py\", line 199, in __rpc__\nansible.module_utils.connection.ConnectionError: Could not connect to https://clab-ansible-srl:443/jsonrpc: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1007)\n",
+        "failed": false,
+        "failed_when_result": false,
+        "module_stderr": "Traceback (most recent call last):\n  File \"/home/netopschic/.ansible/tmp/ansible-local-124450s2iliscd/ansible-tmp-1747568993.7864714-124489-281379968632210/AnsiballZ_get.py\", line 107, in <module>\n    _ansiballz_main()\n  File \"/home/netopschic/.ansible/tmp/ansible-local-124450s2iliscd/ansible-tmp-1747568993.7864714-124489-281379968632210/AnsiballZ_get.py\", line 99, in _ansiballz_main\n    invoke_module(zipped_mod, temp_path, ANSIBALLZ_PARAMS)\n  File \"/home/netopschic/.ansible/tmp/ansible-local-124450s2iliscd/ansible-tmp-1747568993.7864714-124489-281379968632210/AnsiballZ_get.py\", line 47, in invoke_module\n    runpy.run_module(mod_name='ansible_collections.nokia.srlinux.plugins.modules.get', init_globals=dict(_module_fqn='ansible_collections.nokia.srlinux.plugins.modules.get', _modlib_path=modlib_path),\n  File \"/usr/lib/python3.10/runpy.py\", line 224, in run_module\n    return _run_module_code(code, init_globals, run_name, mod_spec)\n  File \"/usr/lib/python3.10/runpy.py\", line 96, in _run_module_code\n    _run_code(code, mod_globals, init_globals,\n  File \"/usr/lib/python3.10/runpy.py\", line 86, in _run_code\n    exec(code, run_globals)\n  File \"/tmp/ansible_nokia.srlinux.get_payload_061da8ko/ansible_nokia.srlinux.get_payload.zip/ansible_collections/nokia/srlinux/plugins/modules/get.py\", line 134, in <module>\n  File \"/tmp/ansible_nokia.srlinux.get_payload_061da8ko/ansible_nokia.srlinux.get_payload.zip/ansible_collections/nokia/srlinux/plugins/modules/get.py\", line 119, in main\n  File \"/tmp/ansible_nokia.srlinux.get_payload_061da8ko/ansible_nokia.srlinux.get_payload.zip/ansible_collections/nokia/srlinux/plugins/module_utils/srlinux.py\", line 67, in post\n  File \"/tmp/ansible_nokia.srlinux.get_payload_061da8ko/ansible_nokia.srlinux.get_payload.zip/ansible_collections/nokia/srlinux/plugins/module_utils/srlinux.py\", line 37, in _httpapi_error_handle\n  File \"/tmp/ansible_nokia.srlinux.get_payload_061da8ko/ansible_nokia.srlinux.get_payload.zip/ansible/module_utils/connection.py\", line 199, in __rpc__\nansible.module_utils.connection.ConnectionError: Could not connect to https://clab-ansible-srl:443/jsonrpc: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1007)\n",
+        "module_stdout": "",
+        "msg": "MODULE FAILURE\nSee stdout/stderr for the exact error",
+        "rc": 1
+    }
+}
+2025-05-18 13:49:54,026 p=124450 u=netopschic n=ansible | PLAY RECAP *********************************************************************************************************************************
+2025-05-18 13:49:54,027 p=124450 u=netopschic n=ansible | clab-ansible-srl           : ok=2    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2025-05-18 13:49:54,127 p=124507 u=netopschic n=ansible | shutdown complete
+2025-05-18 13:49:54,877 p=124971 u=netopschic n=ansible | [DEPRECATION WARNING]: [defaults]collections_paths option, does not fit var naming standard, use the singular form collections_path 
+instead. This feature will be removed from ansible-core in version 2.19. Deprecation warnings can be disabled by setting 
+deprecation_warnings=False in ansible.cfg.
+2025-05-18 13:49:55,018 p=124971 u=netopschic n=ansible | PLAY [TLS skipped check] *******************************************************************************************************************
+2025-05-18 13:49:55,022 p=124971 u=netopschic n=ansible | TASK [Get system information] **************************************************************************************************************
+2025-05-18 13:49:55,341 p=124971 u=netopschic n=ansible | platform_type is set to nokia.srlinux.srlinux
+2025-05-18 13:49:55,547 p=124971 u=netopschic n=ansible | ok: [clab-ansible-srl]
+2025-05-18 13:49:55,548 p=124971 u=netopschic n=ansible | TASK [Print debug] *************************************************************************************************************************
+2025-05-18 13:49:55,573 p=124971 u=netopschic n=ansible | ok: [clab-ansible-srl] => {
+    "get_return": {
+        "changed": false,
+        "failed": false,
+        "failed_when_result": false,
+        "jsonrpc_req_id": "2025-05-18 13:49:55:497186",
+        "jsonrpc_version": "2.0",
+        "result": [
+            {
+                "current-datetime": "2025-05-18T11:49:55.220Z",
+                "description": "SRLinux-v24.10.1-492-gf8858c5836 7220 IXR-D2L Copyright (c) 2000-2020 Nokia. Kernel 6.8.0-59-generic #61~22.04.1-Ubuntu SMP PREEMPT_DYNAMIC Tue Apr 15 17:03:15 UTC 2",
+                "last-booted": "2025-05-18T11:48:51.953Z",
+                "version": "v24.10.1-492-gf8858c5836"
+            }
+        ]
+    }
+}
+2025-05-18 13:49:55,574 p=124971 u=netopschic n=ansible | PLAY RECAP *********************************************************************************************************************************
+2025-05-18 13:49:55,574 p=124971 u=netopschic n=ansible | clab-ansible-srl           : ok=2    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2025-05-18 13:49:55,674 p=125013 u=netopschic n=ansible | shutdown complete
+2025-05-18 13:49:56,433 p=125480 u=netopschic n=ansible | [DEPRECATION WARNING]: [defaults]collections_paths option, does not fit var naming standard, use the singular form collections_path 
+instead. This feature will be removed from ansible-core in version 2.19. Deprecation warnings can be disabled by setting 
+deprecation_warnings=False in ansible.cfg.
+2025-05-18 13:49:56,577 p=125480 u=netopschic n=ansible | PLAY [TLS with custom CA] ******************************************************************************************************************
+2025-05-18 13:49:56,581 p=125480 u=netopschic n=ansible | TASK [Get with TLS required and custom ca cert] ********************************************************************************************
+2025-05-18 13:49:56,914 p=125480 u=netopschic n=ansible | platform_type is set to nokia.srlinux.srlinux
+2025-05-18 13:49:57,119 p=125480 u=netopschic n=ansible | ok: [clab-ansible-srl]
+2025-05-18 13:49:57,120 p=125480 u=netopschic n=ansible | TASK [Print debug] *************************************************************************************************************************
+2025-05-18 13:49:57,143 p=125480 u=netopschic n=ansible | ok: [clab-ansible-srl] => {
+    "get_return": {
+        "changed": false,
+        "failed": false,
+        "failed_when_result": false,
+        "jsonrpc_req_id": "2025-05-18 13:49:57:065749",
+        "jsonrpc_version": "2.0",
+        "result": [
+            {
+                "current-datetime": "2025-05-18T11:49:56.220Z",
+                "description": "SRLinux-v24.10.1-492-gf8858c5836 7220 IXR-D2L Copyright (c) 2000-2020 Nokia. Kernel 6.8.0-59-generic #61~22.04.1-Ubuntu SMP PREEMPT_DYNAMIC Tue Apr 15 17:03:15 UTC 2",
+                "last-booted": "2025-05-18T11:48:51.953Z",
+                "version": "v24.10.1-492-gf8858c5836"
+            }
+        ]
+    }
+}
+2025-05-18 13:49:57,144 p=125480 u=netopschic n=ansible | PLAY RECAP *********************************************************************************************************************************
+2025-05-18 13:49:57,144 p=125480 u=netopschic n=ansible | clab-ansible-srl           : ok=2    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2025-05-18 13:49:57,244 p=125536 u=netopschic n=ansible | shutdown complete
+2025-05-18 13:49:57,981 p=125992 u=netopschic n=ansible | [DEPRECATION WARNING]: [defaults]collections_paths option, does not fit var 
+naming standard, use the singular form collections_path instead. This feature 
+will be removed from ansible-core in version 2.19. Deprecation warnings can be 
+disabled by setting deprecation_warnings=False in ansible.cfg.
+2025-05-18 13:49:58,126 p=125992 u=netopschic n=ansible | PLAY [Set leaves with check and diff modes] ************************************
+2025-05-18 13:49:58,130 p=125992 u=netopschic n=ansible | TASK [Test check mode] *********************************************************
+2025-05-18 13:49:58,452 p=125992 u=netopschic n=ansible | platform_type is set to nokia.srlinux.srlinux
+2025-05-18 13:49:58,657 p=125992 u=netopschic n=ansible | changed: [clab-ansible-srl]
+2025-05-18 13:49:58,658 p=125992 u=netopschic n=ansible | TASK [Print debug] *************************************************************
+2025-05-18 13:49:58,681 p=125992 u=netopschic n=ansible | ok: [clab-ansible-srl] => {
+    "set_response": {
+        "changed": true,
+        "diff": {
+            "prepared": "      system {\n          information {\n+             contact \"Some contact\"\n+             location \"Some location\"\n          }\n      }\n"
+        },
+        "failed": false,
+        "failed_when_result": false,
+        "saved": false
+    }
+}
+2025-05-18 13:49:58,682 p=125992 u=netopschic n=ansible | TASK [Test check mode with diff] ***********************************************
+2025-05-18 13:49:59,111 p=125992 u=netopschic n=ansible |       system {
+          information {
++             contact "Some contact"
++             location "Some location"
+          }
+      }
+
+2025-05-18 13:49:59,111 p=125992 u=netopschic n=ansible | changed: [clab-ansible-srl]
+2025-05-18 13:49:59,113 p=125992 u=netopschic n=ansible | TASK [Print debug] *************************************************************
+2025-05-18 13:49:59,134 p=125992 u=netopschic n=ansible | ok: [clab-ansible-srl] => {
+    "set_response": {
+        "changed": true,
+        "diff": {
+            "prepared": "      system {\n          information {\n+             contact \"Some contact\"\n+             location \"Some location\"\n          }\n      }\n"
+        },
+        "failed": false,
+        "failed_when_result": false,
+        "saved": false
+    }
+}
+2025-05-18 13:49:59,136 p=125992 u=netopschic n=ansible | TASK [Ensure no changes were made to the device] *******************************
+2025-05-18 13:49:59,586 p=125992 u=netopschic n=ansible | ok: [clab-ansible-srl]
+2025-05-18 13:49:59,587 p=125992 u=netopschic n=ansible | TASK [Print debug] *************************************************************
+2025-05-18 13:49:59,612 p=125992 u=netopschic n=ansible | ok: [clab-ansible-srl] => {
+    "get_response": {
+        "changed": false,
+        "failed": false,
+        "failed_when_result": false,
+        "jsonrpc_req_id": "2025-05-18 13:49:59:536708",
+        "jsonrpc_version": "2.0",
+        "result": [
+            {
+                "current-datetime": "2025-05-18T11:49:59.220Z",
+                "description": "SRLinux-v24.10.1-492-gf8858c5836 7220 IXR-D2L Copyright (c) 2000-2020 Nokia. Kernel 6.8.0-59-generic #61~22.04.1-Ubuntu SMP PREEMPT_DYNAMIC Tue Apr 15 17:03:15 UTC 2",
+                "last-booted": "2025-05-18T11:48:51.953Z",
+                "version": "v24.10.1-492-gf8858c5836"
+            }
+        ]
+    }
+}
+2025-05-18 13:49:59,613 p=125992 u=netopschic n=ansible | PLAY RECAP *********************************************************************
+2025-05-18 13:49:59,613 p=125992 u=netopschic n=ansible | clab-ansible-srl           : ok=6    changed=2    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2025-05-18 13:49:59,713 p=126050 u=netopschic n=ansible | shutdown complete
+2025-05-18 13:50:00,468 p=126651 u=netopschic n=ansible | [DEPRECATION WARNING]: [defaults]collections_paths option, does not fit var naming standard, use the singular form collections_path 
+instead. This feature will be removed from ansible-core in version 2.19. Deprecation warnings can be disabled by setting 
+deprecation_warnings=False in ansible.cfg.
+2025-05-18 13:50:00,611 p=126651 u=netopschic n=ansible | PLAY [Set leaves] **************************************************************************************************************************
+2025-05-18 13:50:00,615 p=126651 u=netopschic n=ansible | TASK [Set system information with values] **************************************************************************************************
+2025-05-18 13:50:00,928 p=126651 u=netopschic n=ansible | platform_type is set to nokia.srlinux.srlinux
+2025-05-18 13:50:01,175 p=126651 u=netopschic n=ansible | changed: [clab-ansible-srl]
+2025-05-18 13:50:01,178 p=126651 u=netopschic n=ansible | TASK [Print debug] *************************************************************************************************************************
+2025-05-18 13:50:01,203 p=126651 u=netopschic n=ansible | ok: [clab-ansible-srl] => {
+    "set_response": {
+        "changed": true,
+        "diff": {
+            "jsonrpc_req_id": "2025-05-18 13:50:01:079525",
+            "jsonrpc_version": "2.0",
+            "result": [
+                "      interface mgmt0 {\n+         description \"test setting description\"\n      }\n      system {\n          information {\n+             contact \"Some contact\"\n+             location \"Some location\"\n          }\n      }\n"
+            ]
+        },
+        "failed": false,
+        "jsonrpc_req_id": "2025-05-18 13:50:01:122057",
+        "saved": false
+    }
+}
+2025-05-18 13:50:01,204 p=126651 u=netopschic n=ansible | TASK [Ensure changes were made to the device] **********************************************************************************************
+2025-05-18 13:50:01,694 p=126651 u=netopschic n=ansible | ok: [clab-ansible-srl]
+2025-05-18 13:50:01,696 p=126651 u=netopschic n=ansible | TASK [Print debug] *************************************************************************************************************************
+2025-05-18 13:50:01,720 p=126651 u=netopschic n=ansible | ok: [clab-ansible-srl] => {
+    "get_response": {
+        "changed": false,
+        "failed": false,
+        "failed_when_result": false,
+        "jsonrpc_req_id": "2025-05-18 13:50:01:643257",
+        "jsonrpc_version": "2.0",
+        "result": [
+            {
+                "contact": "Some contact",
+                "current-datetime": "2025-05-18T11:50:01.228Z",
+                "description": "SRLinux-v24.10.1-492-gf8858c5836 7220 IXR-D2L Copyright (c) 2000-2020 Nokia. Kernel 6.8.0-59-generic #61~22.04.1-Ubuntu SMP PREEMPT_DYNAMIC Tue Apr 15 17:03:15 UTC 2",
+                "last-booted": "2025-05-18T11:48:51.953Z",
+                "location": "Some location",
+                "version": "v24.10.1-492-gf8858c5836"
+            },
+            "test setting description"
+        ]
+    }
+}
+2025-05-18 13:50:01,722 p=126651 u=netopschic n=ansible | PLAY RECAP *********************************************************************************************************************************
+2025-05-18 13:50:01,722 p=126651 u=netopschic n=ansible | clab-ansible-srl           : ok=4    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2025-05-18 13:50:01,822 p=126705 u=netopschic n=ansible | shutdown complete
+2025-05-18 13:50:02,560 p=127247 u=netopschic n=ansible | [DEPRECATION WARNING]: [defaults]collections_paths option, does not fit var naming standard, use the singular form collections_path 
+instead. This feature will be removed from ansible-core in version 2.19. Deprecation warnings can be disabled by setting 
+deprecation_warnings=False in ansible.cfg.
+2025-05-18 13:50:02,704 p=127247 u=netopschic n=ansible | PLAY [Set leaves] **************************************************************************************************************************
+2025-05-18 13:50:02,708 p=127247 u=netopschic n=ansible | TASK [Set system information with values] **************************************************************************************************
+2025-05-18 13:50:03,039 p=127247 u=netopschic n=ansible | platform_type is set to nokia.srlinux.srlinux
+2025-05-18 13:50:03,267 p=127247 u=netopschic n=ansible | changed: [clab-ansible-srl]
+2025-05-18 13:50:03,268 p=127247 u=netopschic n=ansible | TASK [Print debug] *************************************************************************************************************************
+2025-05-18 13:50:03,294 p=127247 u=netopschic n=ansible | ok: [clab-ansible-srl] => {
+    "set_response": {
+        "changed": true,
+        "diff": {
+            "jsonrpc_req_id": "2025-05-18 13:50:03:194004",
+            "jsonrpc_version": "2.0",
+            "result": [
+                "      system {\n          information {\n+             location \"some location\"\n          }\n      }\n"
+            ]
+        },
+        "failed": false,
+        "jsonrpc_req_id": "2025-05-18 13:50:03:225809",
+        "saved": false
+    }
+}
+2025-05-18 13:50:03,295 p=127247 u=netopschic n=ansible | TASK [Ensure changes were made to the device] **********************************************************************************************
+2025-05-18 13:50:03,768 p=127247 u=netopschic n=ansible | ok: [clab-ansible-srl]
+2025-05-18 13:50:03,770 p=127247 u=netopschic n=ansible | TASK [Print debug] *************************************************************************************************************************
+2025-05-18 13:50:03,795 p=127247 u=netopschic n=ansible | ok: [clab-ansible-srl] => {
+    "get_response": {
+        "changed": false,
+        "failed": false,
+        "failed_when_result": false,
+        "jsonrpc_req_id": "2025-05-18 13:50:03:730011",
+        "jsonrpc_version": "2.0",
+        "result": [
+            {
+                "current-datetime": "2025-05-18T11:50:03.227Z",
+                "description": "SRLinux-v24.10.1-492-gf8858c5836 7220 IXR-D2L Copyright (c) 2000-2020 Nokia. Kernel 6.8.0-59-generic #61~22.04.1-Ubuntu SMP PREEMPT_DYNAMIC Tue Apr 15 17:03:15 UTC 2",
+                "last-booted": "2025-05-18T11:48:51.953Z",
+                "location": "some location",
+                "version": "v24.10.1-492-gf8858c5836"
+            }
+        ]
+    }
+}
+2025-05-18 13:50:03,796 p=127247 u=netopschic n=ansible | TASK [Get commits] *************************************************************************************************************************
+2025-05-18 13:50:04,200 p=127247 u=netopschic n=ansible | ok: [clab-ansible-srl]
+2025-05-18 13:50:04,202 p=127247 u=netopschic n=ansible | TASK [Print debug] *************************************************************************************************************************
+2025-05-18 13:50:04,229 p=127247 u=netopschic n=ansible | ok: [clab-ansible-srl] => {
+    "commits": {
+        "changed": false,
+        "failed": false,
+        "jsonrpc_req_id": "2025-05-18 13:50:04:162192",
+        "jsonrpc_version": "2.0",
+        "result": [
+            {
+                "commit": [
+                    {
+                        "ended": "2025-05-18T11:48:52.760Z",
+                        "id": 1,
+                        "name": "default",
+                        "started": "2025-05-18T11:48:50.413Z",
+                        "status": "complete",
+                        "type": "shared",
+                        "username": "__internal__"
+                    },
+                    {
+                        "ended": "2025-05-18T11:48:58.263Z",
+                        "id": 2,
+                        "name": "default",
+                        "persist-id": "",
+                        "started": "2025-05-18T11:48:56.818Z",
+                        "status": "complete",
+                        "type": "shared",
+                        "username": "root"
+                    },
+                    {
+                        "ended": "2025-05-18T11:49:38.946Z",
+                        "id": 3,
+                        "name": "internal-revert-1",
+                        "started": "2025-05-18T11:49:38.911Z",
+                        "status": "complete",
+                        "type": "private",
+                        "username": "root"
+                    },
+                    {
+                        "ended": "2025-05-18T11:49:40.509Z",
+                        "id": 4,
+                        "name": "internal-revert-2",
+                        "started": "2025-05-18T11:49:40.470Z",
+                        "status": "complete",
+                        "type": "private",
+                        "username": "root"
+                    },
+                    {
+                        "ended": "2025-05-18T11:49:42.028Z",
+                        "id": 5,
+                        "name": "internal-revert-3",
+                        "started": "2025-05-18T11:49:41.993Z",
+                        "status": "complete",
+                        "type": "private",
+                        "username": "root"
+                    },
+                    {
+                        "ended": "2025-05-18T11:49:45.494Z",
+                        "id": 6,
+                        "name": "internal-revert-4",
+                        "started": "2025-05-18T11:49:45.460Z",
+                        "status": "complete",
+                        "type": "private",
+                        "username": "root"
+                    },
+                    {
+                        "ended": "2025-05-18T11:49:47.043Z",
+                        "id": 7,
+                        "name": "internal-revert-5",
+                        "started": "2025-05-18T11:49:47.002Z",
+                        "status": "complete",
+                        "type": "private",
+                        "username": "root"
+                    },
+                    {
+                        "ended": "2025-05-18T11:49:50.851Z",
+                        "id": 8,
+                        "name": "internal-revert-6",
+                        "started": "2025-05-18T11:49:50.816Z",
+                        "status": "complete",
+                        "type": "private",
+                        "username": "root"
+                    },
+                    {
+                        "ended": "2025-05-18T11:49:53.056Z",
+                        "id": 9,
+                        "name": "internal-revert-7",
+                        "started": "2025-05-18T11:49:53.024Z",
+                        "status": "complete",
+                        "type": "private",
+                        "username": "root"
+                    },
+                    {
+                        "ended": "2025-05-18T11:49:54.605Z",
+                        "id": 10,
+                        "name": "internal-revert-8",
+                        "started": "2025-05-18T11:49:54.571Z",
+                        "status": "complete",
+                        "type": "private",
+                        "username": "root"
+                    },
+                    {
+                        "ended": "2025-05-18T11:49:56.169Z",
+                        "id": 11,
+                        "name": "internal-revert-9",
+                        "started": "2025-05-18T11:49:56.134Z",
+                        "status": "complete",
+                        "type": "private",
+                        "username": "root"
+                    },
+                    {
+                        "ended": "2025-05-18T11:49:57.715Z",
+                        "id": 12,
+                        "name": "internal-revert-10",
+                        "started": "2025-05-18T11:49:57.682Z",
+                        "status": "complete",
+                        "type": "private",
+                        "username": "root"
+                    },
+                    {
+                        "ended": "2025-05-18T11:50:00.209Z",
+                        "id": 13,
+                        "name": "internal-revert-11",
+                        "started": "2025-05-18T11:50:00.168Z",
+                        "status": "complete",
+                        "type": "private",
+                        "username": "root"
+                    },
+                    {
+                        "ended": "2025-05-18T11:50:01.156Z",
+                        "id": 14,
+                        "name": "jsonrpc-4",
+                        "started": "2025-05-18T11:50:01.154Z",
+                        "status": "complete",
+                        "type": "private",
+                        "username": "admin"
+                    },
+                    {
+                        "ended": "2025-05-18T11:50:02.291Z",
+                        "id": 15,
+                        "name": "internal-revert-12",
+                        "started": "2025-05-18T11:50:02.260Z",
+                        "status": "complete",
+                        "type": "private",
+                        "username": "root"
+                    },
+                    {
+                        "ended": "2025-05-18T11:50:03.251Z",
+                        "id": 16,
+                        "name": "jsonrpc-6",
+                        "started": "2025-05-18T11:50:03.250Z",
+                        "status": "complete",
+                        "type": "private",
+                        "username": "admin"
+                    }
+                ]
+            }
+        ]
+    }
+}
+2025-05-18 13:50:04,232 p=127247 u=netopschic n=ansible | TASK [Count the number of commits registered after the first set] **************************************************************************
+2025-05-18 13:50:04,258 p=127247 u=netopschic n=ansible | ok: [clab-ansible-srl]
+2025-05-18 13:50:04,259 p=127247 u=netopschic n=ansible | TASK [Set information with the same value again] *******************************************************************************************
+2025-05-18 13:50:04,683 p=127247 u=netopschic n=ansible | ok: [clab-ansible-srl]
+2025-05-18 13:50:04,684 p=127247 u=netopschic n=ansible | TASK [Print debug] *************************************************************************************************************************
+2025-05-18 13:50:04,710 p=127247 u=netopschic n=ansible | ok: [clab-ansible-srl] => {
+    "set_response": {
+        "changed": false,
+        "failed": false,
+        "jsonrpc_req_id": "2025-05-18 13:50:04:633696",
+        "saved": false
+    }
+}
+2025-05-18 13:50:04,713 p=127247 u=netopschic n=ansible | TASK [Check that no change has been recorded by the module] ********************************************************************************
+2025-05-18 13:50:04,737 p=127247 u=netopschic n=ansible | ok: [clab-ansible-srl] => {
+    "changed": false,
+    "msg": "All assertions passed"
+}
+2025-05-18 13:50:04,738 p=127247 u=netopschic n=ansible | TASK [Get commits again] *******************************************************************************************************************
+2025-05-18 13:50:05,168 p=127247 u=netopschic n=ansible | ok: [clab-ansible-srl]
+2025-05-18 13:50:05,169 p=127247 u=netopschic n=ansible | TASK [Print debug] *************************************************************************************************************************
+2025-05-18 13:50:05,192 p=127247 u=netopschic n=ansible | ok: [clab-ansible-srl] => {
+    "commits": {
+        "changed": false,
+        "failed": false,
+        "jsonrpc_req_id": "2025-05-18 13:50:05:129802",
+        "jsonrpc_version": "2.0",
+        "result": [
+            {
+                "commit": [
+                    {
+                        "ended": "2025-05-18T11:48:52.760Z",
+                        "id": 1,
+                        "name": "default",
+                        "started": "2025-05-18T11:48:50.413Z",
+                        "status": "complete",
+                        "type": "shared",
+                        "username": "__internal__"
+                    },
+                    {
+                        "ended": "2025-05-18T11:48:58.263Z",
+                        "id": 2,
+                        "name": "default",
+                        "persist-id": "",
+                        "started": "2025-05-18T11:48:56.818Z",
+                        "status": "complete",
+                        "type": "shared",
+                        "username": "root"
+                    },
+                    {
+                        "ended": "2025-05-18T11:49:38.946Z",
+                        "id": 3,
+                        "name": "internal-revert-1",
+                        "started": "2025-05-18T11:49:38.911Z",
+                        "status": "complete",
+                        "type": "private",
+                        "username": "root"
+                    },
+                    {
+                        "ended": "2025-05-18T11:49:40.509Z",
+                        "id": 4,
+                        "name": "internal-revert-2",
+                        "started": "2025-05-18T11:49:40.470Z",
+                        "status": "complete",
+                        "type": "private",
+                        "username": "root"
+                    },
+                    {
+                        "ended": "2025-05-18T11:49:42.028Z",
+                        "id": 5,
+                        "name": "internal-revert-3",
+                        "started": "2025-05-18T11:49:41.993Z",
+                        "status": "complete",
+                        "type": "private",
+                        "username": "root"
+                    },
+                    {
+                        "ended": "2025-05-18T11:49:45.494Z",
+                        "id": 6,
+                        "name": "internal-revert-4",
+                        "started": "2025-05-18T11:49:45.460Z",
+                        "status": "complete",
+                        "type": "private",
+                        "username": "root"
+                    },
+                    {
+                        "ended": "2025-05-18T11:49:47.043Z",
+                        "id": 7,
+                        "name": "internal-revert-5",
+                        "started": "2025-05-18T11:49:47.002Z",
+                        "status": "complete",
+                        "type": "private",
+                        "username": "root"
+                    },
+                    {
+                        "ended": "2025-05-18T11:49:50.851Z",
+                        "id": 8,
+                        "name": "internal-revert-6",
+                        "started": "2025-05-18T11:49:50.816Z",
+                        "status": "complete",
+                        "type": "private",
+                        "username": "root"
+                    },
+                    {
+                        "ended": "2025-05-18T11:49:53.056Z",
+                        "id": 9,
+                        "name": "internal-revert-7",
+                        "started": "2025-05-18T11:49:53.024Z",
+                        "status": "complete",
+                        "type": "private",
+                        "username": "root"
+                    },
+                    {
+                        "ended": "2025-05-18T11:49:54.605Z",
+                        "id": 10,
+                        "name": "internal-revert-8",
+                        "started": "2025-05-18T11:49:54.571Z",
+                        "status": "complete",
+                        "type": "private",
+                        "username": "root"
+                    },
+                    {
+                        "ended": "2025-05-18T11:49:56.169Z",
+                        "id": 11,
+                        "name": "internal-revert-9",
+                        "started": "2025-05-18T11:49:56.134Z",
+                        "status": "complete",
+                        "type": "private",
+                        "username": "root"
+                    },
+                    {
+                        "ended": "2025-05-18T11:49:57.715Z",
+                        "id": 12,
+                        "name": "internal-revert-10",
+                        "started": "2025-05-18T11:49:57.682Z",
+                        "status": "complete",
+                        "type": "private",
+                        "username": "root"
+                    },
+                    {
+                        "ended": "2025-05-18T11:50:00.209Z",
+                        "id": 13,
+                        "name": "internal-revert-11",
+                        "started": "2025-05-18T11:50:00.168Z",
+                        "status": "complete",
+                        "type": "private",
+                        "username": "root"
+                    },
+                    {
+                        "ended": "2025-05-18T11:50:01.156Z",
+                        "id": 14,
+                        "name": "jsonrpc-4",
+                        "started": "2025-05-18T11:50:01.154Z",
+                        "status": "complete",
+                        "type": "private",
+                        "username": "admin"
+                    },
+                    {
+                        "ended": "2025-05-18T11:50:02.291Z",
+                        "id": 15,
+                        "name": "internal-revert-12",
+                        "started": "2025-05-18T11:50:02.260Z",
+                        "status": "complete",
+                        "type": "private",
+                        "username": "root"
+                    },
+                    {
+                        "ended": "2025-05-18T11:50:03.251Z",
+                        "id": 16,
+                        "name": "jsonrpc-6",
+                        "started": "2025-05-18T11:50:03.250Z",
+                        "status": "complete",
+                        "type": "private",
+                        "username": "admin"
+                    }
+                ]
+            }
+        ]
+    }
+}
+2025-05-18 13:50:05,193 p=127247 u=netopschic n=ansible | TASK [Count the number of commits registered after the second set] *************************************************************************
+2025-05-18 13:50:05,222 p=127247 u=netopschic n=ansible | ok: [clab-ansible-srl]
+2025-05-18 13:50:05,224 p=127247 u=netopschic n=ansible | TASK [Print debug] *************************************************************************************************************************
+2025-05-18 13:50:05,250 p=127247 u=netopschic n=ansible | ok: [clab-ansible-srl] => {
+    "msg": "1st commit count is: 16, 2nd commit count is: 16"
+}
+2025-05-18 13:50:05,252 p=127247 u=netopschic n=ansible | TASK [Check that no new commits have been recorded] ****************************************************************************************
+2025-05-18 13:50:05,279 p=127247 u=netopschic n=ansible | ok: [clab-ansible-srl] => {
+    "changed": false,
+    "msg": "All assertions passed"
+}
+2025-05-18 13:50:05,280 p=127247 u=netopschic n=ansible | PLAY RECAP *********************************************************************************************************************************
+2025-05-18 13:50:05,280 p=127247 u=netopschic n=ansible | clab-ansible-srl           : ok=15   changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2025-05-18 13:50:05,380 p=127306 u=netopschic n=ansible | shutdown complete
+2025-05-18 13:50:06,147 p=127966 u=netopschic n=ansible | [DEPRECATION WARNING]: [defaults]collections_paths option, does not fit var naming standard, use the singular form collections_path 
+instead. This feature will be removed from ansible-core in version 2.19. Deprecation warnings can be disabled by setting 
+deprecation_warnings=False in ansible.cfg.
+2025-05-18 13:50:06,288 p=127966 u=netopschic n=ansible | PLAY [Set wrong value] *********************************************************************************************************************
+2025-05-18 13:50:06,292 p=127966 u=netopschic n=ansible | TASK [Set system information with values] **************************************************************************************************
+2025-05-18 13:50:06,613 p=127966 u=netopschic n=ansible | platform_type is set to nokia.srlinux.srlinux
+2025-05-18 13:50:06,819 p=127966 u=netopschic n=ansible | ok: [clab-ansible-srl]
+2025-05-18 13:50:06,821 p=127966 u=netopschic n=ansible | TASK [Print debug] *************************************************************************************************************************
+2025-05-18 13:50:06,843 p=127966 u=netopschic n=ansible | ok: [clab-ansible-srl] => {
+    "set_response": {
+        "changed": false,
+        "failed": false,
+        "failed_when_result": false,
+        "id": "2025-05-18 13:50:06:772200",
+        "method": "diff",
+        "msg": "Schema '/system/information' has no local leaf with the name 'wrong'. Options are [contact, location, protobuf-metadata]: Parse error on line 1: {\"wrong\": \"Some location\"}\nInput:\n'{\"wrong\": \"Some location\"}'"
+    }
+}
+2025-05-18 13:50:06,844 p=127966 u=netopschic n=ansible | PLAY RECAP *********************************************************************************************************************************
+2025-05-18 13:50:06,844 p=127966 u=netopschic n=ansible | clab-ansible-srl           : ok=2    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2025-05-18 13:50:06,944 p=128010 u=netopschic n=ansible | shutdown complete
+2025-05-18 13:50:07,689 p=128459 u=netopschic n=ansible | [DEPRECATION WARNING]: [defaults]collections_paths option, does not fit var naming standard, use the singular form collections_path 
+instead. This feature will be removed from ansible-core in version 2.19. Deprecation warnings can be disabled by setting 
+deprecation_warnings=False in ansible.cfg.
+2025-05-18 13:50:07,833 p=128459 u=netopschic n=ansible | PLAY [Set multiple paths] ******************************************************************************************************************
+2025-05-18 13:50:07,837 p=128459 u=netopschic n=ansible | TASK [Set with multiple operations] ********************************************************************************************************
+2025-05-18 13:50:08,161 p=128459 u=netopschic n=ansible | platform_type is set to nokia.srlinux.srlinux
+2025-05-18 13:50:08,422 p=128459 u=netopschic n=ansible | changed: [clab-ansible-srl]
+2025-05-18 13:50:08,426 p=128459 u=netopschic n=ansible | TASK [Print debug] *************************************************************************************************************************
+2025-05-18 13:50:08,465 p=128459 u=netopschic n=ansible | ok: [clab-ansible-srl] => {
+    "set_response": {
+        "changed": true,
+        "diff": {
+            "jsonrpc_req_id": "2025-05-18 13:50:08:322077",
+            "jsonrpc_version": "2.0",
+            "result": [
+                "      system {\n          grpc-server mgmt {\n-             trace-options [\n-                 response\n-             ]\n          }\n          json-rpc-server {\n              network-instance mgmt {\n-                 https {\n-                     admin-state enable\n-                     tls-profile clab-profile\n-                 }\n              }\n          }\n          information {\n+             location \"Some location\"\n          }\n      }\n"
+            ]
+        },
+        "failed": false,
+        "jsonrpc_req_id": "2025-05-18 13:50:08:360448",
+        "saved": false
+    }
+}
+2025-05-18 13:50:08,468 p=128459 u=netopschic n=ansible | TASK [Ensure changes were made to the device] **********************************************************************************************
+2025-05-18 13:50:09,057 p=128459 u=netopschic n=ansible | ok: [clab-ansible-srl]
+2025-05-18 13:50:09,059 p=128459 u=netopschic n=ansible | TASK [Print debug] *************************************************************************************************************************
+2025-05-18 13:50:09,083 p=128459 u=netopschic n=ansible | ok: [clab-ansible-srl] => {
+    "get_response": {
+        "changed": false,
+        "failed": false,
+        "failed_when_result": false,
+        "jsonrpc_req_id": "2025-05-18 13:50:09:005320",
+        "jsonrpc_version": "2.0",
+        "result": [
+            "Some location",
+            [
+                "request",
+                "common"
+            ],
+            {}
+        ]
+    }
+}
+2025-05-18 13:50:09,084 p=128459 u=netopschic n=ansible | PLAY RECAP *********************************************************************************************************************************
+2025-05-18 13:50:09,085 p=128459 u=netopschic n=ansible | clab-ansible-srl           : ok=4    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2025-05-18 13:50:09,185 p=128514 u=netopschic n=ansible | shutdown complete
+2025-05-18 13:50:09,947 p=129043 u=netopschic n=ansible | [DEPRECATION WARNING]: [defaults]collections_paths option, does not fit var naming standard, use the singular form collections_path 
+instead. This feature will be removed from ansible-core in version 2.19. Deprecation warnings can be disabled by setting 
+deprecation_warnings=False in ansible.cfg.
+2025-05-18 13:50:10,087 p=129043 u=netopschic n=ansible | PLAY [Add interface] ***********************************************************************************************************************
+2025-05-18 13:50:10,090 p=129043 u=netopschic n=ansible | TASK [Add interface] ***********************************************************************************************************************
+2025-05-18 13:50:10,401 p=129043 u=netopschic n=ansible | platform_type is set to nokia.srlinux.srlinux
+2025-05-18 13:50:10,645 p=129043 u=netopschic n=ansible | changed: [clab-ansible-srl]
+2025-05-18 13:50:10,648 p=129043 u=netopschic n=ansible | TASK [Print debug] *************************************************************************************************************************
+2025-05-18 13:50:10,676 p=129043 u=netopschic n=ansible | ok: [clab-ansible-srl] => {
+    "set_response": {
+        "changed": true,
+        "diff": {
+            "jsonrpc_req_id": "2025-05-18 13:50:10:553062",
+            "jsonrpc_version": "2.0",
+            "result": [
+                "+     interface ethernet-1/1 {\n+         description \"interface description set with Ansible\"\n+         admin-state enable\n+         subinterface 0 {\n+             description \"subinterface description set with Ansible\"\n+             admin-state enable\n+             ipv4 {\n+                 admin-state enable\n+                 address 192.168.0.100/24 {\n+                 }\n+             }\n+         }\n+     }\n"
+            ]
+        },
+        "failed": false,
+        "jsonrpc_req_id": "2025-05-18 13:50:10:590985",
+        "saved": false
+    }
+}
+2025-05-18 13:50:10,678 p=129043 u=netopschic n=ansible | TASK [Ensure changes were made to the device] **********************************************************************************************
+2025-05-18 13:50:11,156 p=129043 u=netopschic n=ansible | ok: [clab-ansible-srl]
+2025-05-18 13:50:11,158 p=129043 u=netopschic n=ansible | TASK [Print debug] *************************************************************************************************************************
+2025-05-18 13:50:11,189 p=129043 u=netopschic n=ansible | ok: [clab-ansible-srl] => {
+    "get_response": {
+        "changed": false,
+        "failed": false,
+        "failed_when_result": false,
+        "jsonrpc_req_id": "2025-05-18 13:50:11:110290",
+        "jsonrpc_version": "2.0",
+        "result": [
+            {
+                "admin-state": "enable",
+                "description": "interface description set with Ansible",
+                "ethernet": {
+                    "dac-link-training": false,
+                    "flow-control": {
+                        "receive": false
+                    },
+                    "hold-time": {
+                        "down": 0,
+                        "up": 0
+                    },
+                    "hw-mac-address": "1A:68:00:FF:00:01",
+                    "lacp-port-priority": 32768,
+                    "port-speed": "25G",
+                    "srl_nokia-interfaces-l2cp:l2cp-transparency": {
+                        "dot1x": {
+                            "oper-rule": "trap-to-cpu-untagged",
+                            "tunnel": false
+                        },
+                        "lacp": {
+                            "oper-rule": "trap-to-cpu-untagged",
+                            "tunnel": false
+                        },
+                        "lldp": {
+                            "oper-rule": "trap-to-cpu-untagged",
+                            "tunnel": false
+                        },
+                        "ptp": {
+                            "oper-rule": "drop-tagged-and-untagged",
+                            "tunnel": false
+                        },
+                        "tunnel-all-l2cp": false,
+                        "xstp": {
+                            "oper-rule": "drop-tagged-and-untagged",
+                            "tunnel": false
+                        }
+                    },
+                    "statistics": {
+                        "in-1024b-to-1518b-frames": "0",
+                        "in-128b-to-255b-frames": "0",
+                        "in-1519b-or-longer-frames": "0",
+                        "in-256b-to-511b-frames": "0",
+                        "in-512b-to-1023b-frames": "0",
+                        "in-64b-frames": "0",
+                        "in-65b-to-127b-frames": "0",
+                        "in-crc-error-frames": "0",
+                        "in-fragment-frames": "0",
+                        "in-jabber-frames": "0",
+                        "in-mac-pause-frames": "0",
+                        "in-oversize-frames": "0",
+                        "out-1024b-to-1518b-frames": "0",
+                        "out-128b-to-255b-frames": "0",
+                        "out-1519b-or-longer-frames": "0",
+                        "out-256b-to-511b-frames": "0",
+                        "out-512b-to-1023b-frames": "0",
+                        "out-64b-frames": "0",
+                        "out-65b-to-127b-frames": "0",
+                        "out-mac-pause-frames": "0"
+                    }
+                },
+                "forwarding-complex": "0",
+                "forwarding-mode": "store-and-forward",
+                "ifindex": 16382,
+                "last-change": "2025-05-18T11:48:52.899Z",
+                "linecard": 1,
+                "loopback-mode": "none",
+                "mtu": 9232,
+                "oper-down-reason": "lower-layer-down",
+                "oper-state": "down",
+                "phy-group-members": [
+                    "ethernet-1/1",
+                    "ethernet-1/2",
+                    "ethernet-1/3",
+                    "ethernet-1/6"
+                ],
+                "sflow": {
+                    "admin-state": "enable"
+                },
+                "srl_nokia-interfaces-vlans:tpid": "srl_nokia-interfaces-vlans:TPID_0X8100",
+                "srl_nokia-interfaces-vlans:vlan-tagging": false,
+                "statistics": {
+                    "carrier-transitions": "0",
+                    "in-broadcast-packets": "0",
+                    "in-discarded-packets": "0",
+                    "in-error-packets": "0",
+                    "in-fcs-error-packets": "0",
+                    "in-multicast-packets": "0",
+                    "in-octets": "0",
+                    "in-packets": "0",
+                    "in-unicast-packets": "0",
+                    "out-broadcast-packets": "0",
+                    "out-discarded-packets": "0",
+                    "out-error-packets": "0",
+                    "out-mirror-octets": "0",
+                    "out-mirror-packets": "0",
+                    "out-multicast-packets": "0",
+                    "out-octets": "0",
+                    "out-packets": "0",
+                    "out-unicast-packets": "0"
+                },
+                "subinterface": [
+                    {
+                        "admin-state": "enable",
+                        "description": "subinterface description set with Ansible",
+                        "ifindex": 1,
+                        "index": 0,
+                        "ip-mtu": 1500,
+                        "ipv4": {
+                            "address": [
+                                {
+                                    "ip-prefix": "192.168.0.100/24",
+                                    "origin": "static"
+                                }
+                            ],
+                            "admin-state": "enable",
+                            "allow-directed-broadcast": false,
+                            "srl_nokia-interfaces-nbr:arp": {
+                                "duplicate-address-detection": true,
+                                "learn-unsolicited": false,
+                                "proxy-arp": false,
+                                "timeout": 14400
+                            },
+                            "unnumbered": {
+                                "admin-state": "disable"
+                            }
+                        },
+                        "ipv6": {
+                            "admin-state": "disable",
+                            "srl_nokia-interfaces-nbr:neighbor-discovery": {
+                                "duplicate-address-detection": true,
+                                "learn-unsolicited": "none",
+                                "limit": {
+                                    "log-only": false,
+                                    "warning-threshold-pct": 90
+                                },
+                                "proxy-nd": false,
+                                "reachable-time": 30,
+                                "stale-time": 14400
+                            },
+                            "srl_nokia-interfaces-router-adv:router-advertisement": {
+                                "router-role": {
+                                    "admin-state": "disable",
+                                    "current-hop-limit": 64,
+                                    "managed-configuration-flag": false,
+                                    "max-advertisement-interval": 600,
+                                    "min-advertisement-interval": 200,
+                                    "other-configuration-flag": false,
+                                    "reachable-time": 0,
+                                    "retransmit-time": 0,
+                                    "router-lifetime": 1800
+                                }
+                            }
+                        },
+                        "last-change": "2025-05-18T11:50:10.622Z",
+                        "name": "ethernet-1/1.0",
+                        "oper-down-reason": "port-down",
+                        "oper-state": "down",
+                        "type": "srl_nokia-interfaces:routed"
+                    }
+                ],
+                "traffic-rate": {
+                    "in-bps": "0",
+                    "out-bps": "0"
+                },
+                "transceiver": {
+                    "ddm-events": true,
+                    "forward-error-correction": "disabled",
+                    "oper-down-reason": "not-present",
+                    "oper-state": "down",
+                    "srl_nokia-platform-healthz:healthz": {
+                        "status": "unspecified"
+                    },
+                    "tx-laser": false
+                }
+            }
+        ]
+    }
+}
+2025-05-18 13:50:11,190 p=129043 u=netopschic n=ansible | PLAY RECAP *********************************************************************************************************************************
+2025-05-18 13:50:11,190 p=129043 u=netopschic n=ansible | clab-ansible-srl           : ok=4    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2025-05-18 13:50:11,290 p=129102 u=netopschic n=ansible | shutdown complete
+2025-05-18 13:50:12,041 p=129603 u=netopschic n=ansible | [DEPRECATION WARNING]: [defaults]collections_paths option, does not fit var naming standard, use the singular form collections_path 
+instead. This feature will be removed from ansible-core in version 2.19. Deprecation warnings can be disabled by setting 
+deprecation_warnings=False in ansible.cfg.
+2025-05-18 13:50:12,185 p=129603 u=netopschic n=ansible | PLAY [Set with tools datastore] ************************************************************************************************************
+2025-05-18 13:50:12,188 p=129603 u=netopschic n=ansible | TASK [Clear interface statistics] **********************************************************************************************************
+2025-05-18 13:50:12,512 p=129603 u=netopschic n=ansible | platform_type is set to nokia.srlinux.srlinux
+2025-05-18 13:50:12,716 p=129603 u=netopschic n=ansible | ok: [clab-ansible-srl]
+2025-05-18 13:50:12,718 p=129603 u=netopschic n=ansible | TASK [Check locator state] *****************************************************************************************************************
+2025-05-18 13:50:13,207 p=129603 u=netopschic n=ansible | ok: [clab-ansible-srl]
+2025-05-18 13:50:13,208 p=129603 u=netopschic n=ansible | TASK [Print debug] *************************************************************************************************************************
+2025-05-18 13:50:13,230 p=129603 u=netopschic n=ansible | ok: [clab-ansible-srl] => {
+    "get_response": {
+        "changed": false,
+        "failed": false,
+        "failed_when_result": false,
+        "jsonrpc_req_id": "2025-05-18 13:50:13:169032",
+        "jsonrpc_version": "2.0",
+        "result": [
+            "active"
+        ]
+    }
+}
+2025-05-18 13:50:13,231 p=129603 u=netopschic n=ansible | PLAY RECAP *********************************************************************************************************************************
+2025-05-18 13:50:13,232 p=129603 u=netopschic n=ansible | clab-ansible-srl           : ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2025-05-18 13:50:13,332 p=129657 u=netopschic n=ansible | shutdown complete
+2025-05-18 13:50:14,074 p=130153 u=netopschic n=ansible | [DEPRECATION WARNING]: [defaults]collections_paths option, does not fit var naming standard, use the singular form collections_path 
+instead. This feature will be removed from ansible-core in version 2.19. Deprecation warnings can be disabled by setting 
+deprecation_warnings=False in ansible.cfg.
+2025-05-18 13:50:14,218 p=130153 u=netopschic n=ansible | PLAY [Delete leaf nodes] *******************************************************************************************************************
+2025-05-18 13:50:14,222 p=130153 u=netopschic n=ansible | TASK [Set system information with values] **************************************************************************************************
+2025-05-18 13:50:14,545 p=130153 u=netopschic n=ansible | platform_type is set to nokia.srlinux.srlinux
+2025-05-18 13:50:14,789 p=130153 u=netopschic n=ansible | changed: [clab-ansible-srl]
+2025-05-18 13:50:14,791 p=130153 u=netopschic n=ansible | TASK [Test Delete operation on leaf nodes] *************************************************************************************************
+2025-05-18 13:50:15,239 p=130153 u=netopschic n=ansible | changed: [clab-ansible-srl]
+2025-05-18 13:50:15,241 p=130153 u=netopschic n=ansible | TASK [Print debug] *************************************************************************************************************************
+2025-05-18 13:50:15,266 p=130153 u=netopschic n=ansible | ok: [clab-ansible-srl] => {
+    "delete_response": {
+        "changed": true,
+        "diff": {
+            "jsonrpc_req_id": "2025-05-18 13:50:15:166252",
+            "jsonrpc_version": "2.0",
+            "result": [
+                "      system {\n          information {\n-             contact \"Some contact\"\n-             location \"Some location\"\n          }\n      }\n"
+            ]
+        },
+        "failed": false,
+        "jsonrpc_req_id": "2025-05-18 13:50:15:200252",
+        "saved": false
+    }
+}
+2025-05-18 13:50:15,268 p=130153 u=netopschic n=ansible | TASK [Ensure leaves were deleted] **********************************************************************************************************
+2025-05-18 13:50:15,766 p=130153 u=netopschic n=ansible | ok: [clab-ansible-srl]
+2025-05-18 13:50:15,768 p=130153 u=netopschic n=ansible | TASK [Print debug] *************************************************************************************************************************
+2025-05-18 13:50:15,792 p=130153 u=netopschic n=ansible | ok: [clab-ansible-srl] => {
+    "get_response": {
+        "changed": false,
+        "failed": false,
+        "failed_when_result": false,
+        "jsonrpc_req_id": "2025-05-18 13:50:15:722342",
+        "jsonrpc_version": "2.0",
+        "result": [
+            {
+                "current-datetime": "2025-05-18T11:50:15.248Z",
+                "description": "SRLinux-v24.10.1-492-gf8858c5836 7220 IXR-D2L Copyright (c) 2000-2020 Nokia. Kernel 6.8.0-59-generic #61~22.04.1-Ubuntu SMP PREEMPT_DYNAMIC Tue Apr 15 17:03:15 UTC 2",
+                "last-booted": "2025-05-18T11:48:51.953Z",
+                "version": "v24.10.1-492-gf8858c5836"
+            }
+        ]
+    }
+}
+2025-05-18 13:50:15,793 p=130153 u=netopschic n=ansible | PLAY RECAP *********************************************************************************************************************************
+2025-05-18 13:50:15,793 p=130153 u=netopschic n=ansible | clab-ansible-srl           : ok=5    changed=2    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2025-05-18 13:50:15,893 p=130208 u=netopschic n=ansible | shutdown complete
+2025-05-18 13:50:16,648 p=130799 u=netopschic n=ansible | [DEPRECATION WARNING]: [defaults]collections_paths option, does not fit var naming standard, use the singular form collections_path 
+instead. This feature will be removed from ansible-core in version 2.19. Deprecation warnings can be disabled by setting 
+deprecation_warnings=False in ansible.cfg.
+2025-05-18 13:50:16,793 p=130799 u=netopschic n=ansible | PLAY [Set idempoent] ***********************************************************************************************************************
+2025-05-18 13:50:16,796 p=130799 u=netopschic n=ansible | TASK [Set system information with values] **************************************************************************************************
+2025-05-18 13:50:17,121 p=130799 u=netopschic n=ansible | platform_type is set to nokia.srlinux.srlinux
+2025-05-18 13:50:17,359 p=130799 u=netopschic n=ansible |       system {
+          information {
++             contact "Some contact"
++             location "Some location"
+          }
+      }
+
+2025-05-18 13:50:17,360 p=130799 u=netopschic n=ansible | changed: [clab-ansible-srl]
+2025-05-18 13:50:17,361 p=130799 u=netopschic n=ansible | TASK [Print debug] *************************************************************************************************************************
+2025-05-18 13:50:17,387 p=130799 u=netopschic n=ansible | ok: [clab-ansible-srl] => {
+    "set_response": {
+        "changed": true,
+        "diff": {
+            "prepared": "      system {\n          information {\n+             contact \"Some contact\"\n+             location \"Some location\"\n          }\n      }\n"
+        },
+        "failed": false,
+        "jsonrpc_req_id": "2025-05-18 13:50:17:315321",
+        "saved": false
+    }
+}
+2025-05-18 13:50:17,389 p=130799 u=netopschic n=ansible | TASK [Ensure changes were made to the device] **********************************************************************************************
+2025-05-18 13:50:17,877 p=130799 u=netopschic n=ansible | ok: [clab-ansible-srl]
+2025-05-18 13:50:17,878 p=130799 u=netopschic n=ansible | TASK [Print debug] *************************************************************************************************************************
+2025-05-18 13:50:17,902 p=130799 u=netopschic n=ansible | ok: [clab-ansible-srl] => {
+    "get_response": {
+        "changed": false,
+        "failed": false,
+        "failed_when_result": false,
+        "jsonrpc_req_id": "2025-05-18 13:50:17:835684",
+        "jsonrpc_version": "2.0",
+        "result": [
+            {
+                "contact": "Some contact",
+                "current-datetime": "2025-05-18T11:50:17.248Z",
+                "description": "SRLinux-v24.10.1-492-gf8858c5836 7220 IXR-D2L Copyright (c) 2000-2020 Nokia. Kernel 6.8.0-59-generic #61~22.04.1-Ubuntu SMP PREEMPT_DYNAMIC Tue Apr 15 17:03:15 UTC 2",
+                "last-booted": "2025-05-18T11:48:51.953Z",
+                "location": "Some location",
+                "version": "v24.10.1-492-gf8858c5836"
+            }
+        ]
+    }
+}
+2025-05-18 13:50:17,904 p=130799 u=netopschic n=ansible | TASK [Repeated set should not run] *********************************************************************************************************
+2025-05-18 13:50:18,344 p=130799 u=netopschic n=ansible | ok: [clab-ansible-srl]
+2025-05-18 13:50:18,345 p=130799 u=netopschic n=ansible | TASK [Print debug] *************************************************************************************************************************
+2025-05-18 13:50:18,366 p=130799 u=netopschic n=ansible | ok: [clab-ansible-srl] => {
+    "set_response": {
+        "changed": false,
+        "failed": false,
+        "failed_when_result": false,
+        "jsonrpc_req_id": "2025-05-18 13:50:18:293857",
+        "saved": false
+    }
+}
+2025-05-18 13:50:18,368 p=130799 u=netopschic n=ansible | TASK [Repeated set should not run with diff] ***********************************************************************************************
+2025-05-18 13:50:18,782 p=130799 u=netopschic n=ansible | ok: [clab-ansible-srl]
+2025-05-18 13:50:18,783 p=130799 u=netopschic n=ansible | TASK [Print debug] *************************************************************************************************************************
+2025-05-18 13:50:18,806 p=130799 u=netopschic n=ansible | ok: [clab-ansible-srl] => {
+    "set_response": {
+        "changed": false,
+        "failed": false,
+        "failed_when_result": false,
+        "jsonrpc_req_id": "2025-05-18 13:50:18:743097",
+        "saved": false
+    }
+}
+2025-05-18 13:50:18,807 p=130799 u=netopschic n=ansible | PLAY RECAP *********************************************************************************************************************************
+2025-05-18 13:50:18,807 p=130799 u=netopschic n=ansible | clab-ansible-srl           : ok=8    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2025-05-18 13:50:18,908 p=130856 u=netopschic n=ansible | shutdown complete
+2025-05-18 13:50:19,655 p=131440 u=netopschic n=ansible | [DEPRECATION WARNING]: [defaults]collections_paths option, does not fit var naming standard, use the singular form collections_path 
+instead. This feature will be removed from ansible-core in version 2.19. Deprecation warnings can be disabled by setting 
+deprecation_warnings=False in ansible.cfg.
+2025-05-18 13:50:19,799 p=131440 u=netopschic n=ansible | PLAY [Replace full config] *****************************************************************************************************************
+2025-05-18 13:50:19,803 p=131440 u=netopschic n=ansible | TASK [Replace entire config from file] *****************************************************************************************************
+2025-05-18 13:50:20,159 p=131440 u=netopschic n=ansible | platform_type is set to nokia.srlinux.srlinux
+2025-05-18 13:50:22,536 p=131440 u=netopschic n=ansible |       acl {
+          acl-filter cpm type ipv4 {
+-             entry 355 {
+-                 description "Containerlab-added rule: Accept incoming gRPC over port 50052 for the eda-discovery gRPC server"
+-                 match {
+-                     ipv4 {
+-                         protocol tcp
+-                     }
+-                     transport {
+-                         destination-port {
+-                             operator eq
+-                             value 50052
+-                         }
+-                     }
+-                 }
+-                 action {
+-                     accept {
+-                     }
+-                 }
+-             }
+-             entry 356 {
+-                 description "Containerlab-added rule: Accept incoming gRPC over port 57410 for the eda-mgmt gRPC server"
+-                 match {
+-                     ipv4 {
+-                         protocol tcp
+-                     }
+-                     transport {
+-                         destination-port {
+-                             operator eq
+-                             value 57410
+-                         }
+-                     }
+-                 }
+-                 action {
+-                     accept {
+-                     }
+-                 }
+-             }
+-             entry 357 {
+-                 description "Containerlab-added rule: Accept incoming gRPC over port 57411 for the eda-mgmt gRPC server"
+-                 match {
+-                     ipv4 {
+-                         protocol tcp
+-                     }
+-                     transport {
+-                         destination-port {
+-                             operator eq
+-                             value 57411
+-                         }
+-                     }
+-                 }
+-                 action {
+-                     accept {
+-                     }
+-                 }
+-             }
+-             entry 400 {
+-                 description "Accept incoming SSH connections on the default NETCONF port 830"
+-                 match {
+-                     ipv4 {
+-                         protocol tcp
+-                     }
+-                     transport {
+-                         destination-port {
+-                             operator eq
+-                             value 830
+-                         }
+-                     }
+-                 }
+-                 action {
+-                     accept {
+-                     }
+-                 }
+-             }
+-             entry 470 {
+-                 description "Accept incoming TWAMP Control connection"
+-                 match {
+-                     ipv4 {
+-                         protocol tcp
+-                     }
+-                     transport {
+-                         destination-port {
+-                             operator eq
+-                             value 862
+-                         }
+-                     }
+-                 }
+-                 action {
+-                     accept {
+-                     }
+-                 }
+-             }
+-             entry 550 {
+-                 description "Accept incoming VRRP Control packets"
+-                 match {
+-                     ipv4 {
+-                         protocol vrrp
+-                     }
+-                 }
+-                 action {
+-                     accept {
+-                     }
+-                 }
+-             }
+          }
+          acl-filter cpm type ipv6 {
+-             entry 365 {
+-                 description "Containerlab-added rule: Accept incoming gRPC over port 50052 for the eda-discovery gRPC server"
+-                 match {
+-                     ipv6 {
+-                         next-header tcp
+-                     }
+-                     transport {
+-                         destination-port {
+-                             operator eq
+-                             value 50052
+-                         }
+-                     }
+-                 }
+-                 action {
+-                     accept {
+-                     }
+-                 }
+-             }
+-             entry 366 {
+-                 description "Containerlab-added rule: Accept incoming gRPC over port 57410 for the eda-mgmt gRPC server"
+-                 match {
+-                     ipv6 {
+-                         next-header tcp
+-                     }
+-                     transport {
+-                         destination-port {
+-                             operator eq
+-                             value 57410
+-                         }
+-                     }
+-                 }
+-                 action {
+-                     accept {
+-                     }
+-                 }
+-             }
+-             entry 367 {
+-                 description "Containerlab-added rule: Accept incoming gRPC over port 57411 for the eda-mgmt gRPC server"
+-                 match {
+-                     ipv6 {
+-                         next-header tcp
+-                     }
+-                     transport {
+-                         destination-port {
+-                             operator eq
+-                             value 57411
+-                         }
+-                     }
+-                 }
+-                 action {
+-                     accept {
+-                     }
+-                 }
+-             }
+-             entry 440 {
+-                 description "Accept incoming SSH connections on the default NETCONF port 830"
+-                 match {
+-                     ipv6 {
+-                         next-header tcp
+-                     }
+-                     transport {
+-                         destination-port {
+-                             operator eq
+-                             value 830
+-                         }
+-                     }
+-                 }
+-                 action {
+-                     accept {
+-                     }
+-                 }
+-             }
+-             entry 520 {
+-                 description "Accept incoming TWAMP Control connection"
+-                 match {
+-                     ipv6 {
+-                         next-header tcp
+-                     }
+-                     transport {
+-                         destination-port {
+-                             operator eq
+-                             value 862
+-                         }
+-                     }
+-                 }
+-                 action {
+-                     accept {
+-                     }
+-                 }
+-             }
+-             entry 530 {
+-                 description "Accept incoming LSP MPLS Echo requests and replies"
+-                 match {
+-                     ipv6 {
+-                         next-header udp
+-                     }
+-                     transport {
+-                         destination-port {
+-                             operator eq
+-                             value 3503
+-                         }
+-                     }
+-                 }
+-                 action {
+-                     accept {
+-                     }
+-                 }
+-             }
+-             entry 540 {
+-                 description "Accept incoming LSP MPLS Echo requests and replies"
+-                 match {
+-                     ipv6 {
+-                         next-header udp
+-                     }
+-                     transport {
+-                         source-port {
+-                             operator eq
+-                             value 3503
+-                         }
+-                     }
+-                 }
+-                 action {
+-                     accept {
+-                     }
+-                 }
+-             }
+-             entry 550 {
+-                 description "Accept incoming VRRP Control packets"
+-                 match {
+-                     ipv6 {
+-                         next-header vrrp
+-                     }
+-                 }
+-                 action {
+-                     accept {
+-                     }
+-                 }
+-             }
+          }
+      }
++     interface ethernet-1/1 {
++         description "ethernet-1/1 interface on clab-ansible-srl"
++         admin-state enable
++     }
+      interface mgmt0 {
++         description "clab-ansible-srl management interface"
+      }
+      system {
+          management {
+-             openconfig {
+-                 admin-state enable
+-             }
+          }
+          aaa {
+              authentication {
+                  admin-user {
+                      ssh-key [
+-                         "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQC1268l9sLeSI1k+D+x1NMyn1m4b3EsVS6cVrGPTPkDuQhCBJgr0Gq7NaIPrQRmd7DYQ5POWXqepjOLs+PlsvE5ztz0wL2DNWuhfeplcW3oFqzxqQDZEK4LBBubroe8dPlZSCPHH2RrRks1PpW2N9gtjqAJ1sQJbTIjFn30Tb1D6b0HRbuMsAWjeZPilQ6FEfYxXMBclte/Y7QkgfYVdCpeClBov4YrTDZp8jMtUFTK2N7DAk1E8098kWAGZus+ixlKn8qW6PnzUlUhslWXyCCz5nwkYnNXZL3cwjPM+ja1YFE+joYo0SZqYirfox+V1xjCOdUokj+GE/hHC7jIIL8id/vJBywcWKo/p4GhIPOzDbuYloQsTOYQ5RkBhq2vDjTC3mVG4WQlwS8c49jgieM+YuQaY5pbrjKaVvWT7QEoCaUvril3vXhlrqo3t80UsfiGdLTyXG4D/p10v21yY0j08eZFS/TF4tmG5Y2n6ZOWVmavkOjsK+LVralGW8VR7M0="
++                         "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDBJRPA9kC25PYrFE8+DPAvxlzj7KNAloyKPsBEHjmLFgRbkjhK3F3kNHTd/afnPx5nC5R9g7mIPXjsHnzcR9n7OxegyqEQvwGJYOC5n94UfC/Htod5FhB4FcMAR1iuJWQCmGrg+Evs4LEBdST81PKIOORsFquZ84P5i/ZifjbKE+m+3tJLu484slMZqHANNUlfmTT1MkRDeXlv6eif9YWzP3w1M4l6+WOhowfyKU5N1scEf2gPIa5uqdzL3YTWWVid/EjTx4WNLO4w8FRRxxabcqAZ6rmw5CEHfQyXfqCW+v5d3thkylYpHMGohf7BifF0oDiJkaQUgO6vQBOpSbkLZ/ZCth4RqDEmZPO8DH25Hr+rkYZleWQoNL5JpHAMlNMHAOk+b2icBT+qw0+1zpzHuQow+48BkCLwQNyZmkqJB4SABzx5JWC8nLMczvpJqkWhG/Nzp5PdoDrsqxTNt9oaTUWdBDgFCTDduisyqvtzn6UOJJn6+hKqdxMyT1bcezd9s4AiJTTBzpLy560QrANyEIX+nt2yR8fJhfg+R4RsXw0hVlYh31a9oG2+NwCwBaTrCML97m/lVFsoSb4uJ1rwqUKbdzCV3EB2xINkkKXwafYh5lHMjo7TPcgo0VQIe2lSWLiHF4h3HTD/HIP0NqxIm+Pk5pVE99gC+IUUXlmhJQ=="
++                         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILKdXYzPIq8kHRJtDrh21wMVI76AnuPk7HDLeDteKN74"
++                         "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCtxsljGhy2DWg9/VwyRwsz2xEfscEuXOgd+z9aXLBXjEEPedzVAs84fAo981ap4xVmbB7gZOPwDM0jWWrGhv94WbWG5ZA7RjoAdp7EscCtv68r2gudagfxvaRHFQntgZt0c5tJztleXYLjaSvH5Nk/TDnVmOKiVKz/DZLuUx80YTb0udtz4qmFxSLswVbCr5YDtkdfaZ2fef3uEq21siVe+KNwL3gurBSUMKiWAPcQiSlBFXOjt0dLT3juy3D7ck3RaLirq07xeJvrJwDghEpvSpZnPZf7v8UmyIyv90edjC/0YogJV962IMzoT8s8+179glEKQBNHHRPm0KdX1BKjOpAFhx3zcTK6cxbG5Zbjcq0Vw86SjsiO4gz8QkBda6o/AtvqdQ8KOg+IpfVJ/j9/zyIeU1Ep9oWXzmx8i2s+rSTkNTdvi1lTKGpTCD2jFa5uxisR5dVoeKxMsJNaS7NxjIo0ZARriwGMnh+s8mA3ZZVYqnKJsGMUs02I0aSd0QU="
++                         "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDLTxDZjy70GF3lZIePu/yz0lqaglkIYm2actUb4/Fq43z1VkSsdUKknCZuMnnAuHoAI3nMs8bmm5Ba9Kc9mqfZg8A6LYUYjUbRyv1qUgfok80G4k6JqUdly9E6CiI301ysxbqzYMyX0uWz3K/mY3kClNJJVuNXw+pDu9Obm8g2BDBVH9ecQ+IVtrt8s2rwoBzb2uSCLdqpTGQvo3RF5Ds4x7uSYyMNPvyQfewUnF60PPe/BlPL1DGFXX9xYxIMnbAuQ/KnpdyB216AnOd1xakY0l7n7iw6CNbbusN0WwnuyeWtO3sD7dNBaSd6ZtwU9Vaw0tZYbrvVc2ZIG6wLX+semg//DWwvcPxAZGSUyg3KjmTS0iWLCB93bif/tzrim/cZXfe2LPYAIXtWMEELzt+iUbKOMx9zrmjZ1gcaNLOTPY4XYTSwJslER5DScz1W9VtL7cKDe+2JVsrwSIb3MMq9XwIAFptApZBlhkjLLFBu0oBJ1z8JKD9mkJb3S2uH4icsGgZU7mY8n7xl3rSurSHuM8y5gAhy7fso0U/Rk7hsUjhElwTxMRtU+zjyV8G3pUyN4yx8uYEz3KPAO/aWrZqO0uoqj+F1Mb71Bn1wNUK5QnPaDEH1ByzTGIAIyJgs++i/KxiTwIskpR02ZrN87cw8ZzDSnL/fegF12UQhzN4o5Q=="
++                         "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDNEsOytypejPqd4csAycRShsJAtCKAy/PxXtTzcpoU7PTLaxTGiZUGhZ33pZ86/hzyA8/GksvHsYj3tumILe1HTdV2rKGkbRIYJ8sAEkmhKtEiC0PuXVCLS4zy7YMOIQAJ1edn0RUqvAe+rb/E50eucqzJeMriEuWUtrLZpRRaUCQOmqTkTpxHR3T+5TF+ia/ii4ZY3VwsChVrPHfoVNk3NGSb8hPsjuSE61kwYxI135hHK2ZI9iv/QKUUrR9xFaMGMCAPX+9C1EhclwkeB1t4EKwam6qQs15jnhBO7kEq9oCX7vjrmra5neQD7yxkM+I0aJTYRfmldlyf/pWpGXxPn55f1eLFH5uTKxCnEJepe5P1jm24vvTdij9DF256GVjEwBrZ0ro8Pg45PT4ZT/jkAkfC+SLpQutcDggvNbOOUOjCak/lBv5bAIQOe/sbfIW6NOdWSNm6HZShYZUAfik1oXu2VasCZHcyNpwGx3p3Cr7HSVInDpzC9WGzv+hOzJ8="
++                         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIK8N+eYfTO7cF0d7AAnDceARMG6ftHfomgJ4UZb2HuRe"
++                         "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQComgPcG3DJaOI/Hj6SteEvwuIObe9qSLdecDHmAPLbhyvClEKN7i2AVc0UHCY10Lxxc0XsLuNPgHZYlWk1Ii9SFMHE/60MdlpP7TvcUdLBTuy0Byhx7i+0LO+vMTDJMWsil8Ivgc9xCT6iL5a/kEc3AR7FQwf3K/3jidyLpLFBy+Nliz060Y5j7X+u5sqPogdoa47qdSOJCzCD7DfThaxyPLcnNiGuco/5OoAujC/ZLCFgj2JnIrsf3ZAvl8yzrJfH3KtDK3klNlA5oc2+l92NOcTdasE7iTHZfZg3HXWvdKP5U63FsXNzisIeHkmjs4AtuTvTyCam2PEKwPuy1X+ogTBTKTSAlud5rkDeoGBIyhbO6gZTQnqb8dyLpD4mz2Fyn/6k97YcZn3KVgS6OTEzHhOOhEd1OlFlRgNdREw3YqL4B2ooq/In0GJjhPHQg6L8cyyhL+oPm2noQUp8jw9Sp42EHDgG33dYPiwbQ2eq6Ql2PLCc0M8YXJdVtFhENV6zoPTtosxx4OEWtauoART931a000/qa51cvuJX7bSEvJGhGUh3sTSYGke3X0gQKMHtVh/5iDcb0IowW0J/e/UnITwP6FgTE2AhOsEXaoJiSd4BcUUDG1mHMuLKxRSFw63V7T0XTOHSousHS8QNKMJoNe1PcaArFCJ+gOZmY68Mzw=="
+                      ]
+                  }
+                  linuxadmin-user {
+-                     password $y$j9T$21VgKI4Ug8Q/odUe/Tne31$6.0V1o7A4OJEjI8zXw9WAdqm8cJ.AJPaHEZM/Xug1XA
++                     password $y$j9T$DbT6fPrCRIFoKCGhsL3pB0$Rb53YfyCdnjkUtguz8KWuI4ADfYM8WKI9XavXvzvS/C
+                      ssh-key [
+-                         "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQC1268l9sLeSI1k+D+x1NMyn1m4b3EsVS6cVrGPTPkDuQhCBJgr0Gq7NaIPrQRmd7DYQ5POWXqepjOLs+PlsvE5ztz0wL2DNWuhfeplcW3oFqzxqQDZEK4LBBubroe8dPlZSCPHH2RrRks1PpW2N9gtjqAJ1sQJbTIjFn30Tb1D6b0HRbuMsAWjeZPilQ6FEfYxXMBclte/Y7QkgfYVdCpeClBov4YrTDZp8jMtUFTK2N7DAk1E8098kWAGZus+ixlKn8qW6PnzUlUhslWXyCCz5nwkYnNXZL3cwjPM+ja1YFE+joYo0SZqYirfox+V1xjCOdUokj+GE/hHC7jIIL8id/vJBywcWKo/p4GhIPOzDbuYloQsTOYQ5RkBhq2vDjTC3mVG4WQlwS8c49jgieM+YuQaY5pbrjKaVvWT7QEoCaUvril3vXhlrqo3t80UsfiGdLTyXG4D/p10v21yY0j08eZFS/TF4tmG5Y2n6ZOWVmavkOjsK+LVralGW8VR7M0="
++                         "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDBJRPA9kC25PYrFE8+DPAvxlzj7KNAloyKPsBEHjmLFgRbkjhK3F3kNHTd/afnPx5nC5R9g7mIPXjsHnzcR9n7OxegyqEQvwGJYOC5n94UfC/Htod5FhB4FcMAR1iuJWQCmGrg+Evs4LEBdST81PKIOORsFquZ84P5i/ZifjbKE+m+3tJLu484slMZqHANNUlfmTT1MkRDeXlv6eif9YWzP3w1M4l6+WOhowfyKU5N1scEf2gPIa5uqdzL3YTWWVid/EjTx4WNLO4w8FRRxxabcqAZ6rmw5CEHfQyXfqCW+v5d3thkylYpHMGohf7BifF0oDiJkaQUgO6vQBOpSbkLZ/ZCth4RqDEmZPO8DH25Hr+rkYZleWQoNL5JpHAMlNMHAOk+b2icBT+qw0+1zpzHuQow+48BkCLwQNyZmkqJB4SABzx5JWC8nLMczvpJqkWhG/Nzp5PdoDrsqxTNt9oaTUWdBDgFCTDduisyqvtzn6UOJJn6+hKqdxMyT1bcezd9s4AiJTTBzpLy560QrANyEIX+nt2yR8fJhfg+R4RsXw0hVlYh31a9oG2+NwCwBaTrCML97m/lVFsoSb4uJ1rwqUKbdzCV3EB2xINkkKXwafYh5lHMjo7TPcgo0VQIe2lSWLiHF4h3HTD/HIP0NqxIm+Pk5pVE99gC+IUUXlmhJQ=="
++                         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILKdXYzPIq8kHRJtDrh21wMVI76AnuPk7HDLeDteKN74"
++                         "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCtxsljGhy2DWg9/VwyRwsz2xEfscEuXOgd+z9aXLBXjEEPedzVAs84fAo981ap4xVmbB7gZOPwDM0jWWrGhv94WbWG5ZA7RjoAdp7EscCtv68r2gudagfxvaRHFQntgZt0c5tJztleXYLjaSvH5Nk/TDnVmOKiVKz/DZLuUx80YTb0udtz4qmFxSLswVbCr5YDtkdfaZ2fef3uEq21siVe+KNwL3gurBSUMKiWAPcQiSlBFXOjt0dLT3juy3D7ck3RaLirq07xeJvrJwDghEpvSpZnPZf7v8UmyIyv90edjC/0YogJV962IMzoT8s8+179glEKQBNHHRPm0KdX1BKjOpAFhx3zcTK6cxbG5Zbjcq0Vw86SjsiO4gz8QkBda6o/AtvqdQ8KOg+IpfVJ/j9/zyIeU1Ep9oWXzmx8i2s+rSTkNTdvi1lTKGpTCD2jFa5uxisR5dVoeKxMsJNaS7NxjIo0ZARriwGMnh+s8mA3ZZVYqnKJsGMUs02I0aSd0QU="
++                         "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDLTxDZjy70GF3lZIePu/yz0lqaglkIYm2actUb4/Fq43z1VkSsdUKknCZuMnnAuHoAI3nMs8bmm5Ba9Kc9mqfZg8A6LYUYjUbRyv1qUgfok80G4k6JqUdly9E6CiI301ysxbqzYMyX0uWz3K/mY3kClNJJVuNXw+pDu9Obm8g2BDBVH9ecQ+IVtrt8s2rwoBzb2uSCLdqpTGQvo3RF5Ds4x7uSYyMNPvyQfewUnF60PPe/BlPL1DGFXX9xYxIMnbAuQ/KnpdyB216AnOd1xakY0l7n7iw6CNbbusN0WwnuyeWtO3sD7dNBaSd6ZtwU9Vaw0tZYbrvVc2ZIG6wLX+semg//DWwvcPxAZGSUyg3KjmTS0iWLCB93bif/tzrim/cZXfe2LPYAIXtWMEELzt+iUbKOMx9zrmjZ1gcaNLOTPY4XYTSwJslER5DScz1W9VtL7cKDe+2JVsrwSIb3MMq9XwIAFptApZBlhkjLLFBu0oBJ1z8JKD9mkJb3S2uH4icsGgZU7mY8n7xl3rSurSHuM8y5gAhy7fso0U/Rk7hsUjhElwTxMRtU+zjyV8G3pUyN4yx8uYEz3KPAO/aWrZqO0uoqj+F1Mb71Bn1wNUK5QnPaDEH1ByzTGIAIyJgs++i/KxiTwIskpR02ZrN87cw8ZzDSnL/fegF12UQhzN4o5Q=="
++                         "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDNEsOytypejPqd4csAycRShsJAtCKAy/PxXtTzcpoU7PTLaxTGiZUGhZ33pZ86/hzyA8/GksvHsYj3tumILe1HTdV2rKGkbRIYJ8sAEkmhKtEiC0PuXVCLS4zy7YMOIQAJ1edn0RUqvAe+rb/E50eucqzJeMriEuWUtrLZpRRaUCQOmqTkTpxHR3T+5TF+ia/ii4ZY3VwsChVrPHfoVNk3NGSb8hPsjuSE61kwYxI135hHK2ZI9iv/QKUUrR9xFaMGMCAPX+9C1EhclwkeB1t4EKwam6qQs15jnhBO7kEq9oCX7vjrmra5neQD7yxkM+I0aJTYRfmldlyf/pWpGXxPn55f1eLFH5uTKxCnEJepe5P1jm24vvTdij9DF256GVjEwBrZ0ro8Pg45PT4ZT/jkAkfC+SLpQutcDggvNbOOUOjCak/lBv5bAIQOe/sbfIW6NOdWSNm6HZShYZUAfik1oXu2VasCZHcyNpwGx3p3Cr7HSVInDpzC9WGzv+hOzJ8="
++                         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIK8N+eYfTO7cF0d7AAnDceARMG6ftHfomgJ4UZb2HuRe"
++                         "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQComgPcG3DJaOI/Hj6SteEvwuIObe9qSLdecDHmAPLbhyvClEKN7i2AVc0UHCY10Lxxc0XsLuNPgHZYlWk1Ii9SFMHE/60MdlpP7TvcUdLBTuy0Byhx7i+0LO+vMTDJMWsil8Ivgc9xCT6iL5a/kEc3AR7FQwf3K/3jidyLpLFBy+Nliz060Y5j7X+u5sqPogdoa47qdSOJCzCD7DfThaxyPLcnNiGuco/5OoAujC/ZLCFgj2JnIrsf3ZAvl8yzrJfH3KtDK3klNlA5oc2+l92NOcTdasE7iTHZfZg3HXWvdKP5U63FsXNzisIeHkmjs4AtuTvTyCam2PEKwPuy1X+ogTBTKTSAlud5rkDeoGBIyhbO6gZTQnqb8dyLpD4mz2Fyn/6k97YcZn3KVgS6OTEzHhOOhEd1OlFlRgNdREw3YqL4B2ooq/In0GJjhPHQg6L8cyyhL+oPm2noQUp8jw9Sp42EHDgG33dYPiwbQ2eq6Ql2PLCc0M8YXJdVtFhENV6zoPTtosxx4OEWtauoART931a000/qa51cvuJX7bSEvJGhGUh3sTSYGke3X0gQKMHtVh/5iDcb0IowW0J/e/UnITwP6FgTE2AhOsEXaoJiSd4BcUUDG1mHMuLKxRSFw63V7T0XTOHSousHS8QNKMJoNe1PcaArFCJ+gOZmY68Mzw=="
+                      ]
+                  }
+              }
+          }
+-         ssh-server mgmt-netconf {
+-             admin-state enable
+-             network-instance mgmt
+-             port 830
+-             disable-shell true
+-         }
+          tls {
+              server-profile clab-profile {
+-                 key $aes1$ATRXy8148tIBSW8=$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
+-                 certificate "-----BEGIN CERTIFICATE-----
+MIID0DCCArigAwIBAgICBnowDQYJKoZIhvcNAQELBQAwUzELMAkGA1UEBhMCVVMx
+CTAHBgNVBAcTADEVMBMGA1UEChMMY29udGFpbmVybGFiMQkwBwYDVQQLEwAxFzAV
+BgNVBAMTDmFuc2libGUgbGFiIENBMB4XDTI1MDUxODExNDg0NloXDTI2MDUxODEx
+NDg0NlowUzELMAkGA1UEBhMCVVMxCTAHBgNVBAcTADEVMBMGA1UEChMMY29udGFp
+bmVybGFiMQkwBwYDVQQLEwAxFzAVBgNVBAMTDnNybC5hbnNpYmxlLmlvMIIBIjAN
+BgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAzjVckNdTv9foeh8b1Dm7WzjWLJMA
+ucwADCZHQMxRcDJst6nrTUTEYJiE/gjjqkRIki0biU3cbTXDDlMe6SKO/NnLatCd
+eD/zVEpQfbNvfsj5meGAxBHgEEnTiqfARmlt+7d5ODsKRQTzzfTksDdDy9zTylVQ
+U1Cb6ElvgZvhDf+EZn/lGvgq2BUKgXSz4j/SIgH3S7RA4ZMf0GgrBuCZT+ig4Mk7
+oFewL1+vvqF4cr3CNysLwqFpTQUm6Gtoqo9CYnjaSdBfVtuwnlJJ5oCm5zlE8uNc
+3MJh76YeOOCJSxOo5T9c4huDO7ACw6MoR84ve/XEGUlBdRctapC+2xWkMwIDAQAB
+o4GtMIGqMA4GA1UdDwEB/wQEAwIFoDAdBgNVHSUEFjAUBggrBgEFBQcDAgYIKwYB
+BQUHAwEwDgYDVR0OBAcEBQECAwQGMB8GA1UdIwQYMBaAFBTSaDd1McIWiOk0UhIK
+7QRIvWFXMEgGA1UdEQRBMD+CA3NybIIQY2xhYi1hbnNpYmxlLXNybIIOc3JsLmFu
+c2libGUuaW+HBKwUFN6HED//AXIAIAAgAAAAAAAAAAQwDQYJKoZIhvcNAQELBQAD
+ggEBAFXxNEkxAU24cm8m5hakPVXqSIXpDmrBXpWbw1YUB52LMv34g0UwgQxweBzl
+MH2XwDpyyUlQZYC95wa8TLEDqs2OwiCzrU7t9aE7r7i8TFw9UrvUFygJ56vnTqRY
+2BxS9UH4/cBUWiuETPTSZX6htlDkRylGN1vwf3xPaG92jcideFndYFpVGYfaViMi
+VwqASRa0ggThYBvoAsq76jWgof5vKvwRIwYN8l8lp7UA7/e/B6n7j/4Rof4hWR2/
+Uau8gPk4y8eBcmINbBNNlsQoZ6czxE97Rww+5X+fQ3f8LUFw6RUOVTgwcSFi2f7e
+IqvZz8vD6UH99a2L1NY9e7/9Mgc=
+-----END CERTIFICATE-----
+"
++                 key $aes1$ATSWKgszP5gks28=$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
++                 certificate "-----BEGIN CERTIFICATE-----
+MIID0DCCArigAwIBAgICBnowDQYJKoZIhvcNAQELBQAwUzELMAkGA1UEBhMCVVMx
+CTAHBgNVBAcTADEVMBMGA1UEChMMY29udGFpbmVybGFiMQkwBwYDVQQLEwAxFzAV
+BgNVBAMTDmFuc2libGUgbGFiIENBMB4XDTI0MDYyMjE1MDk1NFoXDTI1MDYyMjE1
+MDk1NFowUzELMAkGA1UEBhMCVVMxCTAHBgNVBAcTADEVMBMGA1UEChMMY29udGFp
+bmVybGFiMQkwBwYDVQQLEwAxFzAVBgNVBAMTDnNybC5hbnNpYmxlLmlvMIIBIjAN
+BgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAvfMTDTDaVdyFORkN8PEkjPcTeei9
+OnMXMPtX4gHGrC/2JUmUJVdT8T5QBLEzCICQGJYpm4J1K7K/OWAFUIffZlR0oLQT
+Xb9vW+aXsabxyZ8uFoDq5/PrMqTl/hze6jNmtgZTULOAazFGY+ULXKDyDlDZv+12
+qdXbgEnu7Ooued8bcb9wCR85wbKhoeD1FT48ifQIk6eAU8xNyy6PiMW/4xYF4+m1
+BcqPYTrkTCZxsdfXPEDEPZn30Arwpavv+Uy8VX626uiNIHY28Qc9Qw1m+7HTHy8j
++9K0xQ+r0EHjw6WQWpe3Qs5Js0I4Z2RSDZZWQpx4dSaZrjyOchGeo/+y4wIDAQAB
+o4GtMIGqMA4GA1UdDwEB/wQEAwIFoDAdBgNVHSUEFjAUBggrBgEFBQcDAgYIKwYB
+BQUHAwEwDgYDVR0OBAcEBQECAwQGMB8GA1UdIwQYMBaAFNLlMFe7s2fIb4VLOFmE
+g5+ebA23MEgGA1UdEQRBMD+CA3NybIIQY2xhYi1hbnNpYmxlLXNybIIOc3JsLmFu
+c2libGUuaW+HBKwUFAKHECABAXIAIAAgAAAAAAAAAAIwDQYJKoZIhvcNAQELBQAD
+ggEBABQxO1P8xid+ZNhjlT1L+HEf3mOlxy76DBF4jni6yaPPHQqbKXHWUh9hFMLK
+Y4uo/XIdx5oeIG8xrJ/4UCzWMiV7bGzw19kXm7L+u17IN42Wgtx0o50mrKOuc4d7
+O9cgF/9tE0T5AJVOtskDHgEI71RFxfC8+NEwZkKtB6nN78en03/JDPKjRlOEc+XM
+92/C743EZK6ttQpliFkohYZKWLdML8SRX2R/P5ks4qlhxw14TbLNVOT7tkdfJZBe
+pDERkQUHB6vJh7Sd1tNixdK+CndDqUEbaKSGA1/3gwQ259lQvwcgzRowgCdxtlxW
+wDk+ysL4hAnVWCOrdlbipGFlS6U=
+-----END CERTIFICATE-----
+"
+              }
+          }
+-         grpc-server eda-discovery {
+-             admin-state enable
+-             rate-limit 65535
+-             session-limit 1024
+-             metadata-authentication true
+-             default-tls-profile true
+-             network-instance mgmt
+-             port 50052
+-             services [
+-                 gnmi
+-                 gnsi
+-             ]
+-         }
+-         grpc-server eda-insecure-mgmt {
+-             admin-state enable
+-             rate-limit 65535
+-             session-limit 1024
+-             metadata-authentication true
+-             port 57411
+-             services [
+-                 gnmi
+-                 gnoi
+-                 gnsi
+-             ]
+-         }
+-         grpc-server eda-mgmt {
+-             admin-state enable
+-             rate-limit 65535
+-             session-limit 1024
+-             metadata-authentication true
+-             tls-profile EDA
+-             network-instance mgmt
+-             port 57410
+-             services [
+-                 gnmi
+-                 gnoi
+-                 gnsi
+-             ]
+-         }
+          grpc-server insecure-mgmt {
+-             services [
+-                 gnsi
+-             ]
+          }
+          grpc-server mgmt {
+-             services [
+-                 gnsi
+-             ]
+          }
+          dns {
+              server-list [
+-                 192.168.0.1
++                 10.171.10.1
++                 10.171.10.2
+              ]
+          }
+          snmp {
+              access-group SNMPv2-RO-Community {
+                  community-entry RO-Community {
+-                     community $aes1$AWACpd2qoUSGTG8=$xWg13Ae0HisisbWLbV4veQ==
++                     community $aes1$AWBtjFCTurY1fG8=$pH/M5cgn/zKEl7OuOv8HSA==
+                  }
+              }
+          }
+          banner {
+-             login-banner "................................................................
+:                  Welcome to Nokia SR Linux!                  :
+:              Open Network OS for the NetOps era.             :
+:                                                              :
+:    This is a freely distributed official container image.    :
+:                      Use it - Share it                       :
+:                                                              :
+: Get started: https://learn.srlinux.dev                       :
+: Container:   https://go.srlinux.dev/container-image          :
+: Docs:        https://doc.srlinux.dev/24-10                   :
+: Rel. notes:  https://doc.srlinux.dev/rn24-10-1               :
+: YANG:        https://yang.srlinux.dev/v24.10.1               :
+: Discord:     https://go.srlinux.dev/discord                  :
+: Contact:     https://go.srlinux.dev/contact-sales            :
+................................................................
+"
+-         }
+-         netconf-server mgmt {
+-             admin-state enable
+-             ssh-server mgmt-netconf
++             login-banner "................................................................
+:                  Welcome to Nokia SR Linux!                  :
+:              Open Network OS for the NetOps era.             :
+:                                                              :
+:    This is a freely distributed official container image.    :
+:                      Use it - Share it                       :
+:                                                              :
+: Get started: https://learn.srlinux.dev                       :
+: Container:   https://go.srlinux.dev/container-image          :
+: Docs:        https://doc.srlinux.dev/24-3                    :
+: Rel. notes:  https://doc.srlinux.dev/rn24-3-2                :
+: YANG:        https://yang.srlinux.dev/release/v24.3.2        :
+: Discord:     https://go.srlinux.dev/discord                  :
+: Contact:     https://go.srlinux.dev/contact-sales            :
+................................................................
+"
+          }
+      }
+
+2025-05-18 13:50:22,537 p=131440 u=netopschic n=ansible | changed: [clab-ansible-srl]
+2025-05-18 13:50:22,540 p=131440 u=netopschic n=ansible | TASK [Print debug] *************************************************************************************************************************
+2025-05-18 13:50:22,564 p=131440 u=netopschic n=ansible | ok: [clab-ansible-srl] => {
+    "set_response": {
+        "changed": true,
+        "diff": {
+            "prepared": "      acl {\n          acl-filter cpm type ipv4 {\n-             entry 355 {\n-                 description \"Containerlab-added rule: Accept incoming gRPC over port 50052 for the eda-discovery gRPC server\"\n-                 match {\n-                     ipv4 {\n-                         protocol tcp\n-                     }\n-                     transport {\n-                         destination-port {\n-                             operator eq\n-                             value 50052\n-                         }\n-                     }\n-                 }\n-                 action {\n-                     accept {\n-                     }\n-                 }\n-             }\n-             entry 356 {\n-                 description \"Containerlab-added rule: Accept incoming gRPC over port 57410 for the eda-mgmt gRPC server\"\n-                 match {\n-                     ipv4 {\n-                         protocol tcp\n-                     }\n-                     transport {\n-                         destination-port {\n-                             operator eq\n-                             value 57410\n-                         }\n-                     }\n-                 }\n-                 action {\n-                     accept {\n-                     }\n-                 }\n-             }\n-             entry 357 {\n-                 description \"Containerlab-added rule: Accept incoming gRPC over port 57411 for the eda-mgmt gRPC server\"\n-                 match {\n-                     ipv4 {\n-                         protocol tcp\n-                     }\n-                     transport {\n-                         destination-port {\n-                             operator eq\n-                             value 57411\n-                         }\n-                     }\n-                 }\n-                 action {\n-                     accept {\n-                     }\n-                 }\n-             }\n-             entry 400 {\n-                 description \"Accept incoming SSH connections on the default NETCONF port 830\"\n-                 match {\n-                     ipv4 {\n-                         protocol tcp\n-                     }\n-                     transport {\n-                         destination-port {\n-                             operator eq\n-                             value 830\n-                         }\n-                     }\n-                 }\n-                 action {\n-                     accept {\n-                     }\n-                 }\n-             }\n-             entry 470 {\n-                 description \"Accept incoming TWAMP Control connection\"\n-                 match {\n-                     ipv4 {\n-                         protocol tcp\n-                     }\n-                     transport {\n-                         destination-port {\n-                             operator eq\n-                             value 862\n-                         }\n-                     }\n-                 }\n-                 action {\n-                     accept {\n-                     }\n-                 }\n-             }\n-             entry 550 {\n-                 description \"Accept incoming VRRP Control packets\"\n-                 match {\n-                     ipv4 {\n-                         protocol vrrp\n-                     }\n-                 }\n-                 action {\n-                     accept {\n-                     }\n-                 }\n-             }\n          }\n          acl-filter cpm type ipv6 {\n-             entry 365 {\n-                 description \"Containerlab-added rule: Accept incoming gRPC over port 50052 for the eda-discovery gRPC server\"\n-                 match {\n-                     ipv6 {\n-                         next-header tcp\n-                     }\n-                     transport {\n-                         destination-port {\n-                             operator eq\n-                             value 50052\n-                         }\n-                     }\n-                 }\n-                 action {\n-                     accept {\n-                     }\n-                 }\n-             }\n-             entry 366 {\n-                 description \"Containerlab-added rule: Accept incoming gRPC over port 57410 for the eda-mgmt gRPC server\"\n-                 match {\n-                     ipv6 {\n-                         next-header tcp\n-                     }\n-                     transport {\n-                         destination-port {\n-                             operator eq\n-                             value 57410\n-                         }\n-                     }\n-                 }\n-                 action {\n-                     accept {\n-                     }\n-                 }\n-             }\n-             entry 367 {\n-                 description \"Containerlab-added rule: Accept incoming gRPC over port 57411 for the eda-mgmt gRPC server\"\n-                 match {\n-                     ipv6 {\n-                         next-header tcp\n-                     }\n-                     transport {\n-                         destination-port {\n-                             operator eq\n-                             value 57411\n-                         }\n-                     }\n-                 }\n-                 action {\n-                     accept {\n-                     }\n-                 }\n-             }\n-             entry 440 {\n-                 description \"Accept incoming SSH connections on the default NETCONF port 830\"\n-                 match {\n-                     ipv6 {\n-                         next-header tcp\n-                     }\n-                     transport {\n-                         destination-port {\n-                             operator eq\n-                             value 830\n-                         }\n-                     }\n-                 }\n-                 action {\n-                     accept {\n-                     }\n-                 }\n-             }\n-             entry 520 {\n-                 description \"Accept incoming TWAMP Control connection\"\n-                 match {\n-                     ipv6 {\n-                         next-header tcp\n-                     }\n-                     transport {\n-                         destination-port {\n-                             operator eq\n-                             value 862\n-                         }\n-                     }\n-                 }\n-                 action {\n-                     accept {\n-                     }\n-                 }\n-             }\n-             entry 530 {\n-                 description \"Accept incoming LSP MPLS Echo requests and replies\"\n-                 match {\n-                     ipv6 {\n-                         next-header udp\n-                     }\n-                     transport {\n-                         destination-port {\n-                             operator eq\n-                             value 3503\n-                         }\n-                     }\n-                 }\n-                 action {\n-                     accept {\n-                     }\n-                 }\n-             }\n-             entry 540 {\n-                 description \"Accept incoming LSP MPLS Echo requests and replies\"\n-                 match {\n-                     ipv6 {\n-                         next-header udp\n-                     }\n-                     transport {\n-                         source-port {\n-                             operator eq\n-                             value 3503\n-                         }\n-                     }\n-                 }\n-                 action {\n-                     accept {\n-                     }\n-                 }\n-             }\n-             entry 550 {\n-                 description \"Accept incoming VRRP Control packets\"\n-                 match {\n-                     ipv6 {\n-                         next-header vrrp\n-                     }\n-                 }\n-                 action {\n-                     accept {\n-                     }\n-                 }\n-             }\n          }\n      }\n+     interface ethernet-1/1 {\n+         description \"ethernet-1/1 interface on clab-ansible-srl\"\n+         admin-state enable\n+     }\n      interface mgmt0 {\n+         description \"clab-ansible-srl management interface\"\n      }\n      system {\n          management {\n-             openconfig {\n-                 admin-state enable\n-             }\n          }\n          aaa {\n              authentication {\n                  admin-user {\n                      ssh-key [\n-                         \"ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQC1268l9sLeSI1k+D+x1NMyn1m4b3EsVS6cVrGPTPkDuQhCBJgr0Gq7NaIPrQRmd7DYQ5POWXqepjOLs+PlsvE5ztz0wL2DNWuhfeplcW3oFqzxqQDZEK4LBBubroe8dPlZSCPHH2RrRks1PpW2N9gtjqAJ1sQJbTIjFn30Tb1D6b0HRbuMsAWjeZPilQ6FEfYxXMBclte/Y7QkgfYVdCpeClBov4YrTDZp8jMtUFTK2N7DAk1E8098kWAGZus+ixlKn8qW6PnzUlUhslWXyCCz5nwkYnNXZL3cwjPM+ja1YFE+joYo0SZqYirfox+V1xjCOdUokj+GE/hHC7jIIL8id/vJBywcWKo/p4GhIPOzDbuYloQsTOYQ5RkBhq2vDjTC3mVG4WQlwS8c49jgieM+YuQaY5pbrjKaVvWT7QEoCaUvril3vXhlrqo3t80UsfiGdLTyXG4D/p10v21yY0j08eZFS/TF4tmG5Y2n6ZOWVmavkOjsK+LVralGW8VR7M0=\"\n+                         \"ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDBJRPA9kC25PYrFE8+DPAvxlzj7KNAloyKPsBEHjmLFgRbkjhK3F3kNHTd/afnPx5nC5R9g7mIPXjsHnzcR9n7OxegyqEQvwGJYOC5n94UfC/Htod5FhB4FcMAR1iuJWQCmGrg+Evs4LEBdST81PKIOORsFquZ84P5i/ZifjbKE+m+3tJLu484slMZqHANNUlfmTT1MkRDeXlv6eif9YWzP3w1M4l6+WOhowfyKU5N1scEf2gPIa5uqdzL3YTWWVid/EjTx4WNLO4w8FRRxxabcqAZ6rmw5CEHfQyXfqCW+v5d3thkylYpHMGohf7BifF0oDiJkaQUgO6vQBOpSbkLZ/ZCth4RqDEmZPO8DH25Hr+rkYZleWQoNL5JpHAMlNMHAOk+b2icBT+qw0+1zpzHuQow+48BkCLwQNyZmkqJB4SABzx5JWC8nLMczvpJqkWhG/Nzp5PdoDrsqxTNt9oaTUWdBDgFCTDduisyqvtzn6UOJJn6+hKqdxMyT1bcezd9s4AiJTTBzpLy560QrANyEIX+nt2yR8fJhfg+R4RsXw0hVlYh31a9oG2+NwCwBaTrCML97m/lVFsoSb4uJ1rwqUKbdzCV3EB2xINkkKXwafYh5lHMjo7TPcgo0VQIe2lSWLiHF4h3HTD/HIP0NqxIm+Pk5pVE99gC+IUUXlmhJQ==\"\n+                         \"ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILKdXYzPIq8kHRJtDrh21wMVI76AnuPk7HDLeDteKN74\"\n+                         \"ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCtxsljGhy2DWg9/VwyRwsz2xEfscEuXOgd+z9aXLBXjEEPedzVAs84fAo981ap4xVmbB7gZOPwDM0jWWrGhv94WbWG5ZA7RjoAdp7EscCtv68r2gudagfxvaRHFQntgZt0c5tJztleXYLjaSvH5Nk/TDnVmOKiVKz/DZLuUx80YTb0udtz4qmFxSLswVbCr5YDtkdfaZ2fef3uEq21siVe+KNwL3gurBSUMKiWAPcQiSlBFXOjt0dLT3juy3D7ck3RaLirq07xeJvrJwDghEpvSpZnPZf7v8UmyIyv90edjC/0YogJV962IMzoT8s8+179glEKQBNHHRPm0KdX1BKjOpAFhx3zcTK6cxbG5Zbjcq0Vw86SjsiO4gz8QkBda6o/AtvqdQ8KOg+IpfVJ/j9/zyIeU1Ep9oWXzmx8i2s+rSTkNTdvi1lTKGpTCD2jFa5uxisR5dVoeKxMsJNaS7NxjIo0ZARriwGMnh+s8mA3ZZVYqnKJsGMUs02I0aSd0QU=\"\n+                         \"ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDLTxDZjy70GF3lZIePu/yz0lqaglkIYm2actUb4/Fq43z1VkSsdUKknCZuMnnAuHoAI3nMs8bmm5Ba9Kc9mqfZg8A6LYUYjUbRyv1qUgfok80G4k6JqUdly9E6CiI301ysxbqzYMyX0uWz3K/mY3kClNJJVuNXw+pDu9Obm8g2BDBVH9ecQ+IVtrt8s2rwoBzb2uSCLdqpTGQvo3RF5Ds4x7uSYyMNPvyQfewUnF60PPe/BlPL1DGFXX9xYxIMnbAuQ/KnpdyB216AnOd1xakY0l7n7iw6CNbbusN0WwnuyeWtO3sD7dNBaSd6ZtwU9Vaw0tZYbrvVc2ZIG6wLX+semg//DWwvcPxAZGSUyg3KjmTS0iWLCB93bif/tzrim/cZXfe2LPYAIXtWMEELzt+iUbKOMx9zrmjZ1gcaNLOTPY4XYTSwJslER5DScz1W9VtL7cKDe+2JVsrwSIb3MMq9XwIAFptApZBlhkjLLFBu0oBJ1z8JKD9mkJb3S2uH4icsGgZU7mY8n7xl3rSurSHuM8y5gAhy7fso0U/Rk7hsUjhElwTxMRtU+zjyV8G3pUyN4yx8uYEz3KPAO/aWrZqO0uoqj+F1Mb71Bn1wNUK5QnPaDEH1ByzTGIAIyJgs++i/KxiTwIskpR02ZrN87cw8ZzDSnL/fegF12UQhzN4o5Q==\"\n+                         \"ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDNEsOytypejPqd4csAycRShsJAtCKAy/PxXtTzcpoU7PTLaxTGiZUGhZ33pZ86/hzyA8/GksvHsYj3tumILe1HTdV2rKGkbRIYJ8sAEkmhKtEiC0PuXVCLS4zy7YMOIQAJ1edn0RUqvAe+rb/E50eucqzJeMriEuWUtrLZpRRaUCQOmqTkTpxHR3T+5TF+ia/ii4ZY3VwsChVrPHfoVNk3NGSb8hPsjuSE61kwYxI135hHK2ZI9iv/QKUUrR9xFaMGMCAPX+9C1EhclwkeB1t4EKwam6qQs15jnhBO7kEq9oCX7vjrmra5neQD7yxkM+I0aJTYRfmldlyf/pWpGXxPn55f1eLFH5uTKxCnEJepe5P1jm24vvTdij9DF256GVjEwBrZ0ro8Pg45PT4ZT/jkAkfC+SLpQutcDggvNbOOUOjCak/lBv5bAIQOe/sbfIW6NOdWSNm6HZShYZUAfik1oXu2VasCZHcyNpwGx3p3Cr7HSVInDpzC9WGzv+hOzJ8=\"\n+                         \"ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIK8N+eYfTO7cF0d7AAnDceARMG6ftHfomgJ4UZb2HuRe\"\n+                         \"ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQComgPcG3DJaOI/Hj6SteEvwuIObe9qSLdecDHmAPLbhyvClEKN7i2AVc0UHCY10Lxxc0XsLuNPgHZYlWk1Ii9SFMHE/60MdlpP7TvcUdLBTuy0Byhx7i+0LO+vMTDJMWsil8Ivgc9xCT6iL5a/kEc3AR7FQwf3K/3jidyLpLFBy+Nliz060Y5j7X+u5sqPogdoa47qdSOJCzCD7DfThaxyPLcnNiGuco/5OoAujC/ZLCFgj2JnIrsf3ZAvl8yzrJfH3KtDK3klNlA5oc2+l92NOcTdasE7iTHZfZg3HXWvdKP5U63FsXNzisIeHkmjs4AtuTvTyCam2PEKwPuy1X+ogTBTKTSAlud5rkDeoGBIyhbO6gZTQnqb8dyLpD4mz2Fyn/6k97YcZn3KVgS6OTEzHhOOhEd1OlFlRgNdREw3YqL4B2ooq/In0GJjhPHQg6L8cyyhL+oPm2noQUp8jw9Sp42EHDgG33dYPiwbQ2eq6Ql2PLCc0M8YXJdVtFhENV6zoPTtosxx4OEWtauoART931a000/qa51cvuJX7bSEvJGhGUh3sTSYGke3X0gQKMHtVh/5iDcb0IowW0J/e/UnITwP6FgTE2AhOsEXaoJiSd4BcUUDG1mHMuLKxRSFw63V7T0XTOHSousHS8QNKMJoNe1PcaArFCJ+gOZmY68Mzw==\"\n                      ]\n                  }\n                  linuxadmin-user {\n-                     password $y$j9T$21VgKI4Ug8Q/odUe/Tne31$6.0V1o7A4OJEjI8zXw9WAdqm8cJ.AJPaHEZM/Xug1XA\n+                     password $y$j9T$DbT6fPrCRIFoKCGhsL3pB0$Rb53YfyCdnjkUtguz8KWuI4ADfYM8WKI9XavXvzvS/C\n                      ssh-key [\n-                         \"ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQC1268l9sLeSI1k+D+x1NMyn1m4b3EsVS6cVrGPTPkDuQhCBJgr0Gq7NaIPrQRmd7DYQ5POWXqepjOLs+PlsvE5ztz0wL2DNWuhfeplcW3oFqzxqQDZEK4LBBubroe8dPlZSCPHH2RrRks1PpW2N9gtjqAJ1sQJbTIjFn30Tb1D6b0HRbuMsAWjeZPilQ6FEfYxXMBclte/Y7QkgfYVdCpeClBov4YrTDZp8jMtUFTK2N7DAk1E8098kWAGZus+ixlKn8qW6PnzUlUhslWXyCCz5nwkYnNXZL3cwjPM+ja1YFE+joYo0SZqYirfox+V1xjCOdUokj+GE/hHC7jIIL8id/vJBywcWKo/p4GhIPOzDbuYloQsTOYQ5RkBhq2vDjTC3mVG4WQlwS8c49jgieM+YuQaY5pbrjKaVvWT7QEoCaUvril3vXhlrqo3t80UsfiGdLTyXG4D/p10v21yY0j08eZFS/TF4tmG5Y2n6ZOWVmavkOjsK+LVralGW8VR7M0=\"\n+                         \"ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDBJRPA9kC25PYrFE8+DPAvxlzj7KNAloyKPsBEHjmLFgRbkjhK3F3kNHTd/afnPx5nC5R9g7mIPXjsHnzcR9n7OxegyqEQvwGJYOC5n94UfC/Htod5FhB4FcMAR1iuJWQCmGrg+Evs4LEBdST81PKIOORsFquZ84P5i/ZifjbKE+m+3tJLu484slMZqHANNUlfmTT1MkRDeXlv6eif9YWzP3w1M4l6+WOhowfyKU5N1scEf2gPIa5uqdzL3YTWWVid/EjTx4WNLO4w8FRRxxabcqAZ6rmw5CEHfQyXfqCW+v5d3thkylYpHMGohf7BifF0oDiJkaQUgO6vQBOpSbkLZ/ZCth4RqDEmZPO8DH25Hr+rkYZleWQoNL5JpHAMlNMHAOk+b2icBT+qw0+1zpzHuQow+48BkCLwQNyZmkqJB4SABzx5JWC8nLMczvpJqkWhG/Nzp5PdoDrsqxTNt9oaTUWdBDgFCTDduisyqvtzn6UOJJn6+hKqdxMyT1bcezd9s4AiJTTBzpLy560QrANyEIX+nt2yR8fJhfg+R4RsXw0hVlYh31a9oG2+NwCwBaTrCML97m/lVFsoSb4uJ1rwqUKbdzCV3EB2xINkkKXwafYh5lHMjo7TPcgo0VQIe2lSWLiHF4h3HTD/HIP0NqxIm+Pk5pVE99gC+IUUXlmhJQ==\"\n+                         \"ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILKdXYzPIq8kHRJtDrh21wMVI76AnuPk7HDLeDteKN74\"\n+                         \"ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCtxsljGhy2DWg9/VwyRwsz2xEfscEuXOgd+z9aXLBXjEEPedzVAs84fAo981ap4xVmbB7gZOPwDM0jWWrGhv94WbWG5ZA7RjoAdp7EscCtv68r2gudagfxvaRHFQntgZt0c5tJztleXYLjaSvH5Nk/TDnVmOKiVKz/DZLuUx80YTb0udtz4qmFxSLswVbCr5YDtkdfaZ2fef3uEq21siVe+KNwL3gurBSUMKiWAPcQiSlBFXOjt0dLT3juy3D7ck3RaLirq07xeJvrJwDghEpvSpZnPZf7v8UmyIyv90edjC/0YogJV962IMzoT8s8+179glEKQBNHHRPm0KdX1BKjOpAFhx3zcTK6cxbG5Zbjcq0Vw86SjsiO4gz8QkBda6o/AtvqdQ8KOg+IpfVJ/j9/zyIeU1Ep9oWXzmx8i2s+rSTkNTdvi1lTKGpTCD2jFa5uxisR5dVoeKxMsJNaS7NxjIo0ZARriwGMnh+s8mA3ZZVYqnKJsGMUs02I0aSd0QU=\"\n+                         \"ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDLTxDZjy70GF3lZIePu/yz0lqaglkIYm2actUb4/Fq43z1VkSsdUKknCZuMnnAuHoAI3nMs8bmm5Ba9Kc9mqfZg8A6LYUYjUbRyv1qUgfok80G4k6JqUdly9E6CiI301ysxbqzYMyX0uWz3K/mY3kClNJJVuNXw+pDu9Obm8g2BDBVH9ecQ+IVtrt8s2rwoBzb2uSCLdqpTGQvo3RF5Ds4x7uSYyMNPvyQfewUnF60PPe/BlPL1DGFXX9xYxIMnbAuQ/KnpdyB216AnOd1xakY0l7n7iw6CNbbusN0WwnuyeWtO3sD7dNBaSd6ZtwU9Vaw0tZYbrvVc2ZIG6wLX+semg//DWwvcPxAZGSUyg3KjmTS0iWLCB93bif/tzrim/cZXfe2LPYAIXtWMEELzt+iUbKOMx9zrmjZ1gcaNLOTPY4XYTSwJslER5DScz1W9VtL7cKDe+2JVsrwSIb3MMq9XwIAFptApZBlhkjLLFBu0oBJ1z8JKD9mkJb3S2uH4icsGgZU7mY8n7xl3rSurSHuM8y5gAhy7fso0U/Rk7hsUjhElwTxMRtU+zjyV8G3pUyN4yx8uYEz3KPAO/aWrZqO0uoqj+F1Mb71Bn1wNUK5QnPaDEH1ByzTGIAIyJgs++i/KxiTwIskpR02ZrN87cw8ZzDSnL/fegF12UQhzN4o5Q==\"\n+                         \"ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDNEsOytypejPqd4csAycRShsJAtCKAy/PxXtTzcpoU7PTLaxTGiZUGhZ33pZ86/hzyA8/GksvHsYj3tumILe1HTdV2rKGkbRIYJ8sAEkmhKtEiC0PuXVCLS4zy7YMOIQAJ1edn0RUqvAe+rb/E50eucqzJeMriEuWUtrLZpRRaUCQOmqTkTpxHR3T+5TF+ia/ii4ZY3VwsChVrPHfoVNk3NGSb8hPsjuSE61kwYxI135hHK2ZI9iv/QKUUrR9xFaMGMCAPX+9C1EhclwkeB1t4EKwam6qQs15jnhBO7kEq9oCX7vjrmra5neQD7yxkM+I0aJTYRfmldlyf/pWpGXxPn55f1eLFH5uTKxCnEJepe5P1jm24vvTdij9DF256GVjEwBrZ0ro8Pg45PT4ZT/jkAkfC+SLpQutcDggvNbOOUOjCak/lBv5bAIQOe/sbfIW6NOdWSNm6HZShYZUAfik1oXu2VasCZHcyNpwGx3p3Cr7HSVInDpzC9WGzv+hOzJ8=\"\n+                         \"ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIK8N+eYfTO7cF0d7AAnDceARMG6ftHfomgJ4UZb2HuRe\"\n+                         \"ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQComgPcG3DJaOI/Hj6SteEvwuIObe9qSLdecDHmAPLbhyvClEKN7i2AVc0UHCY10Lxxc0XsLuNPgHZYlWk1Ii9SFMHE/60MdlpP7TvcUdLBTuy0Byhx7i+0LO+vMTDJMWsil8Ivgc9xCT6iL5a/kEc3AR7FQwf3K/3jidyLpLFBy+Nliz060Y5j7X+u5sqPogdoa47qdSOJCzCD7DfThaxyPLcnNiGuco/5OoAujC/ZLCFgj2JnIrsf3ZAvl8yzrJfH3KtDK3klNlA5oc2+l92NOcTdasE7iTHZfZg3HXWvdKP5U63FsXNzisIeHkmjs4AtuTvTyCam2PEKwPuy1X+ogTBTKTSAlud5rkDeoGBIyhbO6gZTQnqb8dyLpD4mz2Fyn/6k97YcZn3KVgS6OTEzHhOOhEd1OlFlRgNdREw3YqL4B2ooq/In0GJjhPHQg6L8cyyhL+oPm2noQUp8jw9Sp42EHDgG33dYPiwbQ2eq6Ql2PLCc0M8YXJdVtFhENV6zoPTtosxx4OEWtauoART931a000/qa51cvuJX7bSEvJGhGUh3sTSYGke3X0gQKMHtVh/5iDcb0IowW0J/e/UnITwP6FgTE2AhOsEXaoJiSd4BcUUDG1mHMuLKxRSFw63V7T0XTOHSousHS8QNKMJoNe1PcaArFCJ+gOZmY68Mzw==\"\n                      ]\n                  }\n              }\n          }\n-         ssh-server mgmt-netconf {\n-             admin-state enable\n-             network-instance mgmt\n-             port 830\n-             disable-shell true\n-         }\n          tls {\n              server-profile clab-profile {\n-                 key $aes1$ATRXy8148tIBSW8=$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\n-                 certificate \"-----BEGIN CERTIFICATE-----\nMIID0DCCArigAwIBAgICBnowDQYJKoZIhvcNAQELBQAwUzELMAkGA1UEBhMCVVMx\nCTAHBgNVBAcTADEVMBMGA1UEChMMY29udGFpbmVybGFiMQkwBwYDVQQLEwAxFzAV\nBgNVBAMTDmFuc2libGUgbGFiIENBMB4XDTI1MDUxODExNDg0NloXDTI2MDUxODEx\nNDg0NlowUzELMAkGA1UEBhMCVVMxCTAHBgNVBAcTADEVMBMGA1UEChMMY29udGFp\nbmVybGFiMQkwBwYDVQQLEwAxFzAVBgNVBAMTDnNybC5hbnNpYmxlLmlvMIIBIjAN\nBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAzjVckNdTv9foeh8b1Dm7WzjWLJMA\nucwADCZHQMxRcDJst6nrTUTEYJiE/gjjqkRIki0biU3cbTXDDlMe6SKO/NnLatCd\neD/zVEpQfbNvfsj5meGAxBHgEEnTiqfARmlt+7d5ODsKRQTzzfTksDdDy9zTylVQ\nU1Cb6ElvgZvhDf+EZn/lGvgq2BUKgXSz4j/SIgH3S7RA4ZMf0GgrBuCZT+ig4Mk7\noFewL1+vvqF4cr3CNysLwqFpTQUm6Gtoqo9CYnjaSdBfVtuwnlJJ5oCm5zlE8uNc\n3MJh76YeOOCJSxOo5T9c4huDO7ACw6MoR84ve/XEGUlBdRctapC+2xWkMwIDAQAB\no4GtMIGqMA4GA1UdDwEB/wQEAwIFoDAdBgNVHSUEFjAUBggrBgEFBQcDAgYIKwYB\nBQUHAwEwDgYDVR0OBAcEBQECAwQGMB8GA1UdIwQYMBaAFBTSaDd1McIWiOk0UhIK\n7QRIvWFXMEgGA1UdEQRBMD+CA3NybIIQY2xhYi1hbnNpYmxlLXNybIIOc3JsLmFu\nc2libGUuaW+HBKwUFN6HED//AXIAIAAgAAAAAAAAAAQwDQYJKoZIhvcNAQELBQAD\nggEBAFXxNEkxAU24cm8m5hakPVXqSIXpDmrBXpWbw1YUB52LMv34g0UwgQxweBzl\nMH2XwDpyyUlQZYC95wa8TLEDqs2OwiCzrU7t9aE7r7i8TFw9UrvUFygJ56vnTqRY\n2BxS9UH4/cBUWiuETPTSZX6htlDkRylGN1vwf3xPaG92jcideFndYFpVGYfaViMi\nVwqASRa0ggThYBvoAsq76jWgof5vKvwRIwYN8l8lp7UA7/e/B6n7j/4Rof4hWR2/\nUau8gPk4y8eBcmINbBNNlsQoZ6czxE97Rww+5X+fQ3f8LUFw6RUOVTgwcSFi2f7e\nIqvZz8vD6UH99a2L1NY9e7/9Mgc=\n-----END CERTIFICATE-----\n\"\n+                 key $aes1$ATSWKgszP5gks28=$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\n+                 certificate \"-----BEGIN CERTIFICATE-----\nMIID0DCCArigAwIBAgICBnowDQYJKoZIhvcNAQELBQAwUzELMAkGA1UEBhMCVVMx\nCTAHBgNVBAcTADEVMBMGA1UEChMMY29udGFpbmVybGFiMQkwBwYDVQQLEwAxFzAV\nBgNVBAMTDmFuc2libGUgbGFiIENBMB4XDTI0MDYyMjE1MDk1NFoXDTI1MDYyMjE1\nMDk1NFowUzELMAkGA1UEBhMCVVMxCTAHBgNVBAcTADEVMBMGA1UEChMMY29udGFp\nbmVybGFiMQkwBwYDVQQLEwAxFzAVBgNVBAMTDnNybC5hbnNpYmxlLmlvMIIBIjAN\nBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAvfMTDTDaVdyFORkN8PEkjPcTeei9\nOnMXMPtX4gHGrC/2JUmUJVdT8T5QBLEzCICQGJYpm4J1K7K/OWAFUIffZlR0oLQT\nXb9vW+aXsabxyZ8uFoDq5/PrMqTl/hze6jNmtgZTULOAazFGY+ULXKDyDlDZv+12\nqdXbgEnu7Ooued8bcb9wCR85wbKhoeD1FT48ifQIk6eAU8xNyy6PiMW/4xYF4+m1\nBcqPYTrkTCZxsdfXPEDEPZn30Arwpavv+Uy8VX626uiNIHY28Qc9Qw1m+7HTHy8j\n+9K0xQ+r0EHjw6WQWpe3Qs5Js0I4Z2RSDZZWQpx4dSaZrjyOchGeo/+y4wIDAQAB\no4GtMIGqMA4GA1UdDwEB/wQEAwIFoDAdBgNVHSUEFjAUBggrBgEFBQcDAgYIKwYB\nBQUHAwEwDgYDVR0OBAcEBQECAwQGMB8GA1UdIwQYMBaAFNLlMFe7s2fIb4VLOFmE\ng5+ebA23MEgGA1UdEQRBMD+CA3NybIIQY2xhYi1hbnNpYmxlLXNybIIOc3JsLmFu\nc2libGUuaW+HBKwUFAKHECABAXIAIAAgAAAAAAAAAAIwDQYJKoZIhvcNAQELBQAD\nggEBABQxO1P8xid+ZNhjlT1L+HEf3mOlxy76DBF4jni6yaPPHQqbKXHWUh9hFMLK\nY4uo/XIdx5oeIG8xrJ/4UCzWMiV7bGzw19kXm7L+u17IN42Wgtx0o50mrKOuc4d7\nO9cgF/9tE0T5AJVOtskDHgEI71RFxfC8+NEwZkKtB6nN78en03/JDPKjRlOEc+XM\n92/C743EZK6ttQpliFkohYZKWLdML8SRX2R/P5ks4qlhxw14TbLNVOT7tkdfJZBe\npDERkQUHB6vJh7Sd1tNixdK+CndDqUEbaKSGA1/3gwQ259lQvwcgzRowgCdxtlxW\nwDk+ysL4hAnVWCOrdlbipGFlS6U=\n-----END CERTIFICATE-----\n\"\n              }\n          }\n-         grpc-server eda-discovery {\n-             admin-state enable\n-             rate-limit 65535\n-             session-limit 1024\n-             metadata-authentication true\n-             default-tls-profile true\n-             network-instance mgmt\n-             port 50052\n-             services [\n-                 gnmi\n-                 gnsi\n-             ]\n-         }\n-         grpc-server eda-insecure-mgmt {\n-             admin-state enable\n-             rate-limit 65535\n-             session-limit 1024\n-             metadata-authentication true\n-             port 57411\n-             services [\n-                 gnmi\n-                 gnoi\n-                 gnsi\n-             ]\n-         }\n-         grpc-server eda-mgmt {\n-             admin-state enable\n-             rate-limit 65535\n-             session-limit 1024\n-             metadata-authentication true\n-             tls-profile EDA\n-             network-instance mgmt\n-             port 57410\n-             services [\n-                 gnmi\n-                 gnoi\n-                 gnsi\n-             ]\n-         }\n          grpc-server insecure-mgmt {\n-             services [\n-                 gnsi\n-             ]\n          }\n          grpc-server mgmt {\n-             services [\n-                 gnsi\n-             ]\n          }\n          dns {\n              server-list [\n-                 192.168.0.1\n+                 10.171.10.1\n+                 10.171.10.2\n              ]\n          }\n          snmp {\n              access-group SNMPv2-RO-Community {\n                  community-entry RO-Community {\n-                     community $aes1$AWACpd2qoUSGTG8=$xWg13Ae0HisisbWLbV4veQ==\n+                     community $aes1$AWBtjFCTurY1fG8=$pH/M5cgn/zKEl7OuOv8HSA==\n                  }\n              }\n          }\n          banner {\n-             login-banner \"................................................................\n:                  Welcome to Nokia SR Linux!                  :\n:              Open Network OS for the NetOps era.             :\n:                                                              :\n:    This is a freely distributed official container image.    :\n:                      Use it - Share it                       :\n:                                                              :\n: Get started: https://learn.srlinux.dev                       :\n: Container:   https://go.srlinux.dev/container-image          :\n: Docs:        https://doc.srlinux.dev/24-10                   :\n: Rel. notes:  https://doc.srlinux.dev/rn24-10-1               :\n: YANG:        https://yang.srlinux.dev/v24.10.1               :\n: Discord:     https://go.srlinux.dev/discord                  :\n: Contact:     https://go.srlinux.dev/contact-sales            :\n................................................................\n\"\n-         }\n-         netconf-server mgmt {\n-             admin-state enable\n-             ssh-server mgmt-netconf\n+             login-banner \"................................................................\n:                  Welcome to Nokia SR Linux!                  :\n:              Open Network OS for the NetOps era.             :\n:                                                              :\n:    This is a freely distributed official container image.    :\n:                      Use it - Share it                       :\n:                                                              :\n: Get started: https://learn.srlinux.dev                       :\n: Container:   https://go.srlinux.dev/container-image          :\n: Docs:        https://doc.srlinux.dev/24-3                    :\n: Rel. notes:  https://doc.srlinux.dev/rn24-3-2                :\n: YANG:        https://yang.srlinux.dev/release/v24.3.2        :\n: Discord:     https://go.srlinux.dev/discord                  :\n: Contact:     https://go.srlinux.dev/contact-sales            :\n................................................................\n\"\n          }\n      }\n"
+        },
+        "failed": false,
+        "jsonrpc_req_id": "2025-05-18 13:50:20:441931",
+        "saved": false
+    }
+}
+2025-05-18 13:50:22,565 p=131440 u=netopschic n=ansible | TASK [Ensure changes were made to the device] **********************************************************************************************
+2025-05-18 13:50:23,093 p=131440 u=netopschic n=ansible | ok: [clab-ansible-srl]
+2025-05-18 13:50:23,095 p=131440 u=netopschic n=ansible | TASK [Print debug] *************************************************************************************************************************
+2025-05-18 13:50:23,118 p=131440 u=netopschic n=ansible | ok: [clab-ansible-srl] => {
+    "get_response": {
+        "changed": false,
+        "failed": false,
+        "failed_when_result": false,
+        "jsonrpc_req_id": "2025-05-18 13:50:23:047619",
+        "jsonrpc_version": "2.0",
+        "result": [
+            "ethernet-1/1 interface on clab-ansible-srl"
+        ]
+    }
+}
+2025-05-18 13:50:23,119 p=131440 u=netopschic n=ansible | PLAY RECAP *********************************************************************************************************************************
+2025-05-18 13:50:23,119 p=131440 u=netopschic n=ansible | clab-ansible-srl           : ok=4    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2025-05-18 13:50:23,219 p=131504 u=netopschic n=ansible | shutdown complete
+2025-05-18 13:50:26,016 p=132901 u=netopschic n=ansible | [DEPRECATION WARNING]: [defaults]collections_paths option, does not fit var naming standard, use the singular form collections_path 
+instead. This feature will be removed from ansible-core in version 2.19. Deprecation warnings can be disabled by setting 
+deprecation_warnings=False in ansible.cfg.
+2025-05-18 13:50:26,168 p=132901 u=netopschic n=ansible | PLAY [Get multiple paths] ******************************************************************************************************************
+2025-05-18 13:50:26,171 p=132901 u=netopschic n=ansible | TASK [Get multiple paths] ******************************************************************************************************************
+2025-05-18 13:50:26,500 p=132901 u=netopschic n=ansible | platform_type is set to nokia.srlinux.srlinux
+2025-05-18 13:50:26,694 p=132901 u=netopschic n=ansible | ok: [clab-ansible-srl]
+2025-05-18 13:50:26,696 p=132901 u=netopschic n=ansible | TASK [Print debug] *************************************************************************************************************************
+2025-05-18 13:50:26,724 p=132901 u=netopschic n=ansible | ok: [clab-ansible-srl] => {
+    "response": {
+        "changed": false,
+        "failed": false,
+        "failed_when_result": false,
+        "jsonrpc_req_id": "2025-05-18 13:50:26:652147",
+        "jsonrpc_version": "2.0",
+        "result": [
+            "SRLinux-v24.10.1-492-gf8858c5836 7220 IXR-D2L Copyright (c) 2000-2020 Nokia. Kernel 6.8.0-59-generic #61~22.04.1-Ubuntu SMP PREEMPT_DYNAMIC Tue Apr 15 17:03:15 UTC 2",
+            {
+                "admin-state": "enable",
+                "network-instance": [
+                    {
+                        "http": {
+                            "admin-state": "enable"
+                        },
+                        "https": {
+                            "admin-state": "enable",
+                            "tls-profile": "clab-profile"
+                        },
+                        "name": "mgmt"
+                    }
+                ]
+            }
+        ]
+    }
+}
+2025-05-18 13:50:26,725 p=132901 u=netopschic n=ansible | PLAY RECAP *********************************************************************************************************************************
+2025-05-18 13:50:26,726 p=132901 u=netopschic n=ansible | clab-ansible-srl           : ok=2    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2025-05-18 13:50:26,826 p=133463 u=netopschic n=ansible | shutdown complete
+2025-05-18 13:50:27,547 p=133904 u=netopschic n=ansible | [DEPRECATION WARNING]: [defaults]collections_paths option, does not fit var naming standard, use the singular form collections_path 
+instead. This feature will be removed from ansible-core in version 2.19. Deprecation warnings can be disabled by setting 
+deprecation_warnings=False in ansible.cfg.
+2025-05-18 13:50:27,692 p=133904 u=netopschic n=ansible | PLAY [Confirm timeout] *********************************************************************************************************************
+2025-05-18 13:50:27,696 p=133904 u=netopschic n=ansible | TASK [Add interface description with confirm timeout] **************************************************************************************
+2025-05-18 13:50:28,003 p=133904 u=netopschic n=ansible | platform_type is set to nokia.srlinux.srlinux
+2025-05-18 13:50:28,230 p=133904 u=netopschic n=ansible | changed: [clab-ansible-srl]
+2025-05-18 13:50:28,232 p=133904 u=netopschic n=ansible | TASK [Print debug] *************************************************************************************************************************
+2025-05-18 13:50:28,263 p=133904 u=netopschic n=ansible | ok: [clab-ansible-srl] => {
+    "set_response": {
+        "changed": true,
+        "diff": {
+            "jsonrpc_req_id": "2025-05-18 13:50:28:154669",
+            "jsonrpc_version": "2.0",
+            "result": [
+                "      interface mgmt0 {\n+         description \"this description must be gone without commit confirm\"\n      }\n"
+            ]
+        },
+        "failed": false,
+        "jsonrpc_req_id": "2025-05-18 13:50:28:186695",
+        "saved": false
+    }
+}
+2025-05-18 13:50:28,265 p=133904 u=netopschic n=ansible | TASK [Ensure leaf has been set before timer expires] ***************************************************************************************
+2025-05-18 13:50:28,725 p=133904 u=netopschic n=ansible | ok: [clab-ansible-srl]
+2025-05-18 13:50:28,726 p=133904 u=netopschic n=ansible | TASK [Print debug] *************************************************************************************************************************
+2025-05-18 13:50:28,752 p=133904 u=netopschic n=ansible | ok: [clab-ansible-srl] => {
+    "get_response": {
+        "changed": false,
+        "failed": false,
+        "failed_when_result": false,
+        "jsonrpc_req_id": "2025-05-18 13:50:28:684946",
+        "jsonrpc_version": "2.0",
+        "result": [
+            "this description must be gone without commit confirm"
+        ]
+    }
+}
+2025-05-18 13:50:28,756 p=133904 u=netopschic n=ansible | TASK [Pause] *******************************************************************************************************************************
+2025-05-18 13:50:29,040 p=133904 u=netopschic n=ansible | Pausing for 4 seconds
+2025-05-18 13:50:29,040 p=133904 u=netopschic n=ansible | (ctrl+C then 'C' = continue early, ctrl+C then 'A' = abort)
+2025-05-18 13:50:29,041 p=133904 u=netopschic n=ansible | [Pause]
+Waiting 4 seconds for commit to revert:
+2025-05-18 13:50:33,047 p=133904 u=netopschic n=ansible | ok: [clab-ansible-srl]
+2025-05-18 13:50:33,050 p=133904 u=netopschic n=ansible | TASK [Ensure the commit has been reverted] *************************************************************************************************
+2025-05-18 13:50:33,479 p=133904 u=netopschic n=ansible | ok: [clab-ansible-srl]
+2025-05-18 13:50:33,480 p=133904 u=netopschic n=ansible | TASK [Print debug] *************************************************************************************************************************
+2025-05-18 13:50:33,507 p=133904 u=netopschic n=ansible | ok: [clab-ansible-srl] => {
+    "get_response": {
+        "changed": false,
+        "failed": false,
+        "failed_when_result": false,
+        "jsonrpc_req_id": "2025-05-18 13:50:33:441702",
+        "jsonrpc_version": "2.0",
+        "result": [
+            {}
+        ]
+    }
+}
+2025-05-18 13:50:33,508 p=133904 u=netopschic n=ansible | TASK [Add again interface description with confirm timeout] ********************************************************************************
+2025-05-18 13:50:33,937 p=133904 u=netopschic n=ansible | changed: [clab-ansible-srl]
+2025-05-18 13:50:33,938 p=133904 u=netopschic n=ansible | TASK [Confirm the commit] ******************************************************************************************************************
+2025-05-18 13:50:34,357 p=133904 u=netopschic n=ansible | ok: [clab-ansible-srl]
+2025-05-18 13:50:34,358 p=133904 u=netopschic n=ansible | TASK [Pause] *******************************************************************************************************************************
+2025-05-18 13:50:34,644 p=133904 u=netopschic n=ansible | Pausing for 2 seconds
+2025-05-18 13:50:34,645 p=133904 u=netopschic n=ansible | (ctrl+C then 'C' = continue early, ctrl+C then 'A' = abort)
+2025-05-18 13:50:34,645 p=133904 u=netopschic n=ansible | [Pause]
+Waiting 2 seconds to ensure commit is not reverted:
+2025-05-18 13:50:36,651 p=133904 u=netopschic n=ansible | ok: [clab-ansible-srl]
+2025-05-18 13:50:36,654 p=133904 u=netopschic n=ansible | TASK [Ensure leaf has been set before timer expires] ***************************************************************************************
+2025-05-18 13:50:37,086 p=133904 u=netopschic n=ansible | ok: [clab-ansible-srl]
+2025-05-18 13:50:37,088 p=133904 u=netopschic n=ansible | TASK [Print debug] *************************************************************************************************************************
+2025-05-18 13:50:37,115 p=133904 u=netopschic n=ansible | ok: [clab-ansible-srl] => {
+    "get_response": {
+        "changed": false,
+        "failed": false,
+        "failed_when_result": false,
+        "jsonrpc_req_id": "2025-05-18 13:50:37:045041",
+        "jsonrpc_version": "2.0",
+        "result": [
+            "this description must be gone without commit confirm"
+        ]
+    }
+}
+2025-05-18 13:50:37,116 p=133904 u=netopschic n=ansible | PLAY RECAP *********************************************************************************************************************************
+2025-05-18 13:50:37,116 p=133904 u=netopschic n=ansible | clab-ansible-srl           : ok=12   changed=2    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2025-05-18 13:50:37,216 p=133952 u=netopschic n=ansible | shutdown complete
+2025-05-18 13:50:37,947 p=134730 u=netopschic n=ansible | [DEPRECATION WARNING]: [defaults]collections_paths option, does not fit var naming standard, use the singular form collections_path 
+instead. This feature will be removed from ansible-core in version 2.19. Deprecation warnings can be disabled by setting 
+deprecation_warnings=False in ansible.cfg.
+2025-05-18 13:50:38,078 p=134730 u=netopschic n=ansible | PLAY [Replace JSON-RPC config] *************************************************************************************************************
+2025-05-18 13:50:38,081 p=134730 u=netopschic n=ansible | TASK [Replace JSON-RPC config] *************************************************************************************************************
+2025-05-18 13:50:38,410 p=134730 u=netopschic n=ansible | platform_type is set to nokia.srlinux.srlinux
+2025-05-18 13:50:40,933 p=134730 u=netopschic n=ansible | changed: [clab-ansible-srl]
+2025-05-18 13:50:40,935 p=134730 u=netopschic n=ansible | TASK [Print debug] *************************************************************************************************************************
+2025-05-18 13:50:40,961 p=134730 u=netopschic n=ansible | ok: [clab-ansible-srl] => {
+    "set_response": {
+        "changed": true,
+        "diff": {
+            "jsonrpc_req_id": "2025-05-18 13:50:38:569749",
+            "jsonrpc_version": "2.0",
+            "result": [
+                "      system {\n          json-rpc-server {\n+             commit-confirmed-timeout 0\n              network-instance mgmt {\n                  http {\n+                     use-authentication true\n+                     session-limit 10\n+                     port 80\n+                     source-address [\n+                         172.20.20.222\n+                     ]\n                  }\n              }\n          }\n      }\n"
+            ]
+        },
+        "failed": false,
+        "jsonrpc_req_id": "2025-05-18 13:50:38:611243",
+        "saved": true
+    }
+}
+2025-05-18 13:50:40,962 p=134730 u=netopschic n=ansible | TASK [Ensure changes were made to the device] **********************************************************************************************
+2025-05-18 13:50:41,444 p=134730 u=netopschic n=ansible | ok: [clab-ansible-srl]
+2025-05-18 13:50:41,446 p=134730 u=netopschic n=ansible | TASK [Print debug] *************************************************************************************************************************
+2025-05-18 13:50:41,469 p=134730 u=netopschic n=ansible | ok: [clab-ansible-srl] => {
+    "get_response": {
+        "changed": false,
+        "failed": false,
+        "failed_when_result": false,
+        "jsonrpc_req_id": "2025-05-18 13:50:41:393364",
+        "jsonrpc_version": "2.0",
+        "result": [
+            {
+                "admin-state": "enable",
+                "commit-confirmed-timeout": 0,
+                "network-instance": [
+                    {
+                        "http": {
+                            "admin-state": "enable",
+                            "oper-state": "up",
+                            "port": 80,
+                            "session-limit": 10,
+                            "source-address": [
+                                "172.20.20.222"
+                            ],
+                            "use-authentication": true
+                        },
+                        "https": {
+                            "admin-state": "enable",
+                            "oper-state": "up",
+                            "port": 443,
+                            "session-limit": 10,
+                            "source-address": [
+                                "::"
+                            ],
+                            "tls-profile": "clab-profile",
+                            "use-authentication": true
+                        },
+                        "name": "mgmt"
+                    }
+                ],
+                "unix-socket": {
+                    "admin-state": "disable",
+                    "oper-state": "down",
+                    "socket-path": "",
+                    "use-authentication": true
+                }
+            }
+        ]
+    }
+}
+2025-05-18 13:50:41,470 p=134730 u=netopschic n=ansible | PLAY RECAP *********************************************************************************************************************************
+2025-05-18 13:50:41,470 p=134730 u=netopschic n=ansible | clab-ansible-srl           : ok=4    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2025-05-18 13:50:41,570 p=134786 u=netopschic n=ansible | shutdown complete

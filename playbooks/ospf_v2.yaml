@@ -1,0 +1,55 @@
+---
+- name: Configure OSPFv2 on VRF 'blue' (interface ethernet-1/4.100)
+  hosts: all
+  gather_facts: false
+
+  tasks:
+    - name: Ensure WAN interface exists and is L3
+      nokia.srlinux.l3_interface:
+        config:
+          - name: ethernet-1/4.100
+            admin_state: enable
+            description: WAN uplink
+            ipv4_address: 192.0.2.1/30
+            network_instance: blue
+        state: merged
+
+    - name: Configure OSPFv2 full
+      nokia.srlinux.ospf_v2:
+        config:
+          network_instance: blue
+          router_id: "1.1.1.1"
+          admin_state: enable
+          reference_bandwidth: 10000
+          overload:
+            admin_state: enable           # (enable/disable)
+            router_lsa_max_metric: 16777215
+            on_startup:
+              enabled: true
+              timeout: 300                # Example: 300s
+          timers:
+            spf:
+              initial_delay: 50
+              secondary_delay: 100
+              max_delay: 200
+            lsa:
+              initial_delay: 10
+              secondary_delay: 20
+              max_delay: 40
+              min_arrival_interval: 2
+#          export_policy: "ospf-export"
+          areas:
+            - area_id: "0.0.0.0"
+              area_range:
+                - prefix: "192.0.2.0/24"
+                  advertise: true
+              interfaces:
+                - name: ethernet-1/4.100
+                  admin_state: enable
+                  metric: 10
+                  priority: 1
+                  hello_interval: 10
+                  dead_interval: 40
+                  interface_type: point-to-point
+                  passive: false
+        state: merged

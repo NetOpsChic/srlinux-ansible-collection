@@ -1,0 +1,63 @@
+---
+- name: Verify static routing
+  hosts: all
+  gather_facts: false
+
+  vars:
+    mesh_routes:
+      node1:
+        next_hop_groups:
+          - nexthops: [{ ip_address: 40.1.1.2 }]
+          - nexthops: [{ ip_address: 60.1.1.2 }]
+          - nexthops: [{ ip_address: 30.1.1.1 }]
+      node2:
+        next_hop_groups:
+          - nexthops: [{ ip_address: 40.1.1.1 }]
+          - nexthops: [{ ip_address: 10.1.1.2 }]
+          - nexthops: [{ ip_address: 50.1.1.2 }]
+      node3:
+        next_hop_groups:
+          - nexthops: [{ ip_address: 60.1.1.1 }]
+          - nexthops: [{ ip_address: 10.1.1.1 }]
+          - nexthops: [{ ip_address: 20.1.1.2 }]
+      node4:
+        next_hop_groups:
+          - nexthops: [{ ip_address: 30.1.1.2 }]
+          - nexthops: [{ ip_address: 50.1.1.1 }]
+          - nexthops: [{ ip_address: 20.1.1.1 }]
+    test_ips: >-
+      {{ mesh_routes[inventory_hostname].next_hop_groups
+         | map(attribute='nexthops')
+         | sum(start=[])
+         | map(attribute='ip_address')
+         | list }}
+
+  tasks:
+    - name: Show VRF blue route table
+      nokia.srlinux.cli:
+        commands:
+          - show network-instance blue route-table summary
+      register: rt
+    
+    - name: Print route table summary (static, local, host)
+      debug:
+        msg: |-
+          IPv4 Route Summary:
+          {% for entry in rt.result[0].ipv4summary %}
+            {{ entry.Name }}  {{ entry.Protocol }}  {{ entry['Active Routes'] }}
+          {% endfor %}
+          IPv4 Total routes: {{ rt.result[0].ipv4total['IPv4 Total routes'] }}
+
+    - name: Ping all next-hops in VRF blue
+      nokia.srlinux.cli:
+        commands:
+          - "ping {{ item }} -c 2 network-instance blue"
+      loop: "{{ test_ips }}"
+      register: pings
+
+    - name: Show each ping result
+      debug:
+        msg: |
+          {% for res in pings.results %}
+          {{ res.item }}: {{ 'OK' if 'bytes from' in (res.result[0].text | default('')) else 'FAIL' }}
+          {% endfor %}
