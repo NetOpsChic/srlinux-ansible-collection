@@ -3,7 +3,9 @@
 This Ansible Collection provides modules and example playbooks for automating the configuration of Nokia SR Linux devices.  
 It includes native modules for hostname, interface, static routing, network-instance, and routing-policy, with end-to-end automation for lab and production environments.
 
----
+## Disclaimer
+This is a personal side project, actively developed and maintained by a solo developer (me!). While I do my best to keep things working, features and stability may vary over time. Feel free to explore, contribute, or use it—but please do so at your own discretion.
+
 ## About
 
 This repository is an independent extension of the [Nokia SR Linux Ansible Collection](https://github.com/nokia/srlinux-ansible-collection).
