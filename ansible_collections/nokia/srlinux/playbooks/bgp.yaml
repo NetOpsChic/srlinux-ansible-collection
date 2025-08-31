@@ -20,4 +20,7 @@
               admin-state: enable
               peer-as: 65002
               peer-group: EBGP-PEERS
+              afi-safi: [{ afi-safi-name: ipv4-unicast }]
+              export-policy: some-policy
+              import-policy: some-policy
         state: merged

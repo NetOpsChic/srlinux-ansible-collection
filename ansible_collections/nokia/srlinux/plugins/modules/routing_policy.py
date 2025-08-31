@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright 2024 Nokia
+# Copyright 2023 Nokia
 # Licensed under the BSD 3-Clause License.
 
 from __future__ import absolute_import, division, print_function
@@ -17,59 +17,16 @@ __metaclass__ = type
 
 DOCUMENTATION = r'''
 ---
-module: routing_policy
-short_description: Configure routing policy (prefix-sets and policies) on Nokia SR Linux.
+module: bgp
+short_description: Configure BGP on Nokia SR Linux
 description:
-  - Configure routing-policy prefix-sets and policies, e.g., for BGP/OSPF export.
+  - Configure BGP global, groups, neighbors, and AFI/SAFI on Nokia SR Linux.
+  - Attaches routing policies at the NEIGHBOR level as list entries.
 options:
   config:
-    description:
-      - Routing policy config.
     type: dict
-    suboptions:
-      prefix_sets:
-        description: List of prefix-sets.
-        type: list
-        elements: dict
-        suboptions:
-          name:
-            type: str
-            required: true
-          prefixes:
-            type: list
-            elements: dict
-            suboptions:
-              ip_prefix:
-                type: str
-              mask_length_range:
-                type: str
-      policies:
-        description: List of policies.
-        type: list
-        elements: dict
-        suboptions:
-          name:
-            type: str
-            required: true
-          statements:
-            type: list
-            elements: dict
-            suboptions:
-              name:
-                type: str
-                required: true
-              match:
-                type: dict
-                suboptions:
-                  prefix_set:
-                    type: str
-              action:
-                type: dict
-                suboptions:
-                  policy_result:
-                    type: str
+    required: true
   state:
-    description: merged (set/update) or deleted (remove config)
     type: str
     choices: [merged, deleted]
     default: merged
@@ -85,6 +42,9 @@ def build_rpc(method, commands, req_id):
         "id": req_id
     }
 
+def _norm_afi_name(af: dict):
+    return af.get("afi_safi_name") or af.get("afi-safi-name")
+
 def main():
     module = AnsibleModule(
         argument_spec=dict(
@@ -96,65 +56,140 @@ def main():
 
     client = JSONRPCClient(module)
     state = module.params["state"]
-    config = module.params['config']
+    cfg = module.params['config']
+
+    ni = cfg["network_instance"]
+    bgp_path = f'/network-instance[name="{ni}"]/protocols/bgp'
+
     cmds = []
     changed = False
 
     if state == "deleted":
-        # Delete policies first, then prefix-sets
-        for pol in config.get("policies", []):
-            cmds.append({
-                "action": "delete",
-                "path": f"/routing-policy/policy[name={pol['name']}]"
-            })
-        for ps in config.get("prefix_sets", []):
-            cmds.append({
-                "action": "delete",
-                "path": f"/routing-policy/prefix-set[name={ps['name']}]"
-            })
+        cmds.append({"action": "delete", "path": bgp_path})
         changed = True
     else:
-        # 1. Prefix-sets (must exist before policy uses them)
-        for ps in config.get("prefix_sets", []):
+        # 1) Global BGP core settings
+        bgp_global = {
+            "admin-state": cfg.get("admin_state", "enable"),
+            "router-id": cfg["router_id"],
+            "autonomous-system": cfg["autonomous_system"],
+        }
+        cmds.append({"action": "update", "path": bgp_path, "value": bgp_global})
+
+        # 2) Global AFI/SAFI presence (admin-state only)
+        global_afis = cfg.get("afi_safi", []) or [{"afi_safi_name": "ipv4-unicast", "admin_state": "enable"}]
+        for af in global_afis:
+            af_name = _norm_afi_name(af)
+            if not af_name:
+                continue
+            af_path = f'{bgp_path}/afi-safi[afi-safi-name={af_name}]'
             cmds.append({
                 "action": "update",
-                "path": f"/routing-policy/prefix-set[name={ps['name']}]",
-                "value": {}
+                "path": af_path + "/admin-state",
+                "value": af.get("admin_state", "enable")
             })
-            for prfx in ps.get("prefixes", []):
+
+        # 3) Groups (presence and basics)
+        for group in cfg.get("groups", []) or []:
+            gname = group["group-name"]
+            gp_path = f'{bgp_path}/group[group-name="{gname}"]'
+            gval = {"admin-state": group.get("admin-state", "enable")}
+            if group.get("peer-as") is not None:
+                gval["peer-as"] = group["peer-as"]
+            if group.get("description"):
+                gval["description"] = group["description"]
+            cmds.append({"action": "update", "path": gp_path, "value": gval})
+
+            # group AFI/SAFI presence (admin-state only)
+            gafis = group.get("afi-safi", []) or [{"afi-safi-name": "ipv4-unicast", "admin_state": "enable"}]
+            for gaf in gafis:
+                gaf_name = _norm_afi_name(gaf)
+                if not gaf_name:
+                    continue
+                gaf_path = f'{gp_path}/afi-safi[afi-safi-name={gaf_name}]'
                 cmds.append({
                     "action": "update",
-                    "path": f"/routing-policy/prefix-set[name={ps['name']}]/prefix[ip-prefix={prfx['ip_prefix']}][mask-length-range={prfx['mask_length_range']}]",
-                    "value": {
-                        "ip-prefix": prfx['ip_prefix'],
-                        "mask-length-range": prfx['mask_length_range'],
-                    }
+                    "path": gaf_path + "/admin-state",
+                    "value": gaf.get("admin_state", "enable")
                 })
 
-        # 2. Policies & statements
-        # Prefix-sets
-        for ps in config.get("prefix_sets", []):
-            cmds.append({
-                "action": "update",
-                "path": f"/routing-policy/prefix-set[name={ps['name']}]",
-                "value": {}
-            })
-            for prfx in ps.get("prefixes", []):
-                base_path = f"/routing-policy/prefix-set[name={ps['name']}]/prefix[ip-prefix={prfx['ip_prefix']}][mask-length-range={prfx['mask_length_range']}]"
+        # 4) Neighbors + policies
+        for nbr in cfg.get("neighbors", []) or []:
+            naddr = nbr["peer-address"]
+            n_path = f'{bgp_path}/neighbor[peer-address="{naddr}"]'
+            nval = {"admin-state": nbr.get("admin-state", "enable")}
+            if nbr.get("peer-group"):
+                nval["peer-group"] = nbr["peer-group"]
+            if nbr.get("peer-as") is not None:
+                nval["peer-as"] = nbr["peer-as"]
+            if nbr.get("description"):
+                nval["description"] = nbr["description"]
+            cmds.append({"action": "update", "path": n_path, "value": nval})
+
+            # neighbor-level policies (LIST KEYS = node name)
+            if nbr.get("export-policy"):
+                ep = nbr["export-policy"]
                 cmds.append({
                     "action": "update",
-                    "path": base_path,
+                    "path": f'{n_path}/export-policy[export-policy="{ep}"]',
                     "value": {}
                 })
+            if nbr.get("import-policy"):
+                ip = nbr["import-policy"]
+                cmds.append({
+                    "action": "update",
+                    "path": f'{n_path}/import-policy[import-policy="{ip}"]',
+                    "value": {}
+                })
+
+            # Neighbor AFI/SAFI (admin-state only + optional defaults)
+            nafis = nbr.get("afi-safi", []) or [{"afi-safi-name": "ipv4-unicast", "admin_state": "enable"}]
+            for naf in nafis:
+                naf_name = _norm_afi_name(naf)
+                if not naf_name:
+                    continue
+                naf_path = f'{n_path}/afi-safi[afi-safi-name={naf_name}]'
+
+                cmds.append({
+                    "action": "update",
+                    "path": naf_path + "/admin-state",
+                    "value": naf.get("admin_state", "enable")
+                })
+
+                def_exp = naf.get("default-export-policy") or naf.get("default_export_policy")
+                def_imp = naf.get("default-import-policy") or naf.get("default_import_policy")
+                if def_exp in ("accept", "reject"):
+                    cmds.append({
+                        "action": "update",
+                        "path": naf_path + "/default-export-policy",
+                        "value": def_exp
+                    })
+                if def_imp in ("accept", "reject"):
+                    cmds.append({
+                        "action": "update",
+                        "path": naf_path + "/default-import-policy",
+                        "value": def_imp
+                    })
+
+            # Neighbor timers (optional)
+            if nbr.get("timers"):
+                timers = nbr["timers"]
+                tval = {}
+                if "hold-time" in timers:
+                    tval["hold-time"] = timers["hold-time"]
+                if "keepalive-interval" in timers:
+                    tval["keepalive-interval"] = timers["keepalive-interval"]
+                if tval:
+                    cmds.append({"action": "update", "path": n_path + "/timers", "value": tval})
+
         changed = True
 
-    # Apply commands
+    # Apply
     if changed and not module.check_mode and cmds:
         rpc = build_rpc("set", cmds, rpcID())
         response = client.post(payload=json.dumps(rpc))
         if response.get("error"):
             module.fail_json(msg="Server error (UPDATE)", response=pprint.pformat(response))
-        after = response.get("result", {})
 
     module.exit_json(changed=changed, commands=cmds)
 

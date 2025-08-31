@@ -20,106 +20,13 @@ DOCUMENTATION = r'''
 module: bgp
 short_description: Configure BGP on Nokia SR Linux
 description:
-  - Configure BGP global, groups, neighbors, and families on Nokia SR Linux.
+  - Configure BGP global, groups, neighbors, and AFI/SAFI on Nokia SR Linux.
+  - Attaches routing policies at the NEIGHBOR level as list entries.
 options:
   config:
-    description:
-      - BGP configuration dictionary.
     type: dict
-    suboptions:
-      network_instance:
-        description: Network-instance (VRF).
-        type: str
-        required: true
-      router_id:
-        description: Router ID (x.x.x.x).
-        type: str
-        required: true
-      admin_state:
-        description: Admin state (enable/disable).
-        type: str
-        choices: [enable, disable]
-        default: enable
-      autonomous_system:
-        description: Local AS number.
-        type: int
-        required: true
-      afi_safi:
-        description: Global list of address-families (recommended: always set ipv4-unicast).
-        type: list
-        elements: dict
-        suboptions:
-          afi_safi_name:
-            type: str
-            required: true
-          admin_state:
-            type: str
-            choices: [enable, disable]
-      groups:
-        description: List of BGP groups.
-        type: list
-        elements: dict
-        suboptions:
-          group-name:
-            type: str
-            required: true
-          admin-state:
-            type: str
-            choices: [enable, disable]
-          peer-as:
-            type: int
-          description:
-            type: str
-          afi-safi:
-            description: List of address-families.
-            type: list
-            elements: dict
-            suboptions:
-              afi-safi-name:
-                type: str
-              admin-state:
-                type: str
-                choices: [enable, disable]
-          export-policy:
-            type: str
-          import-policy:
-            type: str
-      neighbors:
-        description: List of BGP neighbors.
-        type: list
-        elements: dict
-        suboptions:
-          peer-address:
-            type: str
-            required: true
-          peer-as:
-            type: int
-          peer-group:
-            type: str
-          admin-state:
-            type: str
-            choices: [enable, disable]
-          description:
-            type: str
-          afi-safi:
-            description: List of address-families.
-            type: list
-            elements: dict
-            suboptions:
-              afi-safi-name:
-                type: str
-              admin_state:
-                type: str
-                choices: [enable, disable]
-          timers:
-            type: dict
-            suboptions:
-              hold-time:
-                type: int
-              keepalive-interval:
-                type: int
+    required: true
   state:
-    description: merged (set/update) or deleted (remove config)
     type: str
     choices: [merged, deleted]
     default: merged
@@ -135,6 +42,9 @@ def build_rpc(method, commands, req_id):
         "id": req_id
     }
 
+def _norm_afi_name(af: dict):
+    return af.get("afi_safi_name") or af.get("afi-safi-name")
+
 def main():
     module = AnsibleModule(
         argument_spec=dict(
@@ -147,137 +57,140 @@ def main():
     client = JSONRPCClient(module)
     state = module.params["state"]
     cfg = module.params['config']
+
     ni = cfg["network_instance"]
-    bgp_path = f"/network-instance[name=\"{ni}\"]/protocols/bgp"
+    bgp_path = f'/network-instance[name="{ni}"]/protocols/bgp'
+
     cmds = []
     changed = False
 
-    # Handle delete
     if state == "deleted":
-        cmds.append({
-            "action": "delete",
-            "path": bgp_path
-        })
+        cmds.append({"action": "delete", "path": bgp_path})
         changed = True
     else:
-        # 1. Set global BGP process
+        # 1) Global BGP core settings
         bgp_global = {
             "admin-state": cfg.get("admin_state", "enable"),
             "router-id": cfg["router_id"],
-            "autonomous-system": cfg["autonomous_system"]
+            "autonomous-system": cfg["autonomous_system"],
         }
-        cmds.append({
-            "action": "update",
-            "path": bgp_path,
-            "value": bgp_global
-        })
+        cmds.append({"action": "update", "path": bgp_path, "value": bgp_global})
 
-        # 2. Set BGP global afi-safi (must be done BEFORE group/neigh)
-        global_afi_safi = cfg.get("afi_safi", [])
-        if not global_afi_safi:
-            # Default to ipv4-unicast if not set
-            global_afi_safi = [{"afi_safi_name": "ipv4-unicast", "admin_state": "enable"}]
-        for af in global_afi_safi:
-            af_path = f"{bgp_path}/afi-safi[afi-safi-name={af['afi_safi_name']}]"
+        # 2) Global AFI/SAFI presence (admin-state only)
+        global_afis = cfg.get("afi_safi", []) or [{"afi_safi_name": "ipv4-unicast", "admin_state": "enable"}]
+        for af in global_afis:
+            af_name = _norm_afi_name(af)
+            if not af_name:
+                continue
+            af_path = f'{bgp_path}/afi-safi[afi-safi-name={af_name}]'
             cmds.append({
                 "action": "update",
                 "path": af_path + "/admin-state",
                 "value": af.get("admin_state", "enable")
             })
 
-        # 3. Set BGP groups
-        for group in cfg.get("groups", []):
-            group_name = group["group-name"]
-            group_path = f"{bgp_path}/group[group-name=\"{group_name}\"]"
-            group_val = {
-                "admin-state": group.get("admin-state", "enable"),
-            }
-            if group.get("peer-as"):
-                group_val["peer-as"] = group["peer-as"]
+        # 3) Groups (presence and basics)
+        for group in cfg.get("groups", []) or []:
+            gname = group["group-name"]
+            gp_path = f'{bgp_path}/group[group-name="{gname}"]'
+            gval = {"admin-state": group.get("admin-state", "enable")}
+            if group.get("peer-as") is not None:
+                gval["peer-as"] = group["peer-as"]
             if group.get("description"):
-                group_val["description"] = group["description"]
-            cmds.append({
-                "action": "update",
-                "path": group_path,
-                "value": group_val
-            })
-            # Per-group afi-safi
-            group_afis = group.get("afi-safi", [])
-            if not group_afis:
-                group_afis = [{"afi-safi-name": "ipv4-unicast", "admin_state": "enable"}]
-            for af in group_afis:
-                af_path = group_path + f"/afi-safi[afi-safi-name={af['afi-safi-name']}]"
+                gval["description"] = group["description"]
+            cmds.append({"action": "update", "path": gp_path, "value": gval})
+
+            # group AFI/SAFI presence (admin-state only)
+            gafis = group.get("afi-safi", []) or [{"afi-safi-name": "ipv4-unicast", "admin_state": "enable"}]
+            for gaf in gafis:
+                gaf_name = _norm_afi_name(gaf)
+                if not gaf_name:
+                    continue
+                gaf_path = f'{gp_path}/afi-safi[afi-safi-name={gaf_name}]'
                 cmds.append({
                     "action": "update",
-                    "path": af_path + "/admin-state",
-                    "value": af.get("admin_state", "enable")
-                })
-            if group.get("export-policy"):
-                cmds.append({
-                    "action": "update",
-                    "path": group_path + "/export-policy",
-                    "value": group["export-policy"]
-                })
-            if group.get("import-policy"):
-                cmds.append({
-                    "action": "update",
-                    "path": group_path + "/import-policy",
-                    "value": group["import-policy"]
+                    "path": gaf_path + "/admin-state",
+                    "value": gaf.get("admin_state", "enable")
                 })
 
-        # 4. Set BGP neighbors
-        for nbr in cfg.get("neighbors", []):
-            nbr_addr = nbr["peer-address"]
-            nbr_path = f"{bgp_path}/neighbor[peer-address=\"{nbr_addr}\"]"
-            nbr_val = {
-                "admin-state": nbr.get("admin-state", "enable"),
-            }
+        # 4) Neighbors + policies
+        for nbr in cfg.get("neighbors", []) or []:
+            naddr = nbr["peer-address"]
+            n_path = f'{bgp_path}/neighbor[peer-address="{naddr}"]'
+            nval = {"admin-state": nbr.get("admin-state", "enable")}
             if nbr.get("peer-group"):
-                nbr_val["peer-group"] = nbr["peer-group"]
-            if nbr.get("peer-as"):
-                nbr_val["peer-as"] = nbr["peer-as"]
+                nval["peer-group"] = nbr["peer-group"]
+            if nbr.get("peer-as") is not None:
+                nval["peer-as"] = nbr["peer-as"]
             if nbr.get("description"):
-                nbr_val["description"] = nbr["description"]
-            cmds.append({
-                "action": "update",
-                "path": nbr_path,
-                "value": nbr_val
-            })
-            # Per-neighbor afi-safi
-            nbr_afis = nbr.get("afi-safi", [])
-            if not nbr_afis:
-                nbr_afis = [{"afi-safi-name": "ipv4-unicast", "admin_state": "enable"}]
-            for af in nbr_afis:
-                af_path = nbr_path + f"/afi-safi[afi-safi-name={af['afi-safi-name']}]"
+                nval["description"] = nbr["description"]
+            cmds.append({"action": "update", "path": n_path, "value": nval})
+
+            # neighbor-level policies (LIST KEYS = node name)
+            if nbr.get("export-policy"):
+                ep = nbr["export-policy"]
                 cmds.append({
                     "action": "update",
-                    "path": af_path + "/admin-state",
-                    "value": af.get("admin_state", "enable")
+                    "path": f'{n_path}/export-policy[export-policy="{ep}"]',
+                    "value": {}
                 })
-            # Timers
-            if nbr.get("timers"):
-                timers = nbr["timers"]
-                timers_path = nbr_path + "/timers"
-                timer_val = {}
-                if "hold-time" in timers:
-                    timer_val["hold-time"] = timers["hold-time"]
-                if "keepalive-interval" in timers:
-                    timer_val["keepalive-interval"] = timers["keepalive-interval"]
-                if timer_val:
+            if nbr.get("import-policy"):
+                ip = nbr["import-policy"]
+                cmds.append({
+                    "action": "update",
+                    "path": f'{n_path}/import-policy[import-policy="{ip}"]',
+                    "value": {}
+                })
+
+            # Neighbor AFI/SAFI (admin-state only + optional defaults)
+            nafis = nbr.get("afi-safi", []) or [{"afi-safi-name": "ipv4-unicast", "admin_state": "enable"}]
+            for naf in nafis:
+                naf_name = _norm_afi_name(naf)
+                if not naf_name:
+                    continue
+                naf_path = f'{n_path}/afi-safi[afi-safi-name={naf_name}]'
+
+                cmds.append({
+                    "action": "update",
+                    "path": naf_path + "/admin-state",
+                    "value": naf.get("admin_state", "enable")
+                })
+
+                def_exp = naf.get("default-export-policy") or naf.get("default_export_policy")
+                def_imp = naf.get("default-import-policy") or naf.get("default_import_policy")
+                if def_exp in ("accept", "reject"):
                     cmds.append({
                         "action": "update",
-                        "path": timers_path,
-                        "value": timer_val
+                        "path": naf_path + "/default-export-policy",
+                        "value": def_exp
                     })
+                if def_imp in ("accept", "reject"):
+                    cmds.append({
+                        "action": "update",
+                        "path": naf_path + "/default-import-policy",
+                        "value": def_imp
+                    })
+
+            # Neighbor timers (optional)
+            if nbr.get("timers"):
+                timers = nbr["timers"]
+                tval = {}
+                if "hold-time" in timers:
+                    tval["hold-time"] = timers["hold-time"]
+                if "keepalive-interval" in timers:
+                    tval["keepalive-interval"] = timers["keepalive-interval"]
+                if tval:
+                    cmds.append({"action": "update", "path": n_path + "/timers", "value": tval})
 
         changed = True
 
-    # Apply changes if needed
+    # Apply
     if changed and not module.check_mode and cmds:
         rpc = build_rpc("set", cmds, rpcID())
         response = client.post(payload=json.dumps(rpc))
         if response.get("error"):
             module.fail_json(msg="Server error (UPDATE)", response=pprint.pformat(response))
+
     module.exit_json(changed=changed, commands=cmds)
 
 if __name__ == "__main__":
